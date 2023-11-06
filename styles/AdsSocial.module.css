@@ -125,13 +125,14 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .social_container {
-        height: 850px;
+        height: 920px;
     }
 
     .social_info {
         padding: 50px 20px;
         flex-direction: column;
         height: 100%;
+        justify-content: space-between;
     }
 
     .social_info_contents {

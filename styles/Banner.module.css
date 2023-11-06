@@ -2,8 +2,8 @@
     width: 100%;
     justify-content: space-between;
     display: flex;
-    padding-top: 70px;
-    padding-bottom: 70px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     height: auto;
 }
 
@@ -206,22 +206,28 @@
     }
 
     .banner_right_content {
-        text-align: start;
+        /* text-align: start; */
         width: 100%;
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .banner_right_content h3 {
         font-size: 2rem;
     }
 
+    .banner_right_content p {
+        font-size: 1rem;
+    }
+
     .strong_words {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .banner_right_btn {
         font-size: 1rem;
-        width: 80%;
+        width: 60%;
+        border-radius: 4px;
+        margin-top: 20px;
     }
 
 }

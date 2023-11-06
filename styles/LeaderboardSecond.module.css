@@ -70,7 +70,7 @@
 .leaderboard_content_left button {
     font-size: 1.5rem;
     background-color: #ED7D31;
-    border-radius: 8px;
+    border-radius: 6px;
     width: 100%;
     margin-top: 35px;
     padding: 10px;
@@ -78,6 +78,7 @@
     text-transform: uppercase;
     border: 1px solid whitesmoke;
     transition: .1s;
+    white-space: nowrap;
 }
 
 .leaderboard_content_left button:active {
@@ -126,13 +127,14 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .leaderboard_container {
-        height: 850px;
+        height: 900px;
     }
 
     .leaderboard_content {
         height: 100%;
         padding: 50px 20px;
         flex-direction: column;
+        justify-content: space-between;
     }
 
     .leaderboard_content_left {
@@ -159,7 +161,7 @@
 
     .leaderboard_content_left button {
         font-size: 1rem;
-        width: 40%;
+        width: 50%;
         margin-top: 25px;
     }
 

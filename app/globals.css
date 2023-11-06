@@ -19,7 +19,7 @@ html {
 body {
   background: white;
   max-width: 1920px;
-  min-width: 445px;
+  min-width: 350px;
   /* width: 100%; */
   margin: 0 auto;
   scroll-behavior: smooth;
