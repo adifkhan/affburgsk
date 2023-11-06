@@ -1,0 +1,124 @@
+.header_container {
+    background-color: #E9E9E9;
+    color: whitesmoke;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 10px;
+    -webkit-box-shadow: 0px 7px 18px -15px rgba(0, 0, 0, 0.51);
+    -moz-box-shadow: 0px 7px 18px -15px rgba(0, 0, 0, 0.51);
+    box-shadow: 0px 7px 18px -15px rgba(0, 0, 0, 0.51);
+    color: #13183e;
+    transition: .3s;
+
+}
+
+.header_container_dark {
+    background-color: #121622;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 10px;
+    color: whitesmoke;
+    transition: .3s;
+    -webkit-box-shadow: 0px 7px 18px -15px rgba(0, 0, 0, 0.51);
+    -moz-box-shadow: 0px 7px 18px -15px rgba(0, 0, 0, 0.51);
+    box-shadow: 0px 7px 18px -15px rgba(0, 0, 0, 0.51);
+    z-index: 1;
+}
+
+.header_left_side {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+}
+
+.menu_logo {
+    font-size: 1.8rem;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+.menu_logo:hover {
+    background-color: #C0C0C0;
+}
+
+.menu_logo_dark {
+    font-size: 1.8rem;
+    text-align: center;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+.menu_logo_dark:hover {
+    background-color: #1c2437;
+}
+
+.header_right_logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 12px;
+}
+
+.header_right_single_logo {
+    font-size: 1.3rem;
+    padding: 4px;
+    transition: .2s;
+}
+
+.dot {
+    animation: pulseDot 1s linear 1s infinite normal forwards;
+}
+
+.account_logo {
+    background-color: #13183e0f;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    cursor: pointer;
+    padding: 4px 6px;
+}
+
+.account_logo_dark {
+    background-color: #1c2437;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    cursor: pointer;
+    padding: 4px 6px;
+}
+
+@keyframes pulseDot {
+    0% {
+        opacity: 0.8;
+        transform: scale(0.2);
+    }
+
+    80% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2.2);
+    }
+}
+
+/* .header_right_single_logo:hover {
+    color: #f66700;
+} */

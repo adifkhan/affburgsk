@@ -1,0 +1,232 @@
+.blog__content {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 100px;
+    background-color: lightgray;
+    height: 80vh;
+    /* margin-top: -300px; */
+    align-items: center;
+}
+
+.detailed__blog {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    cursor: pointer;
+}
+
+.detailed_blog_date {
+    margin-top: 20px;
+}
+
+.detailed_blog_date_blog_name {
+    text-decoration: underline;
+    margin-bottom: 10px;
+}
+
+.detailed__blog button {
+    background-color: #ED7D31;
+    color: whitesmoke;
+    border-radius: 5px;
+    padding: 6px 12px;
+    border: 1px solid whitesmoke;
+    margin-top: 20px;
+    font-size: 18px;
+    width: 150px;
+    font-weight: 500;
+}
+
+.detailed__blog button:active {
+    transform: scale(.9);
+}
+
+.blog__img__container {
+    width: 100%;
+    height: 400px;
+}
+
+.blog__img__container img {
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.all__blogs {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    row-gap: 15px;
+}
+
+.single__blog__container__right_active {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    background-color: #00052D;
+    padding: 10px;
+    border-radius: 5px;
+    transition: .2s;
+    color: white;
+    column-gap: 15px;
+
+}
+
+.single__blog__container__right_deactive {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    background-color: #e7e7e7;
+    padding: 10px;
+    border-radius: 5px;
+    transition: .2s;
+    column-gap: 15px;
+}
+
+.single__blog__container__right_deactive:hover {
+    box-shadow: 12px 12px 20px -9px rgb(150, 150, 150);
+}
+
+.single__blog__container__right_deactive:hover .blog_name {
+    text-decoration: underline;
+}
+
+
+.blog__content__img__right {
+    width: 20%;
+    height: 75px;
+}
+
+.blog__content__img__right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog__content__info__right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    font-size: .7rem;
+}
+
+.blog_name {
+    font-size: .9rem;
+}
+
+
+/*****responsive styles*****/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .blog__content {
+        flex-direction: column;
+        padding: 50px 20px;
+        row-gap: 30px;
+    }
+
+    .detailed__blog {
+        width: 100%;
+    }
+
+    .detailed_blog_date_blog_name {
+        font-size: 1.2rem;
+    }
+
+    .text {
+        font-size: .9rem;
+    }
+
+    .detailed_text {
+        font-size: .8rem;
+    }
+
+    .detailed__blog button {
+        padding: 4px 6px;
+        font-size: 15px;
+        width: 30%;
+    }
+
+    .all__blogs {
+        display: grid;
+        row-gap: 20px;
+        width: 100%;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .blog__content {
+        flex-direction: column;
+        padding: 50px 20px;
+        row-gap: 30px;
+    }
+
+    .detailed__blog {
+        width: 100%;
+    }
+
+    .detailed_blog_date_blog_name {
+        font-size: 1.2rem;
+    }
+
+    .text {
+        font-size: .9rem;
+    }
+
+    .detailed__blog button {
+        padding: 4px 6px;
+        font-size: 15px;
+    }
+
+    .all__blogs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(48%, 250px));
+        column-gap: 20px;
+        width: 100%;
+    }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 769px)and (max-width: 992px) {
+    .blog__content {
+        padding: 50px 30px;
+        row-gap: 30px;
+    }
+
+    .detailed__blog {
+        width: 50%;
+    }
+
+    .detailed_blog_date_blog_name {
+        font-size: 1.2rem;
+    }
+
+    .text {
+        font-size: .9rem;
+    }
+
+    .detailed__blog button {
+        padding: 4px 6px;
+        font-size: 18px;
+        width: 35%;
+    }
+
+    .all__blogs {
+        row-gap: 20px;
+        width: 45%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .detailed__blog button {
+        padding: 4px 6px;
+        font-size: 18px;
+        width: 35%;
+    }
+}

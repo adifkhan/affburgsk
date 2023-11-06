@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600&family=Hammersmith+One&family=Poppins:wght@300;400;500;600&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Dosis', sans-serif;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  background: white;
+  max-width: 1920px;
+  min-width: 445px;
+  /* width: 100%; */
+  margin: 0 auto;
+  scroll-behavior: smooth;
+  max-height: 100vh;
+  /* overflow-x: hidden; */
+  overflow-x: hidden;
+  overflow-y: auto !important;
+}
+
+h1 {
+  font-family: 'Hammersmith One', sans-serif;
+}
+
+p {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+  background: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #00052D;
+}

@@ -1,0 +1,144 @@
+/* .transaction_report_container {} */
+
+.transaction_heading_module {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    color: #ED7D31;
+}
+
+.trans_filter_input_modules {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    background-color: #1c2437;
+    padding: 30px 20px;
+    border-radius: 4px;
+    margin-top: 50px;
+}
+
+.date_range_show_module_trans {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    position: relative;
+}
+
+.date_range_show_module_trans h5 {
+    border: 1px solid #ED7D31;
+    padding: 12px 20px;
+    border-radius: 4px;
+    letter-spacing: .1ch;
+    white-space: nowrap;
+}
+
+.date_range_container {
+    margin-top: 2px;
+    position: absolute;
+    bottom: -360px;
+    left: -35px;
+    z-index: 2;
+}
+
+.filter_btn_module {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    margin-top: 20px;
+}
+
+.advance_filter_types_module {
+    display: flex;
+    margin-top: 50px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    z-index: -1;
+}
+
+.advance_filter_types_module_left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.advance_filter_types_module_left h2 {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 1.2rem;
+    color: #ED7D31;
+}
+
+.advance_filter_types_module_right {
+    width: 50%;
+    display: flex;
+    column-gap: 20px;
+    align-items: flex-start;
+}
+
+.advance_filter_types_module_right h2 {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 1.2rem;
+    color: #ED7D31;
+}
+
+
+.checkbox_module {
+    margin-top: 6px;
+    color: whitesmoke;
+    padding-left: 30px;
+}
+
+.clear_all_and_select_btns_module {
+    display: flex;
+    column-gap: 20px;
+    padding-left: 30px;
+    margin-top: 10px;
+}
+
+.advance_filter_types_module_column_show {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.advance_filter_types_module_left_checks h2 {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 1.2rem;
+    color: #ED7D31;
+}
+
+.export_btn_module {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.transaction_table_module {
+    margin-top: 30px;
+}
+
+.summay_module {
+    padding: 20px 20px;
+    background-color: #1c2437;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.summay_module span {
+    display: flex;
+    justify-content: space-between;
+    background-color: #27374D;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+.summay_module span>p {
+    color: #ED7D31;
+}

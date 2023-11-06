@@ -1,0 +1,43 @@
+.all_review_container {
+    display: grid;
+    background-color: lightgray;
+    width: 100%;
+    padding: 100px 100px;
+    justify-content: center;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 250px));
+    /* overflow-x: hidden; */
+}
+
+.review_container {
+    background-color: #00052d2f;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+    padding: 25px;
+    /* width: 30%; */
+    border: 2px solid whitesmoke;
+    cursor: pointer;
+    color: #00052D;
+}
+
+.review_info {
+    width: 100%;
+}
+
+.review_name {
+    letter-spacing: .2ch;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.review_date {
+    font-size: .8rem;
+}
+
+.review_text {
+    margin-top: 20px;
+    text-align: justify;
+}

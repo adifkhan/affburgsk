@@ -1,0 +1,38 @@
+.postback_container {
+    height: 100%;
+    width: 100%;
+}
+
+.postback_heading h1 {
+    color: #ED7D31;
+    font-size: 2rem;
+}
+
+.postback_filter_wrapper {
+    width: 100%;
+    display: flex;
+    row-gap: 20px;
+    align-items: start;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.postback_filter_wrapper_heading {
+    color: #ED7D31;
+    font-size: 1rem;
+}
+
+.accordion_container {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.add_a_link_module {
+    display: flex;
+    flex-direction: column;
+    background-color: #1c2437;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 4px;
+    padding: 30px 20px;
+}

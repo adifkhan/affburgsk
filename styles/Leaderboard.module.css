@@ -1,0 +1,336 @@
+.leaderboard_container {
+    height: 100vh;
+}
+
+.leaderboard_module {
+    height: 100%;
+    background-image: url('../public/lead1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-attachment: fixed;
+}
+
+.layer {
+    border-radius: 10px;
+    background-color: #00052D;
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+}
+
+.leaderboard_content {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-left: 100px;
+}
+
+.leaderboard_content_left {
+    color: aliceblue;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+.leaderboard_content_left_icon {
+    color: #ED7D31;
+    font-size: 7rem;
+    margin-bottom: 20px;
+}
+
+.leaderboard_content_left h1 {
+    color: white;
+    font-size: 2rem;
+}
+
+.leaderboard_content_left h3 {
+    color: white;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.leaderboard_content_left button {
+    font-size: 1.5rem;
+    background-color: #ED7D31;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 35px;
+    padding: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: 1px solid whitesmoke;
+    transition: .2s;
+}
+
+.leaderboard_content_left button:hover {
+    background-color: #00052D;
+}
+
+.leaderboard_content_left button:active {
+    transform: scale(.9);
+}
+
+.button_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    animation: blinkAnim 2s linear 2s infinite normal forwards;
+}
+
+.leaderboard_content_right {
+    color: aliceblue;
+    width: 500px;
+    height: 500px;
+    font-size: 2.5rem;
+    border: 2px solid #ED7D31;
+    padding: 50px;
+    border-radius: 8px;
+    background-color: rgba(128, 128, 128, 0.403);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@keyframes blinkAnim {
+
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0;
+    }
+}
+
+
+/*****responsive styles*****/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .leaderboard_container {
+        height: 800px;
+    }
+
+    .leaderboard_content {
+        width: 100%;
+        padding: 40px 20px;
+        flex-direction: column;
+    }
+
+    .leaderboard_content_left {
+        width: 100%;
+        height: min-content;
+        padding: 0;
+    }
+
+    .leaderboard_content_left_icon {
+        font-size: 4rem;
+    }
+
+    .leaderboard_content_left h1 {
+        font-size: 1.5rem;
+    }
+
+    .leaderboard_content_left p {
+        font-size: .8rem;
+    }
+
+    .leaderboard_content_left h3 {
+        font-size: 1.5rem;
+    }
+
+    .leaderboard_content_left button {
+        font-size: 1rem;
+        width: 60%;
+        margin-top: 25px;
+    }
+
+    .leaderboard_content_right {
+        width: 320px;
+        height: 320px;
+        font-size: 1.5rem;
+        padding: 20px;
+    }
+
+    .leaderboard_content_right_image {
+        width: 200px;
+        margin-bottom: 35px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .leaderboard_container {
+        height: 800px;
+    }
+
+    .leaderboard_content {
+        width: 100%;
+        padding: 40px 20px;
+        flex-direction: column;
+    }
+
+    .leaderboard_content_left {
+        width: 100%;
+        height: min-content;
+        padding: 0;
+    }
+
+    .leaderboard_content_left_icon {
+        font-size: 5rem;
+    }
+
+    .leaderboard_content_left h1 {
+        font-size: 1.8rem;
+    }
+
+    .leaderboard_content_left p {
+        font-size: .9rem;
+    }
+
+    .leaderboard_content_left h3 {
+        font-size: 1.6rem;
+    }
+
+    .leaderboard_content_left button {
+        font-size: 1rem;
+        width: 60%;
+        margin-top: 25px;
+    }
+
+    .leaderboard_content_right {
+        width: 350px;
+        height: 350px;
+        font-size: 1.8rem;
+        padding: 20px;
+    }
+
+    .leaderboard_content_right_image {
+        width: 200px;
+        margin-bottom: 35px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 769px)and (max-width: 992px) {
+    .leaderboard_container {
+        height: 800px;
+    }
+
+    .leaderboard_content {
+        width: 100%;
+        padding: 40px 30px;
+        flex-direction: column;
+    }
+
+    .leaderboard_content_left {
+        width: 100%;
+        height: min-content;
+        padding: 0;
+    }
+
+    .leaderboard_content_left_icon {
+        font-size: 5rem;
+    }
+
+    .leaderboard_content_left h1 {
+        font-size: 1.8rem;
+    }
+
+    .leaderboard_content_left p {
+        font-size: .9rem;
+    }
+
+    .leaderboard_content_left h3 {
+        font-size: 1.6rem;
+    }
+
+    .leaderboard_content_left button {
+        font-size: 1.4rem;
+        width: 40%;
+        margin-top: 25px;
+    }
+
+    .leaderboard_content_right {
+        width: 370px;
+        height: 370px;
+        font-size: 1.8rem;
+        padding: 20px;
+    }
+
+    .leaderboard_content_right_image {
+        width: 250px;
+        margin-bottom: 35px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .leaderboard_container {
+        height: 100vh;
+    }
+
+    .leaderboard_content {
+        width: 100%;
+        padding: 40px 60px;
+    }
+
+    .leaderboard_content_left {
+        width: 50%;
+        height: min-content;
+        padding: 0;
+    }
+
+    .leaderboard_content_left_icon {
+        font-size: 6rem;
+    }
+
+    .leaderboard_content_left h1 {
+        font-size: 2rem;
+    }
+
+    .leaderboard_content_left p {
+        font-size: 1rem;
+    }
+
+    .leaderboard_content_left h3 {
+        font-size: 1.8rem;
+    }
+
+    .leaderboard_content_left button {
+        font-size: 1.5rem;
+        width: 60%;
+        margin-top: 25px;
+    }
+
+    .leaderboard_content_right {
+        width: 40%;
+        height: min-content;
+        font-size: 1.8rem;
+        padding: 20px;
+    }
+
+    .leaderboard_content_right_image {
+        margin-bottom: 35px;
+    }
+}

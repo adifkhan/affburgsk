@@ -1,0 +1,359 @@
+.advertisers_container {
+    width: 100%;
+    background-color: lightgray;
+    padding-left: 100px;
+    padding-right: 50px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+}
+
+.advertisers_module {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: max-content;
+}
+
+.adv_left {
+    position: relative;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+}
+
+.image_back_portion {
+    position: absolute;
+    background-color: #ED7D31;
+    width: 80%;
+    height: 100%;
+    bottom: -20px;
+    right: 80px;
+}
+
+.adv_left_image {
+    width: 80%;
+    z-index: 0;
+}
+
+.adv_right {
+    width: 50%;
+    height: 100%;
+}
+
+.adv_right span {
+    font-size: 5rem;
+    color: #ED7D31;
+}
+
+.adv_right_heading {
+    font-size: 2.5rem;
+    color: #00052D;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.adv_right_text {
+    font-size: 1.5rem;
+    color: #00052D;
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+}
+
+.adv_right_text span {
+    font-size: 10rem;
+    color: gray;
+    opacity: .2;
+    top: 0;
+}
+
+.adv_right_point_text {
+    margin-top: 25px;
+    row-gap: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.adv_right_point_text_single {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    color: #00052D;
+    font-weight: 500;
+}
+
+.adv_right_point_text_single span {
+    font-size: 2rem;
+    color: #00052D;
+    animation: scalRight 1s linear 2s infinite normal both;
+}
+
+.adv_right button {
+    background-color: #ED7D31;
+    color: white;
+    font-size: 1.5rem;
+    padding: 8px 30px;
+    border: 2px solid white;
+    border-radius: 6px;
+    margin-top: 35px;
+    letter-spacing: .2ch;
+    transition: .2s;
+}
+
+.adv_right button:active {
+    transform: scale(.9);
+}
+
+@keyframes rotateAnim {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scalRight {
+    0% {
+        transform: scaleX(.8);
+        transform-origin: 0% 0%;
+    }
+
+    100% {
+        transform: scaleX(1.2);
+        transform-origin: 0% 0%;
+    }
+}
+
+/*****responsive styles*****/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .advertisers_container {
+        padding-top: 50px;
+        padding-right: 15px;
+        padding-bottom: 50px;
+        padding-left: 15px;
+    }
+
+    .advertisers_module {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+
+    .adv_left {
+        width: 400px;
+    }
+
+    .image_back_portion {
+        height: 100%;
+        bottom: -10px;
+        right: 50px;
+    }
+
+    .adv_right {
+        width: 100%;
+        height: 100%;
+        margin-top: 30px;
+    }
+
+    .adv_right span {
+        font-size: 3rem;
+    }
+
+    .adv_right_heading {
+        font-size: 1.8rem;
+    }
+
+    .adv_right_text {
+        font-size: 1.2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .adv_right_text span {
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10rem;
+    }
+
+    .adv_right button {
+        font-size: 1rem;
+        padding: 6px 30px;
+        margin-top: 30px;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .advertisers_container {
+        padding-top: 50px;
+        padding-right: 20px;
+        padding-bottom: 50px;
+        padding-left: 20px;
+    }
+
+    .advertisers_module {
+        flex-direction: column;
+        row-gap: 30px;
+    }
+
+    .adv_left {
+        width: 400px;
+    }
+
+    .image_back_portion {
+        height: 100%;
+        bottom: -10px;
+        right: 50px;
+    }
+
+    .adv_right {
+        width: 100%;
+        height: 100%;
+        margin-top: 30px;
+    }
+
+    .adv_right span {
+        font-size: 3rem;
+    }
+
+    .adv_right_heading {
+        font-size: 1.8rem;
+    }
+
+    .adv_right_text {
+        font-size: 1.2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .adv_right_text span {
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10rem;
+    }
+
+    .adv_right button {
+        font-size: 1rem;
+        padding: 6px 30px;
+        margin-top: 30px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 769px)and (max-width: 992px) {
+    .advertisers_container {
+        padding-top: 70px;
+        padding-right: 30px;
+        padding-bottom: 70px;
+        padding-left: 30px
+    }
+
+    .adv_left {
+        width: 450px;
+    }
+
+    .image_back_portion {
+        height: 100%;
+        bottom: -10px;
+        right: 50px;
+    }
+
+    .adv_right {
+        width: 55%;
+    }
+
+    .adv_right span {
+        font-size: 3rem;
+    }
+
+    .adv_right_heading {
+        font-size: 1.8rem;
+    }
+
+    .adv_right_text {
+        font-size: 1rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .adv_right_text span {
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 10rem;
+    }
+
+    .adv_right button {
+        font-size: 1rem;
+        padding: 6px 30px;
+        margin-top: 20px;
+        width: 100%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .advertisers_container {
+        padding-top: 70px;
+        padding-right: 60px;
+        padding-bottom: 70px;
+        padding-left: 60px
+    }
+
+    .adv_left {
+        width: 500px;
+    }
+
+    .image_back_portion {
+        height: 100%;
+        bottom: -20px;
+        right: 60px;
+    }
+
+    .adv_right {
+        width: 60%;
+    }
+
+    .adv_right span {
+        font-size: 4rem;
+    }
+
+    .adv_right_heading {
+        font-size: 2rem;
+    }
+
+    .adv_right_text {
+        font-size: 1.2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .adv_right_text span {
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 8rem;
+    }
+
+    .adv_right button {
+        font-size: 1rem;
+        padding: 6px 30px;
+        margin-top: 20px;
+        width: 100%;
+    }
+}

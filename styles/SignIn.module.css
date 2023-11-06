@@ -1,0 +1,520 @@
+.signin {
+    height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 60px 0 60px;
+    z-index: -1;
+}
+
+.signin_container {
+    width: 75%;
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin_text {
+    width: 40%;
+    border-radius: 10px 0 0 10px;
+    background-image: url('../public/bc1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+}
+
+.layer {
+    border-radius: 10px 0 0 10px;
+    background-color: black;
+    opacity: .2;
+    width: 100%;
+    height: 100%;
+}
+
+.signin_text_info {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 35px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.signin_text_logo {
+    font-size: 6rem;
+    color: #00052D;
+}
+
+.signin_text_info h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.signin_heading {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: #00052D;
+    margin-bottom: 25px;
+}
+
+.signin_right_logo {
+    font-size: 3rem;
+    color: #00052D;
+    display: none;
+}
+
+.signin_right_head_text {
+    font-size: 1.5rem;
+    margin-top: 15px;
+}
+
+.form_right {
+    display: flex;
+    flex-direction: column;
+}
+
+.signin_form {
+    width: 55%;
+    padding: 35px;
+    border-top: 2px solid #bbbbbb;
+    border-right: 2px solid #bbbbbb;
+    border-bottom: 2px solid #bbbbbb;
+    border-radius: 0 10px 10px 0;
+    height: 100%;
+}
+
+.form_first_section {
+    display: flex;
+    row-gap: 25px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+.password_field {
+    width: 100%;
+    position: relative;
+}
+
+.pass_eye {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    padding: 10px;
+    color: #5e606e;
+    font-size: .5rem;
+}
+
+.forgetPass_text {
+    text-align: end;
+    width: 100%;
+    color: #4e5dcd;
+    cursor: pointer;
+}
+
+.forgetPass_text:hover {
+    text-decoration: underline;
+    text-decoration-color: #424fb1;
+}
+
+.form_first_section button {
+    width: 60%;
+    background-color: #00052D;
+    border-radius: 4px;
+    color: whitesmoke;
+    padding: 5px 10px;
+    filter: drop-shadow(0.1rem 0.20rem 0.2rem rgba(0, 0, 0, 0.3));
+    gap: 10px;
+    transition: .1s;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: .1ch;
+}
+
+.form_first_section button:hover {
+    background-color: #ED7D31;
+}
+
+.form_second_section button:active {
+    transform: scale(.9);
+}
+
+.signin_bottom_container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.signIn_bottom {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.signIn_bottom button {
+    background-color: #00052D;
+    color: whitesmoke;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: .2ch;
+    display: flex;
+    align-items: center;
+    transition: .2s;
+}
+
+.signIn_bottom button:hover {
+    background-color: #ED7D31;
+}
+
+.signin_bottom_contact {
+    color: #4e5dcd;
+}
+
+.partner_btn_logo {
+    font-size: .9rem;
+    margin-right: 6px;
+}
+
+.signin_bottom_contact:hover {
+    text-decoration: underline;
+    text-decoration-color: #4e5dcd;
+}
+
+
+/*****responsive styles*****/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .signin {
+        padding: 70px 15px 30px 15px;
+        height: 550px;
+    }
+
+    .signin_container {
+        width: 100%;
+        height: 90%;
+    }
+
+    .signin_text {
+        display: none;
+    }
+
+    .signin_right_logo {
+        display: flex;
+        font-size: 1.2rem;
+    }
+
+    .signin_right_head_text {
+        font-size: 1.2rem;
+    }
+
+    .signin_form {
+        width: 90%;
+        padding: 20px;
+        border: none;
+        border-radius: 6px;
+        background-color: #00052d07;
+        border: 1px solid #424fb1;
+    }
+
+    .form_first_section {
+        row-gap: 15px;
+        margin-bottom: 0;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #bbbbbb;
+    }
+
+    .form_first_section button {
+        width: 30%;
+        padding: 6px 10px;
+        font-size: .8rem;
+    }
+
+    .signin_bottom_container {
+        row-gap: 15px;
+    }
+
+    .forgetPass_text {
+        font-size: .8rem;
+    }
+
+    .signIn_bottom {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .signIn_bottom button {
+        font-size: .7rem;
+    }
+
+    .another_account_text {
+        font-size: .9rem;
+    }
+
+    .signin_bottom_container p {
+        font-size: .8rem;
+    }
+
+    .partner_btn_logo {
+        font-size: .9rem;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .signin {
+        padding: 70px 15px 30px 15px;
+        height: 550px;
+    }
+
+    .signin_container {
+        width: 80%;
+        height: 90%;
+    }
+
+    .signin_text {
+        display: none;
+    }
+
+    .signin_right_logo {
+        display: flex;
+        font-size: 1.2rem;
+    }
+
+    .signin_right_head_text {
+        font-size: 1.2rem;
+    }
+
+    .signin_form {
+        width: 90%;
+        padding: 20px;
+        border: none;
+        border-radius: 6px;
+        background-color: #00052d07;
+        border: 2px solid #424fb1;
+    }
+
+    .form_first_section {
+        row-gap: 15px;
+        margin-bottom: 0;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #bbbbbb;
+    }
+
+    .form_first_section button {
+        width: 30%;
+        padding: 6px 10px;
+        font-size: .8rem;
+    }
+
+    .signin_bottom_container {
+        row-gap: 15px;
+    }
+
+    .forgetPass_text {
+        font-size: .8rem;
+    }
+
+    .signIn_bottom {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .signIn_bottom button {
+        font-size: .7rem;
+    }
+
+    .another_account_text {
+        font-size: .9rem;
+    }
+
+    .signin_bottom_container p {
+        font-size: .8rem;
+    }
+
+    .partner_btn_logo {
+        font-size: .9rem;
+    }
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 769px)and (max-width: 992px) {
+    .signin {
+        height: 600px;
+        padding: 60px 30px 0 30px;
+    }
+
+    .signin_container {
+        width: 100%;
+        height: 75%;
+    }
+
+    .signin_text_info {
+        padding: 1rem;
+        row-gap: 15px;
+    }
+
+    .signin_text_logo {
+        font-size: 4rem;
+    }
+
+    .signin_heading {
+        margin-bottom: 15px;
+    }
+
+    .signin_right_head_text {
+        font-size: 1.2rem;
+        margin-top: 0;
+    }
+
+    .form_right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .signin_form {
+        padding: 20px;
+    }
+
+    .form_first_section {
+        row-gap: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 20px;
+    }
+
+    .forgetPass_text {
+        font-size: .8rem;
+    }
+
+    .form_first_section button {
+        width: 30%;
+        padding: 4px 10px;
+        font-size: .9rem;
+    }
+
+    .signin_bottom_container {
+        row-gap: 10px;
+    }
+
+    .signIn_bottom {
+        gap: 15px;
+    }
+
+    .signIn_bottom button {
+        font-size: .9rem;
+    }
+
+    .signIn_bottom button:hover {
+        background-color: #ED7D31;
+    }
+
+    .signin_bottom_container p {
+        font-size: .9rem;
+    }
+
+    .signin_bottom_contact {
+        color: #4e5dcd;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .signin {
+        height: 800px;
+        padding: 60px 30px 0 30px;
+    }
+
+    .signin_container {
+        width: 80%;
+        height: 60%;
+    }
+
+    .signin_text_info {
+        padding: 1rem;
+        row-gap: 15px;
+    }
+
+    .signin_text_logo {
+        font-size: 4rem;
+    }
+
+    .signin_heading {
+        margin-bottom: 15px;
+    }
+
+    .signin_right_head_text {
+        font-size: 1.2rem;
+        margin-top: 0;
+    }
+
+    .form_right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .signin_form {
+        padding: 20px;
+    }
+
+    .form_first_section {
+        row-gap: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 20px;
+    }
+
+    .forgetPass_text {
+        font-size: .8rem;
+    }
+
+    .form_first_section button {
+        width: 30%;
+        padding: 4px 10px;
+        font-size: .9rem;
+    }
+
+    .signin_bottom_container {
+        row-gap: 10px;
+    }
+
+    .signIn_bottom {
+        gap: 15px;
+    }
+
+    .signIn_bottom button {
+        font-size: .9rem;
+    }
+
+    .signIn_bottom button:hover {
+        background-color: #ED7D31;
+    }
+
+    .signin_bottom_container p {
+        font-size: .9rem;
+    }
+
+    .signin_bottom_contact {
+        color: #4e5dcd;
+    }
+
+}

@@ -1,0 +1,242 @@
+.review_container {
+    display: flex;
+    width: 100%;
+    padding: 100px 100px;
+    justify-content: space-between;
+    background-color: lightgray;
+}
+
+.review_left {
+    width: 35%;
+}
+
+.review_logo {
+    font-size: 6rem;
+    color: #2e3553;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.review_text_heading {
+    font-size: 3rem;
+    color: #00052D;
+}
+
+.review_text_details {
+    font-size: 1rem;
+    color: #00052D;
+}
+
+.review_right {
+    width: 55%;
+    border: 2px solid #2e3553;
+    border-radius: 10px;
+    padding: 30px;
+    z-index: 0;
+}
+
+.form_first_section {
+    display: flex;
+    column-gap: 20px;
+}
+
+.form_second_section {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.form_second_section button {
+    width: 100%;
+    background-color: #00052D;
+    border-radius: 8px;
+    color: white;
+    padding: 12px;
+    filter: drop-shadow(0.1rem 0.20rem 0.2rem rgba(0, 0, 0, 0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: .1s;
+}
+
+.form_second_section button:active {
+    transform: scale(.9);
+}
+
+
+
+/*****responsive styles*****/
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .review_container {
+        padding: 50px 15px;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+    
+    .review_left {
+        width: 100%;
+    }
+    
+    .review_logo {
+        font-size: 5rem;
+    }
+    
+    .review_text_heading {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    
+    .review_text_details {
+        font-size: 1rem;
+    }
+    
+    .review_right {
+        width: 100%;
+        padding: 25px;
+    }
+    
+    .form_first_section {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+    
+    .form_second_section {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    .review_container {
+        padding: 50px 20px 80px 20px;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+    
+    .review_left {
+        width: 100%;
+    }
+    
+    .review_logo {
+        font-size: 5rem;
+        justify-content: start;
+    }
+    
+    .review_text_heading {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    
+    .review_text_details {
+        font-size: 1rem;
+    }
+    
+    .review_right {
+        width: 100%;
+        padding: 25px;
+    }
+    
+    .form_first_section {
+        row-gap: 10px;
+    }
+    
+    .form_second_section {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 769px)and (max-width: 992px) {
+    .review_container {
+        padding: 80px 30px;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+    
+    .review_left {
+        width: 100%;
+    }
+    
+    .review_logo {
+        font-size: 6rem;
+        justify-content: start;
+    }
+    
+    .review_text_heading {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    
+    .review_text_details {
+        font-size: 1rem;
+    }
+    
+    .review_right {
+        width: 100%;
+        padding: 25px;
+    }
+    
+    .form_first_section {
+        row-gap: 10px;
+    }
+    
+    .form_second_section {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    .review_container {
+        padding: 80px 60px;
+        row-gap: 50px;
+    }
+    
+    .review_left {
+        width: 45%;
+    }
+    
+    .review_logo {
+        font-size: 6rem;
+    }
+    
+    .review_text_heading {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    
+    .review_text_details {
+        font-size: 1rem;
+    }
+    
+    .review_right {
+        width: 50%;
+        padding: 25px;
+    }
+    
+    .form_first_section {
+        row-gap: 20px;
+        flex-direction: column;
+    }
+    
+    .form_second_section {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+}
