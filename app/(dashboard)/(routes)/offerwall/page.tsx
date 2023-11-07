@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
 import styles from '@/styles/Dashboard/Offarwall.module.css';
-import { Button, InputAdornment, MenuItem, TextField } from '@mui/material';
+import { InputAdornment, MenuItem, TextField } from '@mui/material';
 import { AiOutlineSearch } from 'react-icons/ai';
 import OfferwallTable from '@/components/dashComponents/tables/OfferwallTable';
-import { IoFilterSharp } from 'react-icons/io5';
+import FilterButton from '@/components/ui/FilterButton';
 
 const vertical = [
     {
@@ -218,15 +218,7 @@ export default function Offerwall() {
                         ))}
                     </TextField>
                 </div>
-                <Button
-                    sx={{
-                        bgcolor: '#ED7D31', fontSize: '.8rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis',
-                        '&:hover': {
-                            bgcolor: '#ED7D31', boxShadow: 'none',
-                        },
-                    }} component="label" variant="contained" startIcon={<IoFilterSharp />}>
-                    Apply Filter
-                </Button>
+                <FilterButton />
                 <OfferwallTable />
             </div>
             <div>

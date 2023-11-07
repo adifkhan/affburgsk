@@ -12,23 +12,14 @@ import { DonutChart } from '@/components/dashComponents/charts/DonutChart';
 import LineChart from '@/components/dashComponents/charts/LineChart';
 import { BarChartData, donutChartCampData, paiData } from '@/components/dashComponents/charts/ChartsData';
 import Image from 'next/image';
-// import NL from '../../../../public/dashboard.png';
+import NL from '../../../../public/netherLandflag.png';
 import { DonutChartCamp } from '@/components/dashComponents/charts/DonutChartCamp';
 import ReportByDays from '@/components/dashComponents/tables/ReportByDays';
 import BarChart from '@/components/dashComponents/charts/BarChart';
+import ExportButton from '@/components/ui/ExportButton';
 
 
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
+
 
 const topCardsData: TopCardData[] = [
     {
@@ -222,15 +213,7 @@ export default function DashboardHomePage() {
                     </div>
                 </div>
                 <div className={styles.welcome_cotaianer_right}>
-                    <Button sx={{
-                        bgcolor: '#383b8c', fontSize: '.7rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis', '&:hover': {
-                            bgcolor: '#36a689', boxShadow: '1px 5px 3px -4px rgba(158,158,158,1)',
-
-                        }
-                    }} component="label" variant="contained" startIcon={<BiDownload />}>
-                        Download Report
-                        <VisuallyHiddenInput type="file" />
-                    </Button>
+                    <ExportButton />
                 </div>
             </div>
             <div className={styles.top_cards_container}>
@@ -261,12 +244,6 @@ export default function DashboardHomePage() {
                             <h2>Recvenue Generated</h2>
                             <h1>$12,500.88</h1>
                         </span>
-                        <Button sx={{
-                            px: '15px', py: '8px', color: '#36a689',
-                        }} component="label">
-                            <BiDownload size='20px' />
-                            <VisuallyHiddenInput type="file" />
-                        </Button>
                     </div>
                     <div className={styles.lineChart_container}>
                         <LineChart />
@@ -303,7 +280,7 @@ export default function DashboardHomePage() {
                                     className={styles.single_offer}>
                                     <h2>{offer.title.slice(0, 25) + '...'}</h2>
                                     <div className={styles.offer_image}>
-                                        {/* <Image src={NL} width={200} height={200} alt='flag' /> */}
+                                        <Image src={NL} width={200} height={200} alt='flag' />
                                     </div>
                                     <span>{offer.countryName}</span>
                                     <span>{offer.category}</span>

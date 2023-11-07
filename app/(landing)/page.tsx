@@ -1,3 +1,4 @@
+// 'use client';
 import AdsSocial from '@/components/AdsSocial'
 import Advertisers from '@/components/Advertisers'
 import Banner from '@/components/Banner'

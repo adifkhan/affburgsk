@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 import styles from '@/styles/Dashboard/Fqa.module.css';
 import Search from '@/components/dashComponents/Search';
@@ -7,10 +8,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { MdExpandMore, MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
+import { useAppSelector } from '@/app/GlobalRedux/store';
+import AccordionFqa from '@/components/ui/AccordionFqa';
 
-// type ThemeProps = {
-//     themeDark: string | null;
-// }
 
 export default function FQA() {
     const [expandedAccordian1, setExpandedAccordian1] = React.useState<string | false>(false);
@@ -20,10 +20,12 @@ export default function FQA() {
     const [expandedAccordian5, setExpandedAccordian5] = React.useState<string | false>(false);
     const [expandedAccordian6, setExpandedAccordian6] = React.useState<string | false>(false);
 
-    const handleChangeAccordian1 =
-        (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-            setExpandedAccordian1(isExpanded ? panel : false);
-        };
+    // const dispatch = useDispatch<AppDispatch>();
+    const themeDark = useAppSelector((state) => state.themeReducer.theme);
+
+    const handleChangeAccordian1 = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+        setExpandedAccordian1(isExpanded ? panel : false);
+    };
 
     const handleChangeAccordian2 =
         (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -50,276 +52,18 @@ export default function FQA() {
         <div className={styles.fqa_container}>
             <h1 className={styles.fqa_heading}>Ask Frequent Question</h1>
             <div className={styles.search_module}>
-                {/* <Search themeDark={themeDark} /> */}
+                <Search themeDark={themeDark} />
             </div>
             <div className={styles.questions_module}>
                 <div className={styles.questions_module_left}>
-                    <Accordion
-                        sx={{
-                            backgroundColor: "#164863",
-                            borderRadius: "6px 6px 6px 6px",
-                            marginBottom: '20px'
-                        }}
-                        expanded={expandedAccordian1 === 'panel'} onChange={handleChangeAccordian1('panel')}>
-                        <AccordionSummary
-                            sx={{
-                                "&.MuiAccordionSummary-root": {
-                                    color: 'whiteSmoke',
-                                },
-                                "& .MuiAccordionSummary-contentGutters": {
-                                    display: 'flex',
-                                    alignItems: 'center'
-                                },
-                                "& .MuiAccordionSummary-expandIconWrapper": {
-                                    fontSize: '25px',
-                                    color: 'lightGrey',
-                                },
-
-                            }}
-                            expandIcon={<MdExpandMore />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
-                        >
-                            <Typography sx={{ width: '100%', fontSize: '.9rem', display: 'flex', alignItems: 'center', columnGap: '10px' }}>
-                                <MdOutlineKeyboardDoubleArrowRight size='1.2rem' />How to create own postback URLs
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails
-                            sx={{
-                                backgroundColor: "#1c2437",
-                                borderRadius: "0 0 4px 4px",
-                                padding: '20px 20px',
-                                color: 'lightGrey'
-                            }}
-                        >
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion
-                        sx={{
-                            backgroundColor: "#164863",
-                            borderRadius: "6px 6px 6px 6px",
-                            marginBottom: '20px'
-                        }}
-                        expanded={expandedAccordian2 === 'panel'} onChange={handleChangeAccordian2('panel')}>
-                        <AccordionSummary
-                            sx={{
-                                "&.MuiAccordionSummary-root": {
-                                    color: 'whiteSmoke',
-                                },
-                                "& .MuiAccordionSummary-contentGutters": {
-                                    display: 'flex',
-                                    alignItems: 'center'
-                                },
-                                "& .MuiAccordionSummary-expandIconWrapper": {
-                                    fontSize: '25px',
-                                    color: 'lightGrey',
-                                },
-
-                            }}
-                            expandIcon={<MdExpandMore />}
-                            aria-controls="panel2bh-content"
-                            id="panel2bh-header"
-                        >
-                            <Typography sx={{ width: '100%', fontSize: '.9rem', display: 'flex', alignItems: 'center', columnGap: '10px' }}>
-                                <MdOutlineKeyboardDoubleArrowRight size='1.2rem' />How to create own postback URLs
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails
-                            sx={{
-                                backgroundColor: "#1c2437",
-                                borderRadius: "0 0 4px 4px",
-                                padding: '20px 20px',
-                                color: 'lightGrey'
-                            }}
-                        >
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion
-                        sx={{
-                            backgroundColor: "#164863",
-                            borderRadius: "6px 6px 6px 6px",
-                            marginBottom: '20px',
-                        }}
-                        expanded={expandedAccordian3 === 'panel'} onChange={handleChangeAccordian3('panel')}>
-                        <AccordionSummary
-                            sx={{
-                                "&.MuiAccordionSummary-root": {
-                                    color: 'whiteSmoke',
-                                },
-                                "& .MuiAccordionSummary-contentGutters": {
-                                    display: 'flex',
-                                    alignItems: 'center'
-                                },
-                                "& .MuiAccordionSummary-expandIconWrapper": {
-                                    fontSize: '25px',
-                                    color: 'lightGrey',
-                                },
-
-                            }}
-                            expandIcon={<MdExpandMore />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
-                        >
-                            <Typography sx={{ width: '100%', fontSize: '.9rem', display: 'flex', alignItems: 'center', columnGap: '10px' }}>
-                                <MdOutlineKeyboardDoubleArrowRight size='1.2rem' />How to create own postback URLs
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails
-                            sx={{
-                                backgroundColor: "#1c2437",
-                                borderRadius: "0 0 4px 4px",
-                                padding: '20px 20px',
-                                color: 'lightGrey'
-                            }}
-                        >
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                    <AccordionFqa expandedAccordian={expandedAccordian1} handleChangeAccordian={handleChangeAccordian1} />
+                    <AccordionFqa expandedAccordian={expandedAccordian2} handleChangeAccordian={handleChangeAccordian2} />
+                    <AccordionFqa expandedAccordian={expandedAccordian3} handleChangeAccordian={handleChangeAccordian3} />
                 </div>
                 <div className={styles.questions_module_right}>
-                    <Accordion
-                        sx={{
-                            backgroundColor: "#164863",
-                            borderRadius: "6px 6px 6px 6px",
-                            marginBottom: '20px'
-                        }}
-                        expanded={expandedAccordian4 === 'panel'} onChange={handleChangeAccordian4('panel')}>
-                        <AccordionSummary
-                            sx={{
-                                "&.MuiAccordionSummary-root": {
-                                    color: 'whiteSmoke',
-                                },
-                                "& .MuiAccordionSummary-contentGutters": {
-                                    display: 'flex',
-                                    alignItems: 'center'
-                                },
-                                "& .MuiAccordionSummary-expandIconWrapper": {
-                                    fontSize: '25px',
-                                    color: 'lightGrey',
-                                },
-
-                            }}
-                            expandIcon={<MdExpandMore />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
-                        >
-                            <Typography sx={{ width: '100%', fontSize: '.9rem', display: 'flex', alignItems: 'center', columnGap: '10px' }}>
-                                <MdOutlineKeyboardDoubleArrowRight size='1.2rem' />How to create own postback URLs
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails
-                            sx={{
-                                backgroundColor: "#1c2437",
-                                borderRadius: "0 0 4px 4px",
-                                padding: '20px 20px',
-                                color: 'lightGrey'
-                            }}
-                        >
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion
-                        sx={{
-                            backgroundColor: "#164863",
-                            borderRadius: "6px 6px 6px 6px",
-                            marginBottom: '20px'
-                        }}
-                        expanded={expandedAccordian5 === 'panel'} onChange={handleChangeAccordian5('panel')}>
-                        <AccordionSummary
-                            sx={{
-                                "&.MuiAccordionSummary-root": {
-                                    color: 'whiteSmoke',
-                                },
-                                "& .MuiAccordionSummary-contentGutters": {
-                                    display: 'flex',
-                                    alignItems: 'center'
-                                },
-                                "& .MuiAccordionSummary-expandIconWrapper": {
-                                    fontSize: '25px',
-                                    color: 'lightGrey',
-                                },
-
-                            }}
-                            expandIcon={<MdExpandMore />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
-                        >
-                            <Typography sx={{ width: '100%', fontSize: '.9rem', display: 'flex', alignItems: 'center', columnGap: '10px' }}>
-                                <MdOutlineKeyboardDoubleArrowRight size='1.2rem' />How to create own postback URLs
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails
-                            sx={{
-                                backgroundColor: "#1c2437",
-                                borderRadius: "0 0 4px 4px",
-                                padding: '20px 20px',
-                                color: 'lightGrey'
-                            }}
-                        >
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion
-                        sx={{
-                            backgroundColor: "#164863",
-                            borderRadius: "6px 6px 6px 6px",
-                            marginBottom: '20px'
-                        }}
-                        expanded={expandedAccordian6 === 'panel'} onChange={handleChangeAccordian6('panel')}>
-                        <AccordionSummary
-                            sx={{
-                                "&.MuiAccordionSummary-root": {
-                                    color: 'whiteSmoke',
-                                },
-                                "& .MuiAccordionSummary-contentGutters": {
-                                    display: 'flex',
-                                    alignItems: 'center'
-                                },
-                                "& .MuiAccordionSummary-expandIconWrapper": {
-                                    fontSize: '25px',
-                                    color: 'lightGrey',
-                                },
-
-                            }}
-                            expandIcon={<MdExpandMore />}
-                            aria-controls="panel1bh-content"
-                            id="panel1bh-header"
-                        >
-                            <Typography sx={{ width: '100%', fontSize: '.9rem', display: 'flex', alignItems: 'center', columnGap: '10px' }}>
-                                <MdOutlineKeyboardDoubleArrowRight size='1.2rem' />How to create own postback URLs
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails
-                            sx={{
-                                backgroundColor: "#1c2437",
-                                borderRadius: "0 0 4px 4px",
-                                padding: '20px 20px',
-                                color: 'lightGrey'
-                            }}
-                        >
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget.
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                    <AccordionFqa expandedAccordian={expandedAccordian4} handleChangeAccordian={handleChangeAccordian4} />
+                    <AccordionFqa expandedAccordian={expandedAccordian5} handleChangeAccordian={handleChangeAccordian5} />
+                    <AccordionFqa expandedAccordian={expandedAccordian6} handleChangeAccordian={handleChangeAccordian6} />
                 </div>
             </div>
         </div >

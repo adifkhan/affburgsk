@@ -13,22 +13,27 @@ import { HiOutlineSun } from 'react-icons/hi';
 import Notification from './Notification';
 import Search from './Search';
 import ModalDashboard from './ModalDashboard';
+import { AppDispatch, useAppSelector } from '@/app/GlobalRedux/store';
+import { useDispatch } from 'react-redux';
+import { themeState } from '@/app/GlobalRedux/features/theme-slice';
 
 
 type HeaderProps = {
     sidebarOpen: boolean;
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
-    themeDark: string | null;
-    setThemeDark: Dispatch<SetStateAction<string | null>>;
     reportsDropDownMenu: boolean;
     setReportDropDownMenu: Dispatch<SetStateAction<boolean>>;
     fqaDropDownMenu: boolean;
     setFqaDropDownMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Header({ sidebarOpen, setSidebarOpen, themeDark, setThemeDark, reportsDropDownMenu, setReportDropDownMenu, fqaDropDownMenu, setFqaDropDownMenu }: HeaderProps) {
+export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMenu, setReportDropDownMenu, fqaDropDownMenu, setFqaDropDownMenu }: HeaderProps) {
     const [badgeOpen, setBadgeOpen] = useState<boolean>(true);
     const [open, setOpen] = useState<boolean>(false);
+
+    //for redux state manage
+    const themeDark = useAppSelector((state) => state.themeReducer.theme);
+    const dispatch = useDispatch<AppDispatch>();
 
     const handleSidebar = () => {
         if (reportsDropDownMenu) {
@@ -42,10 +47,10 @@ export default function Header({ sidebarOpen, setSidebarOpen, themeDark, setThem
 
     const handleTheme = () => {
         if (themeDark === 'false') {
-            setThemeDark('true')
+            dispatch(themeState('true'))
         }
         else {
-            setThemeDark('false');
+            dispatch(themeState('false'))
         }
     }
 
@@ -71,9 +76,9 @@ export default function Header({ sidebarOpen, setSidebarOpen, themeDark, setThem
                     <Box component={'div'}>
                         <IconButton
                             // for theme toggle
-                            // onClick={handleTheme}
+                            onClick={handleTheme}
                             // for modal open
-                            onClick={handleOpen}
+                            // onClick={handleOpen}
                             sx={themeDark === 'false' ? { color: '#13183e' } : { color: 'whitesmoke' }}
                             aria-label="theme">
                             {themeDark === 'false' ? <HiOutlineSun size={'20px'} /> : <BsMoonStars size={20} />}
@@ -88,7 +93,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, themeDark, setThem
                 <Notification
                     badgeOpen={badgeOpen}
                     setBadgeOpen={setBadgeOpen}
-                    themeDark={themeDark}
                 />
                 <Tooltip title="Rearrange" placement="bottom">
                     <IconButton disabled sx={{ color: '#13183e' }} aria-label="delete">

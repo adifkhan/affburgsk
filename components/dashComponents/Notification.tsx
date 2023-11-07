@@ -10,11 +10,10 @@ import { TbShoppingCartCheck } from 'react-icons/tb';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { LiaShippingFastSolid } from 'react-icons/lia';
 import { FiMail } from 'react-icons/fi';
+import { useAppSelector } from '@/app/GlobalRedux/store';
 
 
-
-
-const StyledBadge = styled(Badge)(({ theme }) => ({
+const StyledBbadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
         backgroundColor: '#36a689',
         color: '#36a689',
@@ -113,16 +112,17 @@ const NOTIFICATIONS = [
 type BadgeOpenProps = {
     badgeOpen: boolean;
     setBadgeOpen: Dispatch<SetStateAction<boolean>>;
-    themeDark: string | null;
 }
 
-export default function Notification({ badgeOpen, setBadgeOpen, themeDark }: BadgeOpenProps) {
-
+export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps) {
     const [notifications, setNotifications] = useState(NOTIFICATIONS);
-
     const totalUnRead = notifications.filter((item) => item.isUnRead === true).length;
-
     const [open, setOpen] = useState(null);
+
+    //for Redux state
+    const themeDark = useAppSelector((state) => state.themeReducer.theme);
+
+
 
     const handleOpen = (event: any) => {
         setOpen(event.currentTarget);
@@ -152,7 +152,8 @@ export default function Notification({ badgeOpen, setBadgeOpen, themeDark }: Bad
                 onClick={handleOpen}
                 title="Notifications"
                 placement="bottom">
-                <StyledBadge
+                {/* <StyledBadge
+                    themeDark={themeDark}
                     overlap="circular"
                     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
                     variant="dot"
@@ -163,7 +164,16 @@ export default function Notification({ badgeOpen, setBadgeOpen, themeDark }: Bad
                         sx={{ bgcolor: 'none', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', cursor: 'pointer' }}>
                         <IoMdNotificationsOutline size={'20px'} />
                     </Box>
-                </StyledBadge>
+                </StyledBadge> */}
+
+                <Box sx={{ position: 'relative' }}>
+                    <Box
+                        component="span"
+                        sx={{ bgcolor: 'none', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', cursor: 'pointer' }}>
+                        <IoMdNotificationsOutline size={'20px'} />
+                    </Box>
+                    <Badge sx={{ position: 'absolute', top: 5, right: 5 }} invisible={!badgeOpen} color="info" variant="dot" />
+                </Box>
             </Tooltip>
             <Popover
                 className={styles.main_noti_con}

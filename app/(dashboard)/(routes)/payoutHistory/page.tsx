@@ -9,6 +9,8 @@ import { PayoutHistoryData, dateType } from '@/types/models';
 import PayoutHistoryTable from '@/components/dashComponents/tables/PayoutHistoryTable';
 import { BiDownload } from 'react-icons/bi';
 import { AiOutlineClear } from 'react-icons/ai';
+import ExportButton from '@/components/ui/ExportButton';
+import DateRangeButton from '@/components/ui/DateRangeButton';
 
 
 
@@ -123,17 +125,7 @@ export default function PayoutHistory() {
             </div>
             <div className={styles.date_range_show_module}>
                 <div className={styles.date_range_show_module_left}>
-                    <Button
-                        onClick={handleCalenderOpen}
-                        sx={{
-                            bgcolor: '#ED7D31', letterSpacing: '.1ch', fontFamily: 'Dosis', height: '100%',
-                            '&:hover': {
-                                bgcolor: '#ED7D31', boxShadow: 'none',
-                            },
-                        }} component="label" variant="contained" endIcon={<BsCalendar3 />}>
-                        Select Date Range
-                    </Button>
-
+                    <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
                     <h5>{format(yesterday, "dd-MMM-yyyy")}</h5>
                     <p>to</p>
                     <h5>{format(rangeDate.endDate, "dd-MMM-yyyy")}</h5>
@@ -141,19 +133,10 @@ export default function PayoutHistory() {
                         <DateRangePickerComp rangeDate={rangeDate} setRangeDate={setRangeDate} handleChange={handleChange} />
                     </div>}
                     <IconButton aria-label="delete">
-                        <AiOutlineClear size='1.7rem' color='#ED7D31' />
+                        <AiOutlineClear size='1.2rem' color='#ED7D31' />
                     </IconButton>
                 </div>
-                <Button sx={{
-                    bgcolor: '#383b8c', fontSize: '.7rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis', '&:hover': {
-                        bgcolor: '#36a689',
-
-                    }
-                }} component="label" variant="contained" startIcon={<BiDownload />}>
-                    Download Report
-                    <VisuallyHiddenInput type="file" />
-                </Button>
-
+                <ExportButton />
             </div>
             <div className={styles.history_table_container}>
                 <PayoutHistoryTable rowsAllData={rowsData} />

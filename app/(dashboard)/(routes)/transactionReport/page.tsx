@@ -14,6 +14,12 @@ import { MdClear } from 'react-icons/md';
 import { BiDownload, BiSelectMultiple, BiTransfer } from 'react-icons/bi';
 import { RiInsertColumnLeft } from 'react-icons/ri';
 import TransReportTable from '@/components/dashComponents/tables/TransReportTable';
+import ExportButton from '@/components/ui/ExportButton';
+import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
+import FilterButton from '@/components/ui/FilterButton';
+import DateRangeButton from '@/components/ui/DateRangeButton';
+import ClearAllcheckBtn from '@/components/ui/ClearAllcheckBtn';
+import SelectAllCheckBtn from '@/components/ui/SelectAllCheckBtn';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -144,11 +150,13 @@ export default function TransactionReport() {
     function handleChange(ranges: any) {
         setRangeDate(ranges.selection)
     }
+    function handleOnChange() {
+        console.log('Check box value underdevelop !!!!!!!!!!!!!!!!!')
+    }
     return (
         <div className={styles.transaction_report_container}>
             <div className={styles.transaction_heading_module}>
                 <h1>Transaction Report</h1>
-                {/*  */}
             </div>
             <div className={styles.trans_filter_input_modules}>
                 <TextField
@@ -322,16 +330,7 @@ export default function TransactionReport() {
                     ))}
                 </TextField>
                 <div className={styles.date_range_show_module_trans}>
-                    <Button
-                        onClick={handleCalenderOpen}
-                        sx={{
-                            bgcolor: '#ED7D31', letterSpacing: '.1ch', fontFamily: 'Dosis', height: '100%', whiteSpace: 'nowrap', py: 1.4,
-                            '&:hover': {
-                                bgcolor: '#ED7D31', boxShadow: 'none',
-                            },
-                        }} component="label" variant="contained" endIcon={<BsCalendar3 />}>
-                        Select Date Range
-                    </Button>
+                    <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
                     <h5>{format(yesterday, "dd-MMM-yyyy")}</h5>
                     <p>to</p>
                     <h5>{format(rangeDate.endDate, "dd-MMM-yyyy")}</h5>
@@ -341,16 +340,7 @@ export default function TransactionReport() {
                 </div>
             </div>
             <div className={styles.filter_btn_module}>
-                <Button
-                    size='small'
-                    sx={{
-                        bgcolor: '#ED7D31', px: '6px', py: '6px', fontSize: '.8rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                        '&:hover': {
-                            bgcolor: '#ED7D31', boxShadow: 'none',
-                        },
-                    }} component="label" variant="contained" startIcon={<IoFilterSharp />}>
-                    Apply Filter
-                </Button>
+                <FilterButton />
                 <Button
                     size='small'
                     sx={{
@@ -362,7 +352,7 @@ export default function TransactionReport() {
                     Advance Filter
                 </Button>
                 <IconButton aria-label="delete">
-                    <AiOutlineClear size='1.7rem' color='#ED7D31' />
+                    <AiOutlineClear size='1.2rem' color='#ED7D31' />
                 </IconButton>
             </div>
             <div className={styles.advance_filter_types_module}>
@@ -370,104 +360,16 @@ export default function TransactionReport() {
                     <div className={styles.advance_filter_types_module_left_checks}>
                         <h2><TbTransform size='1.5rem' />Tansactions Type</h2>
                         <div className={styles.checkbox_module}>
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Registration" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Click" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Payment" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Confirm" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Install" />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                         </div>
                     </div>
                     <div className={styles.clear_all_and_select_btns_module}>
-                        <Button
-                            size='small'
-                            sx={{
-                                color: '#ED7D31', bgcolor: '#1c2437', px: '8px', py: '5px', fontSize: '.6rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                                '&:hover': {
-                                    bgcolor: '#1c2437', boxShadow: 'none',
-                                },
-                            }} component="label" variant="contained" startIcon={<MdClear />}>
-                            Clear All
-                        </Button>
-                        <Button
-                            size='small'
-                            sx={{
-                                color: '#ED7D31', bgcolor: '#1c2437', px: '8px', py: '5px', fontSize: '.6rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                                '&:hover': {
-                                    bgcolor: '#1c2437', boxShadow: 'none',
-                                },
-                            }} component="label" variant="contained" startIcon={<BiSelectMultiple />}>
-                            Select All
-                        </Button>
+                        <ClearAllcheckBtn />
+                        <SelectAllCheckBtn />
                     </div>
                 </div>
                 <div className={styles.advance_filter_types_module_right}>
@@ -562,140 +464,28 @@ export default function TransactionReport() {
                     <div className={styles.advance_filter_types_module_left_checks}>
                         <h2><BiTransfer size='1.5rem' />Conversion currency</h2>
                         <div className={styles.checkbox_module}>
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Only in $" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Click" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Payment" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Confirm" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Install" />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                         </div>
                     </div>
                     <div className={styles.clear_all_and_select_btns_module}>
-                        <Button
-                            size='small'
-                            sx={{
-                                color: '#ED7D31', bgcolor: '#1c2437', px: '8px', py: '5px', fontSize: '.6rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                                '&:hover': {
-                                    bgcolor: '#1c2437', boxShadow: 'none',
-                                },
-                            }} component="label" variant="contained" startIcon={<MdClear />}>
-                            Clear All
-                        </Button>
-                        <Button
-                            size='small'
-                            sx={{
-                                color: '#ED7D31', bgcolor: '#1c2437', px: '8px', py: '5px', fontSize: '.6rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                                '&:hover': {
-                                    bgcolor: '#1c2437', boxShadow: 'none',
-                                },
-                            }} component="label" variant="contained" startIcon={<BiSelectMultiple />}>
-                            Select All
-                        </Button>
+                        <ClearAllcheckBtn />
+                        <SelectAllCheckBtn />
                     </div>
                 </div>
                 <div className={styles.advance_filter_types_module_right}>
                     <div className={styles.advance_filter_types_module_left_checks}>
                         <h2><TbStatusChange size='1.5rem' />Status</h2>
                         <div className={styles.checkbox_module}>
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Registration" />
-                            <FormControlLabel
-                                sx={{
-                                    '& .MuiFormControlLabel-label': {
-                                        fontSize: '.8rem'
-                                    }
-                                }}
-                                control={<Checkbox
-                                    sx={{
-                                        color: 'lightgrey',
-                                        '&.Mui-checked': {
-                                            color: '#ED7D31',
-                                        },
-                                    }}
-                                />}
-                                label="Click" />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        </div>
+                        <div className={styles.clear_all_and_select_btns_module}>
+                            <ClearAllcheckBtn />
+                            <SelectAllCheckBtn />
                         </div>
                     </div>
                 </div>
@@ -704,233 +494,24 @@ export default function TransactionReport() {
                 <div className={styles.advance_filter_types_module_left_checks}>
                     <h2><RiInsertColumnLeft size='1.5rem' />Show additional columns</h2>
                     <div className={styles.checkbox_module}>
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Registration" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Click" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Payment" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Confirm" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
-                        <FormControlLabel
-                            sx={{
-                                '& .MuiFormControlLabel-label': {
-                                    fontSize: '.8rem'
-                                }
-                            }}
-                            control={<Checkbox
-                                sx={{
-                                    color: 'lightgrey',
-                                    '&.Mui-checked': {
-                                        color: '#ED7D31',
-                                    },
-                                }}
-                            />}
-                            label="Install" />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                     </div>
                 </div>
+
                 <div className={styles.clear_all_and_select_btns_module}>
                     <Button
                         size='small'
@@ -956,14 +537,7 @@ export default function TransactionReport() {
             </div>
             <div className={styles.transaction_table_module}>
                 <div className={styles.export_btn_module}>
-                    <Button sx={{
-                        bgcolor: '#383b8c', fontSize: '.7rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis', '&:hover': {
-                            bgcolor: '#36a689', boxShadow: 'none',
-                        }
-                    }} component="label" variant="contained" startIcon={<BiDownload />}>
-                        Download Report
-                        <VisuallyHiddenInput type="file" />
-                    </Button>
+                    <ExportButton />
                 </div>
                 <TransReportTable transReportAllData={rowsData} />
                 <div className={styles.summay_module}>

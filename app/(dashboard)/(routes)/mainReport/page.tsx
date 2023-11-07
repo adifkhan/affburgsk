@@ -11,6 +11,10 @@ import { AiOutlineClear } from 'react-icons/ai';
 import { BiDownload } from 'react-icons/bi';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import MainReportTable from '@/components/dashComponents/tables/MainReportTable';
+import ExportButton from '@/components/ui/ExportButton';
+import DateRangeButton from '@/components/ui/DateRangeButton';
+import FilterButton from '@/components/ui/FilterButton';
+import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
 
 
 
@@ -126,7 +130,9 @@ export default function MainReport() {
     function handleChange(ranges: any) {
         setRangeDate(ranges.selection)
     }
-
+    function handleOnChange() {
+        console.log('Check box value underdevelop !!!!!!!!!!!!!!!!!')
+    }
     return (
         <div>
             <h1 className={styles.main_heading}>Main Report</h1>
@@ -134,29 +140,12 @@ export default function MainReport() {
                 <h5>Conversions are subjected to automatic fraud check conducted by our system within 10 minutes after receiving them. Upon check completion, all conversions in <q>Approved</q> status will be sent to you via S2S Postback (in case you installed it). Please note that the advertiser reserves the right to conduct an additional fraud check within the current payment period.</h5>
             </div>
             <div className={styles.export_btn_module}>
-                <Button sx={{
-                    bgcolor: '#383b8c', fontSize: '.7rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis', '&:hover': {
-                        bgcolor: '#36a689', boxShadow: 'none',
-
-                    }
-                }} component="label" variant="contained" startIcon={<BiDownload />}>
-                    Download Report
-                    <VisuallyHiddenInput type="file" />
-                </Button>
+                <ExportButton />
             </div>
 
             <div className={styles.filter_section}>
                 <div className={styles.date_range_show_module}>
-                    <Button
-                        onClick={handleCalenderOpen}
-                        sx={{
-                            bgcolor: '#ED7D31', letterSpacing: '.1ch', fontFamily: 'Dosis', height: '100%', whiteSpace: 'nowrap', py: 1.5,
-                            '&:hover': {
-                                bgcolor: '#ED7D31', boxShadow: 'none',
-                            },
-                        }} component="label" variant="contained" endIcon={<BsCalendar3 />}>
-                        Select Date Range
-                    </Button>
+                    <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
                     <h5>{format(ago, "dd-MMM-yyyy")}</h5>
                     <p>to</p>
                     <h5>{format(rangeDate.endDate, "dd-MMM-yyyy")}</h5>
@@ -280,52 +269,17 @@ export default function MainReport() {
                 </TextField>
             </div>
             <div className={styles.filter_btn_module}>
-                <Button
-                    sx={{
-                        bgcolor: '#ED7D31', fontSize: '.8rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                        '&:hover': {
-                            bgcolor: '#ED7D31', boxShadow: 'none',
-                        },
-                    }} component="label" variant="contained" startIcon={<IoFilterSharp />}>
-                    Apply Filter
-                </Button>
+                <FilterButton />
                 <IconButton aria-label="delete">
-                    <AiOutlineClear size='1.7rem' color='#ED7D31' />
+                    <AiOutlineClear size='1.2rem' color='#ED7D31' />
                 </IconButton>
             </div>
             <div className={styles.additional_column_module}>
-                <span><IoMdAddCircleOutline />Add additional columns:</span>
+                <span><IoMdAddCircleOutline size={22} />Add additional columns:</span>
                 <div className={styles.column_check_module}>
-                    <FormControlLabel
-                        control={<Checkbox
-                            sx={{
-                                color: 'lightgrey',
-                                '&.Mui-checked': {
-                                    color: '#ED7D31',
-                                },
-                            }}
-                        />}
-                        label="Accept" />
-                    <FormControlLabel
-                        control={<Checkbox
-                            sx={{
-                                color: 'lightgrey',
-                                '&.Mui-checked': {
-                                    color: '#ED7D31',
-                                },
-                            }}
-                        />}
-                        label="Conditions" />
-                    <FormControlLabel
-                        control={<Checkbox
-                            sx={{
-                                color: 'lightgrey',
-                                '&.Mui-checked': {
-                                    color: '#ED7D31',
-                                },
-                            }}
-                        />}
-                        label="Terms" />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                 </div>
             </div>
             <div>

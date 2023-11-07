@@ -13,14 +13,16 @@ import { DashboardMenuType } from '@/types/models';
 import { RiSecurePaymentLine } from 'react-icons/ri';
 import { MdOutlinePayments } from 'react-icons/md';
 import { usePathname, useRouter } from 'next/navigation';
+import { AppDispatch, useAppSelector } from '@/app/GlobalRedux/store';
+import { useDispatch } from 'react-redux';
 
 
 type SidebarProps = {
     children: React.ReactNode;
     sidebarOpen: boolean;
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
-    themeDark: string | null;
-    setThemeDark: Dispatch<SetStateAction<string | null>>;
+    // themeDark: string | null;
+    // setThemeDark: Dispatch<SetStateAction<string | null>>;
     reportsDropDownMenu: boolean;
     setReportDropDownMenu: Dispatch<SetStateAction<boolean>>;
     fqaDropDownMenu: boolean;
@@ -68,9 +70,12 @@ const HelpMenus: DashboardMenuType[] = [
 ]
 
 
-export default function Sidebar({ children, sidebarOpen, themeDark, setThemeDark, setSidebarOpen, reportsDropDownMenu, setReportDropDownMenu, fqaDropDownMenu, setFqaDropDownMenu }: SidebarProps) {
+export default function Sidebar({ children, sidebarOpen, setSidebarOpen, reportsDropDownMenu, setReportDropDownMenu, fqaDropDownMenu, setFqaDropDownMenu }: SidebarProps) {
     const pathname = usePathname();
     const router = useRouter();
+
+    const themeDark = useAppSelector((state) => state.themeReducer.theme);
+    const dispatch = useDispatch<AppDispatch>();
 
     function handleDropdown(id: string) {
         if (id === 'reports') {
