@@ -1,6 +1,6 @@
 .notification_container {
     width: 450px;
-    height: 90vh;
+    height: 80vh;
     overflow-y: scroll;
 }
 
@@ -9,7 +9,7 @@
 .notification_container_dark {
     background-color: #1c2437;
     width: 450px;
-    height: 90vh;
+    height: 80vh;
     overflow-y: scroll;
 }
 

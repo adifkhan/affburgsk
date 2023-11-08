@@ -1,7 +1,8 @@
-'use client'
-import React, { useState } from 'react'
+'use client';
+
+import React, { useState } from 'react';
 import styles from '@/styles/Dashboard/PostbackURLS.module.css';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, InputAdornment, MenuItem, TextField, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, InputAdornment, TextField, Typography } from '@mui/material';
 import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
 import { LiaSave } from 'react-icons/lia';
 import { MdExpandMore, MdOutlineAddLink, MdOutlineSaveAs } from 'react-icons/md';
@@ -9,6 +10,8 @@ import { RxDotFilled } from 'react-icons/rx';
 import { BiMessageDetail } from 'react-icons/bi';
 import Link from 'next/link';
 import OpenLinkDetailsTable from '@/components/dashComponents/tables/OpenLinkDetailsTable';
+import SelectTextfield from '@/components/ui/SelectTextfield';
+import FilledTextField from '@/components/ui/FilledTextField';
 const vertical = [
     {
         value: 'ALL',
@@ -54,20 +57,31 @@ export default function PostbackURLs() {
             <div className={styles.postback_filter_wrapper}>
                 <p className={styles.postback_filter_wrapper_heading}>Edit tracking code:</p>
                 <TextField
+                    helperText="See how to block below for the details"
+                    autoComplete='false'
+                    size='small'
+                    required
+                    id="filled-required"
+                    label="Tracking code"
+                    variant="filled"
+                    fullWidth
                     sx={{
                         "& .MuiFilledInput-root": {
-                            backgroundColor: "lightGrey",
-                            color: '#1c2437',
-                            border: '2px solid transparent',
+                            backgroundColor: "#1C2437",
                             borderRadius: '3px',
+                            border: '1px solid #ED7D31',
+                            color: 'WhiteSmoke'
                         },
-                        '&:hover .MuiFilledInput-root': {
-                            backgroundColor: 'lightGrey',
-                        },
-                        "& .MuiFilledInput-root.Mui-focused": {
-                            backgroundColor: "#1c2437",
-                            color: 'WhiteSmoke',
-                            border: '2px solid #ED7D31'
+                        // '&:hover .MuiFilledInput-root': {
+                        //     backgroundColor: 'lightGrey',
+                        // },
+                        // "& .MuiFilledInput-root.Mui-focused": {
+                        //     backgroundColor: "#1c2437",
+                        //     color: 'WhiteSmoke',
+                        //     border: '2px solid #ED7D31'
+                        // },
+                        '& label': {
+                            color: 'whiteSmoke',
                         },
                         '& label.Mui-focused': {
                             color: 'white',
@@ -84,152 +98,42 @@ export default function PostbackURLs() {
                             </InputAdornment>
                         ),
                         disableUnderline: true,
-                        readOnly: trackingOpen ? false : true
+                        disabled: trackingOpen ? false : true
                     }}
-                    helperText="See how to block below for the details"
-                    autoComplete='false'
-                    size='small'
-                    required
-                    id="filled-required"
-                    label="Tracking code"
-                    variant="filled"
-                    fullWidth
                 />
                 <Button
                     onClick={handleTrackingField}
                     sx={{
-                        bgcolor: '#ED7D31', fontSize: '.8rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis', '&:hover': {
+                        bgcolor: '#ED7D31', fontSize: '.7rem', px: '10px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', '&:hover': {
                             bgcolor: '#ED7D31', boxShadow: 'none',
 
                         }
-                    }} component="label" variant="contained" startIcon={!trackingOpen ? <AiFillLock /> : <LiaSave />}>
+                    }} component="label" variant="contained" startIcon={!trackingOpen ? <AiFillLock size={18} /> : <LiaSave size={18} />}>
                     {!trackingOpen ? 'Unlock Field' : 'Save tracking Code'}
                 </Button>
                 <div className={styles.add_a_link_module}>
-                    <Typography sx={{ color: 'lightGrey', display: 'flex', alignItems: 'center', columnGap: '15px', fontSize: '2rem', marginBottom: '20px' }}>
+                    <Typography sx={{ color: 'lightGrey', display: 'flex', alignItems: 'center', columnGap: '15px', fontSize: '1.5rem', marginBottom: '20px' }}>
                         Informational events postback
                     </Typography>
-                    <Typography sx={{ color: '#ED7D31', display: 'flex', alignItems: 'center', columnGap: '15px', fontSize: '1.2rem' }}>
-                        <MdOutlineAddLink size='2rem' /> Add a new link
+                    <Typography sx={{ color: '#ED7D31', display: 'flex', alignItems: 'center', columnGap: '15px', fontSize: '1rem' }}>
+                        <MdOutlineAddLink size='1.8rem' /> Add a new link
                     </Typography>
                     <Box
                         sx={{
                             display: 'flex', columnGap: '20px', alignItems: 'center', margin: '20px 0',
                         }}
                         component='div' >
-                        <TextField
-                            id="filled-select-currency"
-                            select
-                            label="Event Type"
-                            defaultValue="ALL"
-                            variant="filled"
-                            size='small'
-                            InputProps={{ disableUnderline: true }}
-                            sx={{
-                                width: '30%',
-                                "& .MuiFilledInput-root": {
-                                    backgroundColor: "lightGrey",
-                                    color: '#1c2437',
-                                    border: '2px solid transparent',
-                                    borderRadius: '3px',
-                                },
-                                '&:hover .MuiFilledInput-root': {
-                                    backgroundColor: 'lightGrey',
-                                },
-                                "& .MuiFilledInput-root.Mui-focused": {
-                                    backgroundColor: "#1c2437",
-                                    color: 'WhiteSmoke',
-                                    border: '2px solid #ED7D31'
-                                },
-                                '& label.Mui-focused': {
-                                    color: 'white',
-                                },
-                                "& .MuiFilledInput-root.Mui-focused .MuiSvgIcon-root": {
-                                    color: "orange"
-                                }
-                            }}
-                        >
-                            {vertical.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            id="filled-select-currency"
-                            select
-                            label="Event"
-                            defaultValue="ALL"
-                            variant="filled"
-                            size='small'
-                            InputProps={{ disableUnderline: true }}
-                            sx={{
-                                width: '30%',
-                                "& .MuiFilledInput-root": {
-                                    backgroundColor: "lightGrey",
-                                    color: '#1c2437',
-                                    border: '2px solid transparent',
-                                    borderRadius: '3px',
-                                },
-                                '&:hover .MuiFilledInput-root': {
-                                    backgroundColor: 'lightGrey',
-                                },
-                                "& .MuiFilledInput-root.Mui-focused": {
-                                    backgroundColor: "#1c2437",
-                                    color: 'WhiteSmoke',
-                                    border: '2px solid #ED7D31'
-                                },
-                                '& label.Mui-focused': {
-                                    color: 'white',
-                                },
-                                "& .MuiFilledInput-root.Mui-focused .MuiSvgIcon-root": {
-                                    color: "orange"
-                                }
-                            }}
-                        >
-                            {vertical.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            autoComplete='false'
-                            size='small'
-                            sx={{
-                                "& .MuiFilledInput-root": {
-                                    backgroundColor: "lightGrey",
-                                    color: '#1c2437',
-                                    border: '2px solid transparent',
-                                    borderRadius: '3px',
-                                },
-                                '&:hover .MuiFilledInput-root': {
-                                    backgroundColor: 'lightGrey',
-                                },
-                                "& .MuiFilledInput-root.Mui-focused": {
-                                    backgroundColor: "#1c2437",
-                                    color: 'WhiteSmoke',
-                                    border: '2px solid #ED7D31'
-                                },
-                                '& label.Mui-focused': {
-                                    color: 'white',
-                                },
-                            }}
-                            InputProps={{ disableUnderline: true }}
-                            required
-                            id="filled-required"
-                            label="Event code"
-                            variant="filled"
-                            fullWidth
-                        />
+                        <SelectTextfield options={vertical} fieldID={"select-event-type"} fieldLabel={"Event Type"} />
+                        <SelectTextfield options={vertical} fieldID={"select-eventr"} fieldLabel={"Event"} />
+                        <FilledTextField fieldID={'event-code'} fieldLabel={'Event Code'} />
                     </Box>
                     <Button
                         sx={{
-                            bgcolor: '#ED7D31', fontSize: '.8rem', px: '15px', py: '8px', letterSpacing: '.1ch', fontFamily: 'Dosis', width: '150px',
+                            bgcolor: '#ED7D31', fontSize: '.7rem', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', width: '150px',
                             '&:hover': {
                                 bgcolor: '#ED7D31', boxShadow: 'none',
                             },
-                        }} component="label" variant="contained" startIcon={<MdOutlineSaveAs />}>
+                        }} component="label" variant="contained" startIcon={<MdOutlineSaveAs size={15} />}>
                         Save Changes
                     </Button>
                 </div>
@@ -238,6 +142,7 @@ export default function PostbackURLs() {
                         sx={{
                             backgroundColor: "#164863",
                             borderRadius: "6px 6px 6px 6px",
+                            marginBottom: '50px',
                         }}
                         expanded={expandedAccordian2 === 'panel2'} onChange={handleChangeAccordian2('panel2')}>
                         <AccordionSummary

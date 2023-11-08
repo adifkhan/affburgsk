@@ -43,11 +43,11 @@
 
 .date_range_show_module h5 {
     border: 1px solid #ED7D31;
-    padding: 6px 20px;
+    padding: 11px 20px;
     border-radius: 4px;
     letter-spacing: .1ch;
     white-space: nowrap;
-    font-size: .7rem;
+    font-size: .8rem;
 }
 
 .date_range_container {

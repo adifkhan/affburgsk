@@ -1,34 +1,22 @@
 'use client'
+
 import React, { useState, useEffect, useRef } from 'react'
 import styles from '@/styles/Dashboard/MainReport.module.css'
-import { Button, Checkbox, FormControlLabel, IconButton, MenuItem, TextField, styled } from '@mui/material';
-import { BsCalendar3 } from 'react-icons/bs';
+import { IconButton, MenuItem, TextField, styled } from '@mui/material';
 import { format } from 'date-fns';
 import { MainReportData, dateType } from '@/types/models';
 import DateRangePickerComp from '@/components/dashComponents/DateRangePickerComp';
-import { IoFilterSharp } from 'react-icons/io5';
 import { AiOutlineClear } from 'react-icons/ai';
-import { BiDownload } from 'react-icons/bi';
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import MainReportTable from '@/components/dashComponents/tables/MainReportTable';
 import ExportButton from '@/components/ui/ExportButton';
 import DateRangeButton from '@/components/ui/DateRangeButton';
 import FilterButton from '@/components/ui/FilterButton';
 import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
+import SelectTextfield from '@/components/ui/SelectTextfield';
 
 
 
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
 
 const vertical = [
     {
@@ -153,120 +141,9 @@ export default function MainReport() {
                         <DateRangePickerComp rangeDate={rangeDate} setRangeDate={setRangeDate} handleChange={handleChange} />
                     </div>}
                 </div>
-                <TextField
-                    id="filled-select-currency"
-                    select
-                    label="Conversion Type"
-                    defaultValue="ALL"
-                    variant="filled"
-                    fullWidth
-                    size='small'
-                    InputProps={{ disableUnderline: true }}
-                    sx={{
-                        "& .MuiFilledInput-root": {
-                            backgroundColor: "lightGrey",
-                            color: '#1c2437',
-                            border: '2px solid transparent',
-                            borderRadius: '3px',
-                        },
-                        '&:hover .MuiFilledInput-root': {
-                            backgroundColor: 'lightGrey',
-                        },
-                        "& .MuiFilledInput-root.Mui-focused": {
-                            backgroundColor: "#1c2437",
-                            color: 'WhiteSmoke',
-                            border: '2px solid #ED7D31'
-                        },
-                        '& label.Mui-focused': {
-                            color: 'white',
-                        },
-                        "& .MuiFilledInput-root.Mui-focused .MuiSvgIcon-root": {
-                            color: "orange"
-                        }
-                    }}
-                >
-                    {vertical.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField
-                    id="filled-select-currency"
-                    select
-                    label="Conversion Type"
-                    defaultValue="ALL"
-                    variant="filled"
-                    fullWidth
-                    size='small'
-                    InputProps={{ disableUnderline: true }}
-                    sx={{
-                        "& .MuiFilledInput-root": {
-                            backgroundColor: "lightGrey",
-                            color: '#1c2437',
-                            border: '2px solid transparent',
-                            borderRadius: '3px',
-                        },
-                        '&:hover .MuiFilledInput-root': {
-                            backgroundColor: 'lightGrey',
-                        },
-                        "& .MuiFilledInput-root.Mui-focused": {
-                            backgroundColor: "#1c2437",
-                            color: 'WhiteSmoke',
-                            border: '2px solid #ED7D31'
-                        },
-                        '& label.Mui-focused': {
-                            color: 'white',
-                        },
-                        "& .MuiFilledInput-root.Mui-focused .MuiSvgIcon-root": {
-                            color: "orange"
-                        }
-                    }}
-                >
-                    {vertical.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField
-                    id="filled-select-currency"
-                    select
-                    label="Conversion Type"
-                    defaultValue="ALL"
-                    variant="filled"
-                    fullWidth
-                    size='small'
-                    InputProps={{ disableUnderline: true }}
-                    sx={{
-                        "& .MuiFilledInput-root": {
-                            backgroundColor: "lightGrey",
-                            color: '#1c2437',
-                            border: '2px solid transparent',
-                            borderRadius: '3px',
-                        },
-                        '&:hover .MuiFilledInput-root': {
-                            backgroundColor: 'lightGrey',
-                        },
-                        "& .MuiFilledInput-root.Mui-focused": {
-                            backgroundColor: "#1c2437",
-                            color: 'WhiteSmoke',
-                            border: '2px solid #ED7D31'
-                        },
-                        '& label.Mui-focused': {
-                            color: 'white',
-                        },
-                        "& .MuiFilledInput-root.Mui-focused .MuiSvgIcon-root": {
-                            color: "orange"
-                        }
-                    }}
-                >
-                    {vertical.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
+                <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
+                <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
+                <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
             </div>
             <div className={styles.filter_btn_module}>
                 <FilterButton />

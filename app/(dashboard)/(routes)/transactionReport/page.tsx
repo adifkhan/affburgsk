@@ -1,17 +1,16 @@
 'use client'
+
 import React, { useState, useEffect, useRef } from 'react'
 import styles from '@/styles/Dashboard/TransactionReport.module.css'
-import { Autocomplete, Box, Button, MenuItem, TextField, IconButton, FormControlLabel, Checkbox, styled } from '@mui/material';
+import { Autocomplete, Box, Button, MenuItem, TextField, IconButton } from '@mui/material';
 import Image from 'next/image';
-import { CountryType, TransactionDataType, dateType, transactionData } from '@/types/models';
-import { BsCalendar3 } from 'react-icons/bs';
+import { CountryType, TransactionDataType, dateType } from '@/types/models';
 import { format } from 'date-fns';
 import DateRangePickerComp from '@/components/dashComponents/DateRangePickerComp';
 import { AiOutlineClear } from 'react-icons/ai';
-import { IoFilterSharp } from 'react-icons/io5';
-import { TbFilterStar, TbStatusChange, TbTransform } from 'react-icons/tb';
+import { TbStatusChange, TbTransform } from 'react-icons/tb';
 import { MdClear } from 'react-icons/md';
-import { BiDownload, BiSelectMultiple, BiTransfer } from 'react-icons/bi';
+import { BiSelectMultiple, BiTransfer } from 'react-icons/bi';
 import { RiInsertColumnLeft } from 'react-icons/ri';
 import TransReportTable from '@/components/dashComponents/tables/TransReportTable';
 import ExportButton from '@/components/ui/ExportButton';
@@ -20,19 +19,9 @@ import FilterButton from '@/components/ui/FilterButton';
 import DateRangeButton from '@/components/ui/DateRangeButton';
 import ClearAllcheckBtn from '@/components/ui/ClearAllcheckBtn';
 import SelectAllCheckBtn from '@/components/ui/SelectAllCheckBtn';
-
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
-
+import SelectTextfield from '@/components/ui/SelectTextfield';
+import AdvancedFilterBtn from '@/components/ui/AdvancedFilterBtn';
+import FilledTextField from '@/components/ui/FilledTextField';
 
 function createData(
     id: string,
@@ -159,75 +148,24 @@ export default function TransactionReport() {
                 <h1>Transaction Report</h1>
             </div>
             <div className={styles.trans_filter_input_modules}>
-                <TextField
-                    id="filled-select-currency"
-                    select
-                    label="CPA Offer"
-                    defaultValue="ALL"
-                    // helperText="Please select your currency"
-                    variant="filled"
-                    fullWidth
-                    size='small'
-                    InputProps={{ disableUnderline: true }}
-                    sx={{
-                        "& .MuiFilledInput-root": {
-                            backgroundColor: "lightGrey",
-                            color: '#1c2437',
-                            border: '2px solid transparent',
-                            borderRadius: '3px',
-                            fontSize: '.8rem',
-                            height: 'fit-content',
-                            '&:hover': {
-                                backgroundColor: "#1c2437",
-                                color: 'WhiteSmoke',
-                                border: '2px solid #ED7D31',
-                                "& .MuiSvgIcon-root": {
-                                    color: "orange"
-                                }
-                            },
-                            "&.Mui-focused": {
-                                backgroundColor: "#1c2437",
-                                color: 'WhiteSmoke',
-                                border: '2px solid #ED7D31',
-                                "& .MuiSvgIcon-root": {
-                                    color: "orange"
-                                },
-                            },
-                        },
-
-                        '& label.Mui-focused': {
-                            color: 'white',
-                        },
-                        '&:hover label': {
-                            color: 'white',
-                        },
-                    }}
-                >
-                    {cpaOffers.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
+                <SelectTextfield options={cpaOffers} fieldID={"select-cpa-offer"} fieldLabel={"CPA Offer"} />
                 <Autocomplete
-                    size="small"
                     id="country-select-demo"
                     fullWidth
-
                     sx={{
-                        '& .MuiFilledInput-underline': {
-                            color: 'red',
-                            backgroundColor: 'blue'
-                        },
+                        // '& .MuiFilledInput-underline': {
+                        //     color: 'red',
+                        //     backgroundColor: 'red'
+                        // },
                         "& .MuiFilledInput-root": {
-                            backgroundColor: "lightGrey",
-                            color: '#1c2437',
-                            border: '2px solid transparent',
+                            maxHeight: '45px',
+                            backgroundColor: "#1c2437",
+                            color: 'lightGrey',
+                            border: '1px solid #ED7D31',
                             borderRadius: '3px',
-                            fontSize: '.8rem',
-                            height: 'fit-content',
+                            fontSize: '.7rem',
                             '&.Mui-focused': {
-                                backgroundColor: "#1c2437",
+                                backgroundColor: "#131926",
                                 color: 'WhiteSmoke',
                                 border: '2px solid #ED7D31',
                                 "& .MuiSvgIcon-root": {
@@ -235,21 +173,28 @@ export default function TransactionReport() {
                                 },
                             },
                             '&:hover': {
-                                backgroundColor: "#1c2437",
-                                color: 'WhiteSmoke',
-                                border: '2px solid #ED7D31',
-                                "& .MuiSvgIcon-root": {
-                                    color: "#ED7D31"
-                                },
+                                backgroundColor: "#131926",
+                                // color: 'WhiteSmoke',
+                                // border: '2px solid #ED7D31',
+                                // "& .MuiSvgIcon-root": {
+                                //     color: "#ED7D31"
+                                // },
                             },
                         },
+                        "& .MuiSvgIcon-root": {
+                            color: "#ED7D31"
+                        },
 
+                        '& label': {
+                            color: 'whiteSmoke',
+                            fontSize: '.7rem'
+                        },
                         '& label.Mui-focused': {
-                            color: 'white',
+                            color: 'whiteSmoke',
                         },
-                        '&:hover label': {
-                            color: 'white',
-                        },
+                        // '&:hover label': {
+                        //     color: 'white',
+                        // },
 
                     }}
 
@@ -279,56 +224,7 @@ export default function TransactionReport() {
                         />
                     )}
                 />
-                <TextField
-                    id="filled-select-currency"
-                    select
-                    label="Platform"
-                    defaultValue="ALL"
-                    // helperText="Please select your currency"
-                    variant="filled"
-                    fullWidth
-                    size='small'
-                    InputProps={{ disableUnderline: true }}
-                    sx={{
-                        "& .MuiFilledInput-root": {
-                            backgroundColor: "lightGrey",
-                            color: '#1c2437',
-                            border: '2px solid transparent',
-                            borderRadius: '3px',
-                            fontSize: '.8rem',
-                            height: 'fit-content',
-                            '&:hover': {
-                                backgroundColor: "#1c2437",
-                                color: 'WhiteSmoke',
-                                border: '2px solid #ED7D31',
-                                "& .MuiSvgIcon-root": {
-                                    color: "orange"
-                                }
-                            },
-                            "&.Mui-focused": {
-                                backgroundColor: "#1c2437",
-                                color: 'WhiteSmoke',
-                                border: '2px solid #ED7D31',
-                                "& .MuiSvgIcon-root": {
-                                    color: "orange"
-                                },
-                            },
-                        },
-
-                        '& label.Mui-focused': {
-                            color: 'white',
-                        },
-                        '&:hover label': {
-                            color: 'white',
-                        },
-                    }}
-                >
-                    {platforms.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
+                <SelectTextfield options={platforms} fieldID={'select-platforms'} fieldLabel={"Platforms"} />
                 <div className={styles.date_range_show_module_trans}>
                     <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
                     <h5>{format(yesterday, "dd-MMM-yyyy")}</h5>
@@ -341,16 +237,7 @@ export default function TransactionReport() {
             </div>
             <div className={styles.filter_btn_module}>
                 <FilterButton />
-                <Button
-                    size='small'
-                    sx={{
-                        bgcolor: '#1450A3', px: '6px', py: '6px', fontSize: '.8rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                        '&:hover': {
-                            bgcolor: '#0C356A', boxShadow: 'none',
-                        },
-                    }} component="label" variant="contained" startIcon={<TbFilterStar />}>
-                    Advance Filter
-                </Button>
+                <AdvancedFilterBtn />
                 <IconButton aria-label="delete">
                     <AiOutlineClear size='1.2rem' color='#ED7D31' />
                 </IconButton>
@@ -373,90 +260,8 @@ export default function TransactionReport() {
                     </div>
                 </div>
                 <div className={styles.advance_filter_types_module_right}>
-                    <TextField
-                        autoComplete='false'
-                        size='small'
-                        sx={{
-                            "& .MuiFilledInput-root": {
-                                backgroundColor: "lightGrey",
-                                color: '#1c2437',
-                                border: '2px solid transparent',
-                                borderRadius: '3px',
-                                fontSize: '.8rem',
-                                height: 'fit-content',
-                                '&:hover': {
-                                    backgroundColor: "#1c2437",
-                                    color: 'WhiteSmoke',
-                                    border: '2px solid #ED7D31',
-                                    "& .MuiSvgIcon-root": {
-                                        color: "orange"
-                                    }
-                                },
-                                "&.Mui-focused": {
-                                    backgroundColor: "#1c2437",
-                                    color: 'WhiteSmoke',
-                                    border: '2px solid #ED7D31',
-                                    "& .MuiSvgIcon-root": {
-                                        color: "orange"
-                                    },
-                                },
-                            },
-
-                            '& label.Mui-focused': {
-                                color: 'white',
-                            },
-                            '&:hover label': {
-                                color: 'white',
-                            },
-                        }}
-                        InputProps={{ disableUnderline: true }}
-                        id="filled-required"
-                        label="Sub ID"
-                        variant="filled"
-                        fullWidth
-                    />
-                    <TextField
-                        autoComplete='false'
-                        size='small'
-                        sx={{
-                            "& .MuiFilledInput-root": {
-                                backgroundColor: "lightGrey",
-                                color: '#1c2437',
-                                border: '2px solid transparent',
-                                borderRadius: '3px',
-                                fontSize: '.8rem',
-                                height: 'fit-content',
-                                '&:hover': {
-                                    backgroundColor: "#1c2437",
-                                    color: 'WhiteSmoke',
-                                    border: '2px solid #ED7D31',
-                                    "& .MuiSvgIcon-root": {
-                                        color: "orange"
-                                    }
-                                },
-                                "&.Mui-focused": {
-                                    backgroundColor: "#1c2437",
-                                    color: 'WhiteSmoke',
-                                    border: '2px solid #ED7D31',
-                                    "& .MuiSvgIcon-root": {
-                                        color: "orange"
-                                    },
-                                },
-                            },
-
-                            '& label.Mui-focused': {
-                                color: 'white',
-                            },
-                            '&:hover label': {
-                                color: 'white',
-                            },
-                        }}
-                        InputProps={{ disableUnderline: true }}
-                        id="filled-required"
-                        label="Click ID"
-                        variant="filled"
-                        fullWidth
-                    />
+                    <FilledTextField fieldLabel={'Sub ID'} fieldID={'sub-id-field'} />
+                    <FilledTextField fieldLabel={'Click ID'} fieldID={'click-id-field'} />
                 </div>
             </div>
             <div className={styles.advance_filter_types_module}>
@@ -513,26 +318,8 @@ export default function TransactionReport() {
                 </div>
 
                 <div className={styles.clear_all_and_select_btns_module}>
-                    <Button
-                        size='small'
-                        sx={{
-                            color: '#ED7D31', bgcolor: '#1c2437', px: '8px', py: '5px', fontSize: '.6rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                            '&:hover': {
-                                bgcolor: '#1c2437', boxShadow: 'none',
-                            },
-                        }} component="label" variant="contained" startIcon={<MdClear />}>
-                        Clear All
-                    </Button>
-                    <Button
-                        size='small'
-                        sx={{
-                            color: '#ED7D31', bgcolor: '#1c2437', px: '8px', py: '5px', fontSize: '.6rem', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                            '&:hover': {
-                                bgcolor: '#1c2437', boxShadow: 'none',
-                            },
-                        }} component="label" variant="contained" startIcon={<BiSelectMultiple />}>
-                        Select All
-                    </Button>
+                    <ClearAllcheckBtn />
+                    <SelectAllCheckBtn />
                 </div>
             </div>
             <div className={styles.transaction_table_module}>

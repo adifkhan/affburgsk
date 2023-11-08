@@ -13,34 +13,34 @@ import { FiMail } from 'react-icons/fi';
 import { useAppSelector } from '@/app/GlobalRedux/store';
 
 
-const StyledBbadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-        backgroundColor: '#36a689',
-        color: '#36a689',
-        boxShadow: `0 0 0 2px #121622`,
-        '&::after': {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            borderRadius: '50%',
-            animation: 'ripple 1.2s infinite ease-in-out',
-            border: '1px solid currentColor',
-            content: '""',
-        },
-    },
-    '@keyframes ripple': {
-        '0%': {
-            transform: 'scale(.8)',
-            opacity: 1,
-        },
-        '100%': {
-            transform: 'scale(2.4)',
-            opacity: 0,
-        },
-    },
-}));
+// const StyledBbadge = styled(Badge)(({ theme }) => ({
+//     '& .MuiBadge-badge': {
+//         backgroundColor: '#36a689',
+//         color: '#36a689',
+//         boxShadow: `0 0 0 2px #121622`,
+//         '&::after': {
+//             position: 'absolute',
+//             top: 0,
+//             left: 0,
+//             width: '100%',
+//             height: '100%',
+//             borderRadius: '50%',
+//             animation: 'ripple 1.2s infinite ease-in-out',
+//             border: '1px solid currentColor',
+//             content: '""',
+//         },
+//     },
+//     '@keyframes ripple': {
+//         '0%': {
+//             transform: 'scale(.8)',
+//             opacity: 1,
+//         },
+//         '100%': {
+//             transform: 'scale(2.4)',
+//             opacity: 0,
+//         },
+//     },
+// }));
 
 const NOTIFICATIONS = [
     {
@@ -183,7 +183,23 @@ export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps
                 onClose={handleClose}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                sx={{ marginTop: '25px' }}
+
+                sx={themeDark === 'true' ? {
+                    '& .MuiPaper-root': {
+                        marginTop: '25px',
+                        // borderRadius: '10px',
+                        backgroundColor: '#1C2437',
+
+                    }
+                } : {
+                    '& .MuiPaper-root': {
+                        marginTop: '25px',
+                        // borderRadius: '10px',
+                        backgroundColor: 'whiteSmoke',
+
+                    }
+                }
+                }
             >
                 <Paper
                     sx={themeDark === 'false' ? { backgroundColor: 'F9F9F9' } : { backgroundColor: '#1c2437' }}
