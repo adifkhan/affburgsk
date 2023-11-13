@@ -51,7 +51,7 @@
 
 .banner_right_content {
     color: #00052D;
-    width: 90%;
+    width: 100%;
     font-size: 3.5rem;
     display: flex;
     flex-direction: column;
@@ -63,17 +63,18 @@
     text-decoration-color: #00052D;
     text-decoration-thickness: 2px;
     margin-top: 10px;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .banner_right_content p {
     font-size: 1.3rem;
     margin-top: 25px;
+    text-align: justify;
 }
 
 .strong_words {
     color: #ED7D31;
-    font-size: 4rem;
+    font-size: 3.2rem;
     text-transform: uppercase;
 }
 
@@ -173,6 +174,7 @@
 @media only screen and (max-width: 600px) {
     .banner_container {
         flex-direction: column;
+        padding: 30px 15px;
     }
 
     .banner_left {
@@ -199,20 +201,18 @@
     }
 
     .banner_right {
-        padding-left: 15px;
-        padding-right: 15px;
         width: 100%;
         margin-top: 50px;
+        padding: 0;
     }
 
     .banner_right_content {
-        /* text-align: start; */
         width: 100%;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
     .banner_right_content h3 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .banner_right_content p {
@@ -220,7 +220,7 @@
     }
 
     .strong_words {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
 
     .banner_right_btn {
@@ -237,6 +237,7 @@
     .banner_container {
         align-items: center;
         flex-direction: column;
+        padding: 30px 15px;
     }
 
     .banner_left {
@@ -263,8 +264,7 @@
     }
 
     .banner_right {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding: 0;
         width: 100%;
         margin-top: 50px;
     }
@@ -274,15 +274,15 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     .strong_words {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 
     .banner_right_content h3 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
 
@@ -349,8 +349,8 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 993px) and (max-width: 1200px) {
     .banner_container {
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
 
     .banner_left {
@@ -377,9 +377,8 @@
     }
 
     .banner_right {
-        padding-right: 60px;
+        padding: 0;
         width: 60%;
-        margin-top: 50px;
     }
 
     .banner_right_content {
@@ -410,19 +409,3 @@
         width: 40%;
     }
 }
-
-
-
-
-/*****responsive styles*****/
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 601px) and (max-width: 768px) {}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 769px)and (max-width: 992px) {}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 993px) and (max-width: 1200px) {}

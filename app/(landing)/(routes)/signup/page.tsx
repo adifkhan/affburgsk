@@ -134,7 +134,7 @@ export default function SignUp() {
                         </React.Fragment>
                     ) : ( */}
                 <React.Fragment>
-                    <form className='w-full'>
+                    <form>
                         {formPage === 'general' &&
                             <div className={styles.form_step_first}>
                                 <div className={styles.step_one_first_row}>
@@ -438,8 +438,13 @@ export default function SignUp() {
                         <Button
                             disabled={activeStep === 0}
                             onClick={handleBack}
-                            className={activeStep === 0 ? styles.global_btn_disable : styles.global_btn}
-                        >
+                            style={{ backgroundColor: `${activeStep > 0 ? '#1c2437' : ''}` }}
+                            sx={{
+                                color: 'whiteSmoke',
+                                whiteSpace: 'nowrap',
+                                height: 28,
+                                fontSize: '.6rem'
+                            }}>
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
@@ -449,13 +454,26 @@ export default function SignUp() {
                                 </Button>
                             )} */}
                         {activeStep < 2 && <Button
-                            className={styles.global_btn}
-                            onClick={handleNext}>
+                            onClick={handleNext}
+                            variant='contained'
+                            style={{ backgroundColor: '#1c2437' }}
+                            sx={{
+                                color: 'whiteSmoke',
+                                whiteSpace: 'nowrap',
+                                height: 28,
+                                fontSize: '.6rem'
+                            }}>
                             Next
                         </Button>}
                         {activeStep === 2 && <Button
-                            className={styles.global_btn}
-                            onClick={handleNext}>
+                            style={{ backgroundColor: '#1c2437' }}
+                            onClick={handleNext}
+                            sx={{
+                                color: 'whiteSmoke',
+                                whiteSpace: 'nowrap',
+                                height: 28,
+                                fontSize: '.6rem'
+                            }}>
                             Sign up
                         </Button>}
                     </Box>

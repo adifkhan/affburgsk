@@ -31,7 +31,7 @@ export default function WhyAffburg() {
     //     return () => ctx.revert();
     // }, [])
     return (
-        <div className={`${styles.affburg_container} affburgContainer`}>
+        <div id='affburg' className={`${styles.affburg_container} affburgContainer`}>
             <div className={styles.layer}></div>
             <div className={styles.affburg_content}>
                 <div className={styles.affburg_info_module}>
@@ -43,7 +43,7 @@ export default function WhyAffburg() {
                     </div>
                 </div>
                 <div className={styles.affburg_image_portion}>
-                    <Image className={styles.adv_left_image} height={500} width={500} alt='ads' src={affburgImage}></Image>
+                    <Image className={styles.affburg_right_image} height={500} width={500} alt='ads' src={affburgImage}></Image>
                 </div>
             </div>
         </div >

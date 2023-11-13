@@ -36,7 +36,7 @@ export default function SignIn() {
                                     '& .MuiOutlinedInput-root': {
                                         '&.Mui-focused fieldset': {
                                             borderColor: '#00052D',
-                                            borderWidth:'1px'
+                                            borderWidth: '1px'
                                         },
                                         '& fieldset span': {
                                             paddingRight: '6px',
@@ -60,7 +60,7 @@ export default function SignIn() {
                                         '& .MuiOutlinedInput-root': {
                                             '&.Mui-focused fieldset': {
                                                 borderColor: '#00052D',
-                                                borderWidth:'1px'
+                                                borderWidth: '1px'
                                             },
                                             '& fieldset span': {
                                                 paddingRight: '12px',

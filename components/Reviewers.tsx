@@ -37,7 +37,6 @@ export default function Reviewers() {
 
     return (
         <div className={`${styles.reviewer_container} reviewer`}>
-            {/* <div className={styles.review_content}> */}
             <div className={styles.reviewer_left}>
                 {reviews &&
                     <div>
@@ -49,13 +48,12 @@ export default function Reviewers() {
             </div>
             <div className={styles.reviewer_right}>
                 <span className={styles.reviewer_right_logo}><GoCodeReview /></span>
-                <p className={styles.reviewer_right_text}>Golden words of <q className={styles.reviewer_right_quots}>Affburg Dev</q></p>
+                <p className={styles.reviewer_right_text}>Golden words of <q className={styles.reviewer_right_quots}>Affburg</q></p>
                 <p className={styles.reviewer_right_text_detasils}>Lorem ipsum dolor sit amet consectetur adipisicing elit. At, porro. Doloribus aperiam neque recusandae est quis ex, accusamus repellat. Facilis.</p>
                 <button
                     onClick={() => router.push('/allReviews')}
                     className={styles.all_review_btn}>Show all reviews</button>
             </div>
         </div>
-        // </div>
     )
 }

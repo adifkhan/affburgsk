@@ -34,9 +34,9 @@ export default function Navbar() {
         },
 
         {
-            title: 'Blogs',
-            path: '/#blogs',
-            icon: <GiBookStorm />
+            title: 'Affburg',
+            path: '/#affburg',
+            icon: <SiIcon />
         },
         {
             title: 'Contact',

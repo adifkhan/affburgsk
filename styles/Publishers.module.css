@@ -9,12 +9,14 @@
     display: flex;
     justify-content: space-between;
     height: 100%;
-    padding: 100px 100px;
+    padding: 50px 50px 50px 100px;
     align-items: center;
+    text-align: justify;
+    column-gap: 100px;
 }
 
 .adv_left {
-    width: 40%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -53,7 +55,7 @@
 }
 
 .adv_right {
-    width: 48%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;

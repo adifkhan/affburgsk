@@ -1,14 +1,13 @@
 .signin {
-    height: 800px;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px 60px 0 60px;
     z-index: -1;
 }
 
 .signin_container {
-    width: 75%;
+    width: 60%;
     height: 75%;
     display: flex;
     align-items: center;
@@ -202,13 +201,13 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .signin {
-        padding: 70px 15px 30px 15px;
-        height: 550px;
+        height: 100vh;
+        padding: 30px 15px 30px 15px;
     }
 
     .signin_container {
         width: 100%;
-        height: 90%;
+        height: 70%;
     }
 
     .signin_text {
@@ -281,8 +280,8 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 601px) and (max-width: 768px) {
     .signin {
-        padding: 70px 15px 30px 15px;
-        height: 550px;
+        padding: 60px 15px 60px 15px;
+        height: fit-content;
     }
 
     .signin_container {
@@ -360,12 +359,12 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 769px)and (max-width: 992px) {
     .signin {
-        height: 600px;
-        padding: 60px 30px 0 30px;
+        height: 90vh;
+        padding: 30px 30px 0 30px;
     }
 
     .signin_container {
-        width: 100%;
+        width: 90%;
         height: 75%;
     }
 
@@ -376,6 +375,10 @@
 
     .signin_text_logo {
         font-size: 4rem;
+    }
+
+    .signin_text_info h2 {
+        font-size: 1.5rem;
     }
 
     .signin_heading {
@@ -407,7 +410,7 @@
     }
 
     .form_first_section button {
-        width: 30%;
+        width: 50%;
         padding: 4px 10px;
         font-size: .9rem;
     }
@@ -421,19 +424,11 @@
     }
 
     .signIn_bottom button {
-        font-size: .9rem;
-    }
-
-    .signIn_bottom button:hover {
-        background-color: #ED7D31;
+        font-size: .7rem;
     }
 
     .signin_bottom_container p {
-        font-size: .9rem;
-    }
-
-    .signin_bottom_contact {
-        color: #4e5dcd;
+        font-size: .8rem;
     }
 
 }
@@ -441,13 +436,13 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 993px) and (max-width: 1200px) {
     .signin {
-        height: 800px;
-        padding: 60px 30px 0 30px;
+        height: 80vh;
+        padding: 0px 30px 0 30px;
     }
 
     .signin_container {
-        width: 80%;
-        height: 60%;
+        width: 70%;
+        height: 80%;
     }
 
     .signin_text_info {
@@ -456,7 +451,11 @@
     }
 
     .signin_text_logo {
-        font-size: 4rem;
+        font-size: 3rem;
+    }
+
+    .signin_text_info h2 {
+        font-size: 1.6rem;
     }
 
     .signin_heading {

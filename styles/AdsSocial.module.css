@@ -26,12 +26,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0 50px;
-    padding: 100px 100px;
+    padding: 100px 50px 100px 100px;
     color: aliceblue;
 }
 
 .social_info_contents {
     width: 50%;
+    text-align: justify;
 }
 
 .signup_text_logo {
