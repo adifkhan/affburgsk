@@ -23,9 +23,9 @@ export default function LandingPage() {
       <Publisher />
       <LeaderboardSecond />
       {/* <Blogs /> */}
-      {/* <WhyAffburg/> */}
-      {/* <Services /> */}
       <Reviewers />
+      {/* <WhyAffburg /> */}
+      {/* <Services /> */}
       <Reviews />
     </main>
   )
