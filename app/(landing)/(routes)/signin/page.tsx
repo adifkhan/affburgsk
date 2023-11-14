@@ -1,16 +1,34 @@
 'use client'
+
 import React, { useState } from 'react'
 import styles from '@/styles/SignIn.module.css';
 import { SiIcon } from 'react-icons/si';
-import { TextField } from '@mui/material';
-import Link from 'next/link';
+import { Box } from '@mui/material';
 import { FaUserTie } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-import { BiHide, BiShowAlt } from 'react-icons/bi';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import EmailInput from '@/components/ui/EmailInput';
+import PasswordInput from '@/components/ui/PasswordInput';
 
+
+type SignInInputTypes = {
+    email: string
+    password: string
+}
 export default function SignIn() {
     const [passShow, setPassShow] = useState<boolean>(false);
     const router = useRouter();
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<SignInInputTypes>();
+
+    const onSubmit: SubmitHandler<SignInInputTypes> = (data) => console.log(data);
+    // console.log(watch("email"));
+
     return (
         <div className={styles.signin}>
             <div className={styles.signin_container}>
@@ -26,64 +44,30 @@ export default function SignIn() {
                         <span className={styles.signin_right_logo}><SiIcon /></span>
                         <h1 className={styles.signin_right_head_text}>Sign In with <q>Affburg</q></h1>
                     </div>
-                    <form className={styles.form_right}>
+                    <Box component={'form'}
+                        noValidate
+                        onSubmit={handleSubmit(onSubmit)}
+                        className={styles.form_right}>
                         <div className={styles.form_first_section}>
-                            <TextField
-                                sx={{
-                                    '& label.Mui-focused': {
-                                        color: '#00052D',
-                                    },
-                                    '& .MuiOutlinedInput-root': {
-                                        '&.Mui-focused fieldset': {
-                                            borderColor: '#00052D',
-                                            borderWidth: '1px'
-                                        },
-                                        '& fieldset span': {
-                                            paddingRight: '6px',
-                                        },
-                                        '&.Mui-focused fieldset span': {
-                                            paddingRight: '6px',
-                                        },
-                                    },
-                                }}
-                                fullWidth
-                                size='small'
-                                type='email'
-                                label="Email"
-                                placeholder='your email' />
+                            <EmailInput
+                                errors={errors}
+                                register={register}
+                                label={'Email'}
+                                fieldID={'email'}
+                            />
                             <div className={styles.password_field}>
-                                <TextField
-                                    sx={{
-                                        '& label.Mui-focused': {
-                                            color: '#00052D',
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: '#00052D',
-                                                borderWidth: '1px'
-                                            },
-                                            '& fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                            '&.Mui-focused fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                        },
-                                    }}
-                                    fullWidth
-                                    size='small'
-                                    type={!passShow ? 'password' : 'text'}
-                                    label="Password"
-                                    placeholder='your password' />
-                                <span
-                                    className={styles.pass_eye}
-                                    onClick={() => setPassShow(!passShow)}
-                                >{passShow ? <BiShowAlt size={20} /> : <BiHide size={20} />}</span>
+                                <PasswordInput
+                                    passShow={passShow}
+                                    register={register}
+                                    errors={errors}
+                                    setPassShow={setPassShow}
+                                />
+                                <p className={styles.forgetPass_text}>Forget Password?</p>
                             </div>
-                            <p className={styles.forgetPass_text}>Forget Password?</p>
-                            <button type='submit'>Log In</button>
+
+                            <button type='submit'>Log in</button>
                         </div>
-                    </form>
+                    </Box>
                     <div className={styles.signin_bottom_container}>
                         <div className={styles.signIn_bottom}>
                             <span className={styles.another_account_text}><strong>Do not have an account?</strong> Open one as:</span>

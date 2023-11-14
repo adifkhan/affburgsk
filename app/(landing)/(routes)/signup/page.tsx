@@ -3,17 +3,46 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/SignUp.module.css';
 import { SiIcon } from 'react-icons/si';
-import { Autocomplete, Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField } from '@mui/material';
+import { Autocomplete, Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material';
 import Image from 'next/image';
 import { CountryType } from '@/types/models';
+import TextInput from '@/components/ui/TextInput';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import EmailInput from '@/components/ui/EmailInput';
+import PasswordInput from '@/components/ui/PasswordInput';
+import CountrySelect from '@/components/ui/CountrySelect';
+
+
+type SignUpInputTypes = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string
+    password: string;
+    country: string;
+    checkTerm: string;
+}
 
 const steps = ['General', 'Address', 'Terms and Conditions'];
 
-
-export default function SignUp() {
+export default function SignUp({ firstName, lastName, email, password, phone }: SignUpInputTypes) {
     const router = useRouter();
     const [activeStep, setActiveStep] = React.useState(0);
     const [formPage, setFormPage] = useState<string>('general');
+    const [passShow, setPassShow] = useState<boolean>(false);
+    const [generalInfo, setGeneralInfo] = useState<object | null>(null);
+    const [address, setAddressInfo] = useState<object | null>(null);
+    const [termsInfo, setTermsInfo] = useState<object | null>(null);
+    const [termCheckValue, setTermCheckValue] = useState<boolean>(false);
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<SignUpInputTypes>();
+
+    const onSubmit: SubmitHandler<SignUpInputTypes> = (data) => console.log(data);
 
     useEffect(() => {
         if (activeStep === 0) {
@@ -27,75 +56,50 @@ export default function SignUp() {
         }
     }, [activeStep])
 
-
-
-    // const isStepOptional = (step: number) => {
-    //     return step === 1;
-    // };
-
-    // const isStepSkipped = (step: number) => {
-    //     return skipped.has(step);
-    // };
-
-    console.log('before click', activeStep)
-
-    const handleNext = () => {
-        // let newSkipped = skipped;
-        // if (isStepSkipped(activeStep)) {
-        //     newSkipped = new Set(newSkipped.values());
-        //     newSkipped.delete(activeStep);
-        // }
-
+    const handleNext = (data: any) => {
+        setGeneralInfo({ ...generalInfo, data })
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        // setSkipped(newSkipped);
-
+        console.log(generalInfo)
     };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    // const handleSkip = () => {
-    //     if (!isStepOptional(activeStep)) {
-    //         // You probably want to guard against something like this,
-    //         // it should never occur unless someone's actively trying to break something.
-    //         throw new Error("You can't skip a step that isn't optional.");
-    //     }
+    function handleTermCheck(e: any) {
+        console.log(e);
+    }
 
-    //     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    //     setSkipped((prevSkipped) => {
-    //         const newSkipped = new Set(prevSkipped.values());
-    //         newSkipped.add(activeStep);
-    //         return newSkipped;
-    //     });
-    // };
-
-    // const handleReset = () => {
-    //     setActiveStep(0);
-    // };
     return (
         <div className={`${styles.signUp_container} banner_dw`}>
             <div className={styles.layer}></div>
+            <Typography
+                sx={{
+                    position: 'absolute',
+                    top: { xs: 60, sm: 40, md: 40, lg: 50 },
+                    color: '#00052D',
+                    fontSize: { xs: 20, sm: 25, md: 25, lg: 35 },
+                    left: '50%',
+                    fontWeight: 600,
+                    transform: 'translate(-50%, -50%)'
+                }}
+                variant='h2'>Please Register</Typography>
             <Box className={styles.signup_info}>
                 <Stepper sx={{
-                    width: { xs: '90%', sm: '90%', md: '90%', lg: '90%', xl: '100%' },
+                    width: { xs: '100%', sm: '80%', md: '80%', lg: '80%', xl: '100%' }, mx: 'auto',
                     '& .MuiStepConnector-root span': {
                         borderColor: '#00052D',
                     },
+                    '& .MuiStepIcon-root': {
+                        fontSize: { xs: 14, sm: 14, md: 18, lg: 20 },
+
+                    }
                 }} activeStep={activeStep}>
                     {steps.map((label, index) => {
                         const stepProps: { completed?: boolean } = {};
                         const labelProps: {
                             optional?: React.ReactNode;
                         } = {};
-                        // if (isStepOptional(index)) {
-                        //     labelProps.optional = (
-                        //         <Typography variant="caption">Optional</Typography>
-                        //     );
-                        // }
-                        // if (isStepSkipped(index)) {
-                        //     stepProps.completed = false;
-                        // }
                         return (
                             <Step
                                 sx={{
@@ -114,6 +118,9 @@ export default function SignUp() {
                                             color: '#00052D',
                                             fontSize: { xs: '10px', sm: '12px', md: '16px', lg: '16px', xl: '16px' }
                                         },
+                                        '& .MuiStepLabel-labelContainer .Mui-active': {
+                                            color: '#00052D',
+                                        },
                                     }}
                                     {...labelProps}>
                                     {label}
@@ -122,307 +129,121 @@ export default function SignUp() {
                         );
                     })}
                 </Stepper>
-                {/* {activeStep === steps.length ? (
-                        <React.Fragment>
-                            <Typography sx={{ mt: 2, mb: 1 }}>
-                                All steps completed - you&apos;re finished
-                            </Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                                <Box sx={{ flex: '1 1 auto' }} />
-                                <Button onClick={handleReset}>Reset</Button>
-                            </Box>
-                        </React.Fragment>
-                    ) : ( */}
-                <React.Fragment>
-                    <form>
-                        {formPage === 'general' &&
-                            <div className={styles.form_step_first}>
-                                <div className={styles.step_one_first_row}>
-                                    <TextField
-                                        size='small'
-                                        sx={{
-                                            '& label.Mui-focused': {
-                                                color: '#00052D',
-                                            },
-                                            '& .MuiOutlinedInput-root': {
-                                                '&.Mui-focused fieldset': {
-                                                    borderColor: '#00052D',
-                                                },
-                                                '& fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                                '&.Mui-focused fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                            },
-                                        }}
-                                        fullWidth
-                                        id="outlined-basic"
-                                        label="First Name"
-                                        type='text'
-                                        required
-                                        variant="outlined" />
-                                    <TextField
-                                        size='small'
-                                        sx={{
-                                            '& label.Mui-focused': {
-                                                color: '#00052D',
-                                            },
-                                            '& .MuiOutlinedInput-root': {
-                                                '&.Mui-focused fieldset': {
-                                                    borderColor: '#00052D',
-                                                },
-                                                '& fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                                '&.Mui-focused fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                            },
-                                        }}
-                                        fullWidth
-                                        id="outlined-basic"
-                                        label="Last Name"
-                                        type='text'
-                                        required
-                                        variant="outlined" />
-                                </div>
-                                <div className={styles.step_one_first_row}>
-                                    <TextField
-                                        size='small'
-                                        sx={{
-                                            '& label.Mui-focused': {
-                                                color: '#00052D',
-                                            },
-                                            '& .MuiOutlinedInput-root': {
-                                                '&.Mui-focused fieldset': {
-                                                    borderColor: '#00052D',
-                                                },
-                                                '& fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                                '&.Mui-focused fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                            },
-                                        }}
-                                        fullWidth
-                                        id="outlined-basic"
-                                        label="Email"
-                                        type='email'
-                                        required
-                                        variant="outlined" />
-                                    <TextField
-                                        size='small'
-                                        sx={{
-                                            '& label.Mui-focused': {
-                                                color: '#00052D',
-                                            },
-                                            '& .MuiOutlinedInput-root': {
-                                                '&.Mui-focused fieldset': {
-                                                    borderColor: '#00052D',
-                                                },
-                                                '& fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                                '&.Mui-focused fieldset span': {
-                                                    paddingRight: '12px',
-                                                },
-                                            },
-                                        }}
-                                        fullWidth
-                                        id="outlined-basic"
-                                        label="Email Confirmation"
-                                        type='email'
-                                        required
-                                        variant="outlined" />
-                                </div>
-                                <TextField
-                                    size='small'
-                                    sx={{
-                                        '& label.Mui-focused': {
-                                            color: '#00052D',
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: '#00052D',
-                                            },
-                                            '& fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                            '&.Mui-focused fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                        },
-                                    }}
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Phone"
-                                    type='tel'
-                                    required
-                                    variant="outlined" />
-                            </div>}
-                        {formPage === 'address' && <div className={styles.form_step_first}>
+                <Box component={'form'}
+                    noValidate
+                    onSubmit={handleSubmit(onSubmit)}>
+                    {formPage === 'general' &&
+                        <div className={styles.form_step_first}>
                             <div className={styles.step_one_first_row}>
-                                <TextField size='small'
-                                    sx={{
-                                        '& label.Mui-focused': {
-                                            color: '#00052D',
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: '#00052D',
-                                            },
-                                            '& fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                            '&.Mui-focused fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                        },
-                                    }}
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Address"
-                                    type='text'
-                                    required
-                                    variant="outlined" />
-                                <TextField size='small'
-                                    sx={{
-                                        '& label.Mui-focused': {
-                                            color: '#00052D',
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: '#00052D',
-                                            },
-                                            '& fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                            '&.Mui-focused fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                        },
-                                    }}
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Apartment"
-                                    type='text'
-                                    required
-                                    variant="outlined" />
+                                <TextInput
+                                    type={'text'}
+                                    register={register}
+                                    errors={errors}
+                                    label={'First name'}
+                                    fieldID={'firstName'}
+                                    placeholder={'First name'}
+                                />
+                                <TextInput
+                                    type={'text'}
+                                    register={register}
+                                    errors={errors}
+                                    label={'Last name'}
+                                    fieldID={'lastName'}
+                                    placeholder={'Last name'}
+                                />
                             </div>
                             <div className={styles.step_one_first_row}>
-                                <TextField size='small'
-                                    sx={{
-                                        '& label.Mui-focused': {
-                                            color: '#00052D',
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: '#00052D',
-                                            },
-                                            '& fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                            '&.Mui-focused fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                        },
-                                    }}
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="City"
-                                    type='text'
-                                    required
-                                    variant="outlined" />
-                                <TextField size='small'
-                                    sx={{
-                                        '& label.Mui-focused': {
-                                            color: '#00052D',
-                                        },
-                                        '& .MuiOutlinedInput-root': {
-                                            '&.Mui-focused fieldset': {
-                                                borderColor: '#00052D',
-                                            },
-                                            '& fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                            '&.Mui-focused fieldset span': {
-                                                paddingRight: '12px',
-                                            },
-                                        },
-                                    }}
-                                    fullWidth
-                                    id="outlined-basic"
-                                    label="Post code"
-                                    type='number'
-                                    required
-                                    variant="outlined" />
+                                <EmailInput
+                                    errors={errors}
+                                    register={register}
+                                    label={'Email'}
+                                    fieldID={'email'}
+                                />
+                                <EmailInput
+                                    errors={errors}
+                                    register={register}
+                                    label={'Confirm email'}
+                                    fieldID={'confirmEmail'}
+                                />
                             </div>
-                            <Autocomplete
-                                size='small'
-                                id="country-select-demo"
-                                sx={{ width: 350 }}
-                                options={countries}
-                                getOptionLabel={(option) => option.label}
-                                renderOption={(props, option) => (
-                                    <Box
-                                        component="li"
-                                        sx={{
-                                            '& > img': { mr: 2, flexShrink: 0 },
-
-                                            '& label.Mui-focused': {
-                                                color: '#00052D',
-                                            },
-                                            '& .MuiOutlinedInput-root': {
-                                                '&.Mui-focused fieldset': {
-                                                    borderColor: '#00052D',
-                                                },
-                                                '& fieldset span': {
-                                                    paddingRight: '15px',
-                                                },
-                                                '&.Mui-focused fieldset span': {
-                                                    paddingRight: '15px',
-                                                },
-                                            },
-
-                                        }} {...props}>
-                                        <Image
-                                            height={15}
-                                            width={15}
-                                            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                            alt=""
-                                        />
-                                        {option.label} ({option.code})
-                                    </Box>
-                                )}
-                                renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        label="Choose a country"
-                                        inputProps={{
-                                            ...params.inputProps
-                                        }}
+                            <div className={styles.step_one_first_row}>
+                                <TextInput
+                                    type={'text'}
+                                    register={register}
+                                    errors={errors}
+                                    label={'Phone'}
+                                    fieldID={'phone'}
+                                    placeholder={'Phone'}
+                                />
+                                <div className={styles.password_field}>
+                                    <PasswordInput
+                                        passShow={passShow}
+                                        register={register}
+                                        errors={errors}
+                                        setPassShow={setPassShow}
                                     />
-                                )}
-                            />
+                                </div>
+                            </div>
                         </div>}
-                        {formPage === 'terms' && <div className={styles.form_step_first}>
-                            <div className={styles.step_terms}>
-                                <p>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                                <p>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                                <p>3. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                                <ol type='1'>
-                                    <li>Lorem ipsum dolor sit amet.</li>
-                                    <li>Lorem ipsum dolor sit amet.</li>
-                                    <li>Lorem ipsum dolor sit amet.</li>
-                                    <li>Lorem ipsum dolor sit amet.</li>
-                                    <li>Lorem ipsum dolor sit amet.</li>
-                                </ol>
-                                <span className={styles.terms_logo}><SiIcon color='#ED7D31' size={50} />Affburg</span>
-                                <FormControlLabel required
-                                    control={<Checkbox
+                    {formPage === 'address' && <div className={styles.form_step_first}>
+                        <div className={styles.step_one_first_row}>
+                            <TextInput
+                                type={'text'}
+                                register={register}
+                                errors={errors}
+                                label={'Address'}
+                                fieldID={'address'}
+                                placeholder={'Address'}
+                            />
+                            <TextInput
+                                type={'text'}
+                                register={register}
+                                errors={errors}
+                                label={'Apartment'}
+                                fieldID={'apartment'}
+                                placeholder={'apartment'}
+                            />
+                        </div>
+                        <div className={styles.step_one_first_row}>
+                            <TextInput
+                                type={'text'}
+                                register={register}
+                                errors={errors}
+                                label={'City'}
+                                fieldID={'city'}
+                                placeholder={'city'}
+                            />
+                            <TextInput
+                                type={'text'}
+                                register={register}
+                                errors={errors}
+                                label={'Post code'}
+                                fieldID={'postCode'}
+                                placeholder={'postCode'}
+                            />
+                        </div>
+                        <CountrySelect register={register} countries={countries} />
+                    </div>}
+                    {formPage === 'terms' && <div className={styles.form_step_first}>
+                        <div className={styles.step_terms}>
+                            <p>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                            <p>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                            <p>3. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                            <ol type='1'>
+                                <li>Lorem ipsum dolor sit amet.</li>
+                                <li>Lorem ipsum dolor sit amet.</li>
+                                <li>Lorem ipsum dolor sit amet.</li>
+                                <li>Lorem ipsum dolor sit amet.</li>
+                                <li>Lorem ipsum dolor sit amet.</li>
+                            </ol>
+                            <span className={styles.terms_logo}><SiIcon color='#ED7D31' size={50} />Affburg</span>
+                            <FormControlLabel required
+                                control={
+                                    <Checkbox
+                                        {...register('checkTerm')}
+                                        // value={checkValue}
+                                        onChange={(e) => setTermCheckValue(e.target.checked)}
                                         sx={{
                                             color: '#00052D',
                                             '&.Mui-checked': {
@@ -430,15 +251,15 @@ export default function SignUp() {
                                             },
                                         }}
                                     />}
-                                    label="Accept terms and conditions" />
-                            </div>
-                        </div>}
-                    </form>
-                    <Box sx={{ width: { xs: '90%', sm: '90%', md: '90%', lg: '90%', xl: '100%' }, display: 'flex', flexDirection: 'row', pt: 2 }}>
+                                label="Accept terms and conditions" />
+                        </div>
+                    </div>}
+
+                    <Box sx={{ width: { xs: '100%', sm: '100%', md: '100%', lg: '100%', xl: '100%' }, display: 'flex', flexDirection: 'row', pt: 2 }}>
                         <Button
                             disabled={activeStep === 0}
                             onClick={handleBack}
-                            style={{ backgroundColor: `${activeStep > 0 ? '#1c2437' : ''}` }}
+                            style={{ backgroundColor: `${activeStep > 0 ? '#1c2437' : 'lightGray'}` }}
                             sx={{
                                 color: 'whiteSmoke',
                                 whiteSpace: 'nowrap',
@@ -448,13 +269,9 @@ export default function SignUp() {
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-                        {/* {isStepOptional(activeStep) && (
-                                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                                    Skip
-                                </Button>
-                            )} */}
+
                         {activeStep < 2 && <Button
-                            onClick={handleNext}
+                            onClick={handleSubmit(handleNext)}
                             variant='contained'
                             style={{ backgroundColor: '#1c2437' }}
                             sx={{
@@ -465,24 +282,27 @@ export default function SignUp() {
                             }}>
                             Next
                         </Button>}
-                        {activeStep === 2 && <Button
-                            style={{ backgroundColor: '#1c2437' }}
-                            onClick={handleNext}
-                            sx={{
-                                color: 'whiteSmoke',
-                                whiteSpace: 'nowrap',
-                                height: 28,
-                                fontSize: '.6rem'
-                            }}>
-                            Sign up
-                        </Button>}
+                        {activeStep === 2 &&
+                            <Button
+                                style={{ backgroundColor: `${termCheckValue ? '#1c2437' : 'lightGray'}` }}
+                                disabled={!termCheckValue}
+                                type='submit'
+                                sx={{
+                                    color: 'whiteSmoke',
+                                    whiteSpace: 'nowrap',
+                                    height: 28,
+                                    fontSize: '.6rem'
+                                }}>
+                                Sign up
+                            </Button>
+                        }
                     </Box>
-                </React.Fragment>
+                </Box>
             </Box>
         </div >
     )
 }
-const countries: readonly CountryType[] = [
+const countries: CountryType[] = [
     { code: 'AD', label: 'Andorra', phone: '376' },
     {
         code: 'AE',
