@@ -103,10 +103,11 @@ export default function PayoutHistory() {
 
 
 
-    function handleCalenderOpen() {
+    function handleCalenderOpen(e: React.ChangeEvent<HTMLInputElement>) {
+        e.stopPropagation();
         setCalenderOpen((prev) => !prev)
     }
-    function handleChange(ranges: any) {
+    function handleChange(ranges: any, e: React.ChangeEvent<HTMLInputElement>) {
         setRangeDate(ranges.selection)
     }
     // function handleClearFilter() {
@@ -119,7 +120,7 @@ export default function PayoutHistory() {
     // console.log(typeof (startDate))
 
     return (
-        <div className={styles.payout_history_container}>
+        <div onClick={() => setCalenderOpen(false)} className={styles.payout_history_container}>
             <div className={styles.payout_history_heading}>
                 <h1>Payout Histoty</h1>
             </div>
@@ -129,9 +130,13 @@ export default function PayoutHistory() {
                     <h5>{format(yesterday, "dd-MMM-yyyy")}</h5>
                     <p>to</p>
                     <h5>{format(rangeDate.endDate, "dd-MMM-yyyy")}</h5>
-                    {calenderOpen && <div className={styles.date_range_container}>
-                        <DateRangePickerComp rangeDate={rangeDate} setRangeDate={setRangeDate} handleChange={handleChange} />
-                    </div>}
+                    {calenderOpen &&
+                        <div onClick={(e) => e.stopPropagation()} className={styles.date_range_container}>
+                            <DateRangePickerComp
+                                rangeDate={rangeDate}
+                                setRangeDate={setRangeDate} handleChange={handleChange}
+                            />
+                        </div>}
                     <IconButton aria-label="delete">
                         <AiOutlineClear size='1.2rem' color='#ED7D31' />
                     </IconButton>

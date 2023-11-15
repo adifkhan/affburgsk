@@ -4,7 +4,6 @@ import React from 'react'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { Dispatch, SetStateAction, useState } from 'react';
 import { formatDistanceToNow, set, sub } from 'date-fns';
-import styles from '@/styles/Dashboard/Notifications.module.css'
 import { BiMessageRoundedCheck, BiMessageRoundedDots } from 'react-icons/bi';
 import { TbShoppingCartCheck } from 'react-icons/tb';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -152,31 +151,35 @@ export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps
                 onClick={handleOpen}
                 title="Notifications"
                 placement="bottom">
-                {/* <StyledBadge
-                    themeDark={themeDark}
-                    overlap="circular"
-                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                    variant="dot"
-                    invisible={!badgeOpen}
-                >
-                    <Box
-                        component="span"
-                        sx={{ bgcolor: 'none', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', cursor: 'pointer' }}>
-                        <IoMdNotificationsOutline size={'20px'} />
-                    </Box>
-                </StyledBadge> */}
-
                 <Box sx={{ position: 'relative' }}>
                     <Box
                         component="span"
-                        sx={{ bgcolor: 'none', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%', cursor: 'pointer' }}>
-                        <IoMdNotificationsOutline size={'20px'} />
+                        sx={{
+                            bgcolor: 'none',
+                            width: 30,
+                            height: 30,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: '50%',
+                            cursor: 'pointer',
+                            fontSize: { xs: '14px', md: '20px' }
+                        }}>
+                        <IoMdNotificationsOutline />
                     </Box>
-                    <Badge sx={{ position: 'absolute', top: 5, right: 5 }} invisible={!badgeOpen} color="info" variant="dot" />
+                    <Badge
+                        sx={{
+                            position: 'absolute',
+                            top: 5,
+                            right: 5
+                        }}
+                        invisible={!badgeOpen}
+                        color="info"
+                        variant="dot"
+                    />
                 </Box>
             </Tooltip>
             <Popover
-                className={styles.main_noti_con}
                 // disableScrollLock
                 open={!!open}
                 anchorEl={open}
@@ -189,32 +192,36 @@ export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps
                         marginTop: '25px',
                         // borderRadius: '10px',
                         backgroundColor: '#1C2437',
-
                     }
                 } : {
                     '& .MuiPaper-root': {
                         marginTop: '25px',
                         // borderRadius: '10px',
                         backgroundColor: 'whiteSmoke',
-
                     }
                 }
-                }
-            >
+                }>
                 <Paper
-                    sx={themeDark === 'false' ? { backgroundColor: 'F9F9F9' } : { backgroundColor: '#1c2437' }}
-                    className={styles.notification_container}>
+                    sx={{
+                        backgroundColor: '#F9F9F9',
+                        width: { xs: '350px', md: '400px', lg: '450px' },
+                        height: '80vh',
+                        overflowY: 'scroll',
+                        '&::-webkit-scrollbar': { width: 6 },
+                        '&::-webkit-scrollbar-track': { background: 'none' },
+                        '&::-webkit-scrollbar-thumb': { backgroundColor: '#969696', borderRadius: ' 20px' },
+                    }}>
                     <Box
-                        sx={{ display: 'flex', alignItems: 'center', py: 2, px: 2.5 }}>
+                        sx={{ display: 'flex', alignItems: 'center', py: 2, px: 1 }}>
                         <Box sx={{ flexGrow: 1 }}>
                             <Typography
                                 variant="subtitle1"
-                                sx={themeDark === 'false' ? { color: '#7752FE' } : { color: '#36a689' }}>
+                                sx={{ color: '#7752FE', fontSize: { xs: 14, md: 16 } }}>
                                 Notifications
                             </Typography>
                             <Typography
                                 variant="body2"
-                                sx={themeDark === 'false' ? { color: 'darkgray' } : { color: 'lightgrey' }}>
+                                sx={{ color: 'darkgray', fontSize: { xs: 12, md: 14 } }}>
                                 You have {totalUnRead} unread messages
                             </Typography>
                         </Box>
@@ -222,16 +229,14 @@ export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps
                         {totalUnRead > 0 && (
                             <Tooltip title="Mark all as read">
                                 <IconButton
-                                    sx={themeDark === 'false' ? { color: '#7752FE' } : { color: '#36a689' }} className={styles.all_read_btn}
+                                    sx={{ color: '#7752FE', fontSize: { xs: '1.2rem', md: '1.2rem', lg: '1.5rem' } }}
                                     onClick={handleMarkAllAsRead}>
                                     <BiMessageRoundedCheck />
                                 </IconButton>
                             </Tooltip>
                         )}
                     </Box>
-
                     <Divider sx={{ borderStyle: 'dashed' }} />
-
                     <Box
                         component={'div'}
                         sx={{ height: { xs: 340, sm: 'auto' } }}>
@@ -240,7 +245,22 @@ export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps
                             subheader={
                                 <ListSubheader
                                     disableSticky
-                                    sx={themeDark === 'false' ? { py: 1, px: 2.5, typography: 'overline', color: '#7752FE' } : { color: '#36a689' }}>
+                                    sx={themeDark === 'false' ?
+                                        {
+                                            py: 1,
+                                            px: 2.5,
+                                            typography: 'overline',
+                                            color: '#7752FE',
+                                            fontWeight: 600,
+                                            fontSize: { xs: 12, }
+                                        }
+                                        :
+                                        {
+                                            color: '#36a689',
+                                            fontWeight: 600,
+                                            fontSize: { xs: 12, }, py: 1,
+                                            px: 2.5, typography: 'overline'
+                                        }}>
                                     New
                                 </ListSubheader>
                             }>
@@ -258,7 +278,24 @@ export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps
                             subheader={
                                 <ListSubheader
                                     disableSticky
-                                    sx={themeDark === 'false' ? { py: 1, px: 2.5, typography: 'overline', color: '#7752FE' } : { color: '#36a689' }}>
+                                    sx={themeDark === 'false' ?
+                                        {
+                                            py: 1,
+                                            px: 2.5,
+                                            typography: 'overline',
+                                            color: '#7752FE',
+                                            fontWeight: 600,
+                                            fontSize: { xs: 12 }
+                                        }
+                                        :
+                                        {
+                                            color: '#36a689',
+                                            fontWeight: 600,
+                                            fontSize: { xs: 12 },
+                                            py: 1,
+                                            px: 2.5,
+                                            typography: 'overline'
+                                        }}>
                                     Before that
                                 </ListSubheader>
                             }
@@ -272,15 +309,15 @@ export default function Notification({ badgeOpen, setBadgeOpen }: BadgeOpenProps
                             ))}
                         </List>
                     </Box>
-
-                    <Divider sx={{ borderStyle: 'dashed' }} />
-
-                    <Box sx={{ p: 1 }}>
-                        <Button fullWidth disableRipple>
-                            View All
-                        </Button>
-                    </Box>
                 </Paper>
+                {/* <Divider sx={{ borderStyle: 'dashed' }} /> */}
+                <Box sx={{ textAlign: 'center' }}>
+                    <Button
+                        style={{ backgroundColor: '#7752FE', color: 'white', width: '100%', borderRadius: 0 }}
+                        sx={{ bgcolor: 'red' }}>
+                        View All
+                    </Button>
+                </Box>
             </Popover>
         </>
     )
@@ -292,8 +329,8 @@ function NotificationItem({ notification, themeDark }: any) {
     return (
         <ListItemButton
             sx={themeDark === 'false' ? {
-                py: 1.5,
-                px: 2.5,
+                py: 1,
+                px: 2,
                 mt: '1px',
                 color: '#1c2437',
                 ...(notification.isUnRead && {
@@ -304,7 +341,19 @@ function NotificationItem({ notification, themeDark }: any) {
         >
             <ListItemAvatar>
                 <Avatar
-                    sx={themeDark === 'false' ? { bgcolor: '#7752FE', color: 'whiteSmoke' } : { bgcolor: '#36a689' }}>
+                    sx={themeDark === 'false' ?
+                        {
+                            bgcolor: '#7752FE',
+                            color: 'whiteSmoke',
+                            height: { xs: '30px', md: '35px' },
+                            width: { xs: '30px', md: '35px' }
+                        }
+                        :
+                        {
+                            bgcolor: '#36a689',
+                            height: { xs: '30px', md: '35px' },
+                            width: { xs: '30px', md: '35px' }
+                        }}>
                     {avatar}
                 </Avatar>
             </ListItemAvatar>
@@ -340,9 +389,21 @@ function NotificationItem({ notification, themeDark }: any) {
 
 function renderContent(notification: any, themeDark: any) {
     const title = (
-        <Typography variant="subtitle2">
+        <Typography variant="subtitle2" sx={{ fontSize: { xs: 12, md: 14 } }}>
             {notification.title}
-            <Typography component="span" variant="body2" sx={themeDark === 'false' ? { color: 'text.secondary' } : { color: 'Grey' }}>
+            <Typography
+                component="span"
+                variant="body2"
+                sx={themeDark === 'false' ?
+                    {
+                        color: 'text.secondary',
+                        fontSize: { xs: 12, md: 14 }
+                    }
+                    :
+                    {
+                        color: 'Grey',
+                        fontSize: { xs: 12, md: 14 }
+                    }}>
                 &nbsp; {notification.description}
             </Typography>
         </Typography>

@@ -4,7 +4,7 @@ import { BiDownload } from 'react-icons/bi'
 import { BsCalendar3 } from 'react-icons/bs';
 
 type CalBtnProps = {
-    handleCalenderOpen: () => void;
+    handleCalenderOpen: any;
 }
 export default function DateRangeButton({ handleCalenderOpen }: CalBtnProps) {
     return (

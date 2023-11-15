@@ -198,11 +198,7 @@ export default function DashboardHomePage() {
 
     return (
         <div>
-            <div className={styles.welcome_cotaianer}>
-                {/* <div className={styles.welcome_cotaianer_left}>
-                    <h2>Dashboard</h2>
-                    <p>Welcome to your dashboard</p>
-                </div> */}
+            {/* <div className={styles.welcome_cotaianer}>
                 <div className={styles.balance_container}>
                     <div className={styles.balance_container_left}>
                         <span><MdOutlineAccountBalanceWallet /></span>
@@ -332,7 +328,7 @@ export default function DashboardHomePage() {
                         <button className={styles.all_transaction}>All Transaction</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div >
     )
 }

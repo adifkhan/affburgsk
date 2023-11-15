@@ -26,7 +26,7 @@ export default function CountrySelect({ register, countries, errors }: CountrySe
                         color: '#1c2437',
                     },
                     '& .MuiOutlinedInput-root': {
-                        fontSize: 14,
+                        fontSize: { xs: 12, md: 14 },
                         height: { xs: 35, md: 40 },
                         backgroundColor: '#ebebeb',
                         '&.Mui-focused fieldset': {

@@ -6,7 +6,7 @@ import { LiaUserCogSolid } from 'react-icons/lia';
 import { TbMenu2 } from 'react-icons/tb';
 import { CgLogOut, CgMenuLeft } from 'react-icons/cg';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Box, IconButton, Tooltip, Typography } from '@mui/material';
+import { Box, IconButton, Tooltip } from '@mui/material';
 import avatar from '../../public/pngegg.png';
 import Image from 'next/image';
 import { BsGrid, BsMoonStars } from 'react-icons/bs';
@@ -25,6 +25,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import { BiUserPlus } from 'react-icons/bi';
 import { CiSettings } from 'react-icons/ci';
+import { MdLogout, MdOutlineLogin } from 'react-icons/md';
+import { useRouter } from 'next/navigation';
 
 
 type HeaderProps = {
@@ -37,6 +39,9 @@ type HeaderProps = {
 }
 
 export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMenu, setReportDropDownMenu, fqaDropDownMenu, setFqaDropDownMenu }: HeaderProps) {
+    const router = useRouter();
+    const user = useAppSelector((state) => state.authReducer.user);
+
     const [badgeOpen, setBadgeOpen] = useState<boolean>(true);
     const [open, setOpen] = useState<boolean>(false);
 
@@ -81,34 +86,65 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
 
 
     return (
-        <header className={themeDark === 'false' ? styles.header_container : styles.header_container_dark}>
-            <Box className={styles.header_left_side}>
+        <Box
+            component={'header'}
+            sx={{
+                backgroundColor: '#121622',
+                color: 'whitesmoke',
+                position: 'sticky',
+                top: '0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                height: '50px',
+                padding: '0 10px',
+                boxShadow: '0px 7px 18px -15px rgba(0, 0, 0, 0.51)',
+                // color: '#13183e',
+                transition: '.3s',
+            }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    columnGap: '15px',
+                    alignItems: 'center',
+                }}>
                 <Tooltip
                     onClick={handleSidebar}
                     title="Collapse sidebar"
                     placement="right">
-                    <span className={themeDark === 'false' ? styles.menu_logo : styles.menu_logo_dark}>{sidebarOpen ? <TbMenu2 /> : <CgMenuLeft />}</span>
+                    <Box component={'span'}
+                        sx={{
+                            fontSize: {
+                                xs: 20, md: 25, lg: 25,
+                                cursor: 'pointer',
+                                padding: 2
+                            }
+                        }}>
+                        {sidebarOpen ? <TbMenu2 /> : <CgMenuLeft />}
+                    </Box>
                 </Tooltip>
-                <Typography fontSize={'1.5rem'} textTransform={'uppercase'} variant='h2'>Adminis</Typography>
             </Box>
-            <div className={styles.header_right_logo}>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center', columnGap: { xs: 0, md: '12px', }
+                }}>
                 <Search themeDark={themeDark} />
                 <Tooltip title="Theme" placement="bottom">
-                    <Box component={'div'}>
+                    <Box
+                        component={'div'}>
                         <IconButton
                             // for theme toggle
-                            onClick={handleTheme}
+                            // onClick={handleTheme}
                             // for modal open
-                            // onClick={handleOpen}
-                            sx={themeDark === 'false' ? { color: '#13183e' } : { color: 'whitesmoke' }}
+                            onClick={handleOpen}
+                            sx={{ fontSize: { xs: '14px', md: '20px' }, color: 'whiteSmoke' }}
                             aria-label="theme">
-                            {themeDark === 'false' ? <HiOutlineSun size={'20px'} /> : <BsMoonStars size={20} />}
+                            {themeDark === 'false' ? <HiOutlineSun /> : <BsMoonStars />}
                         </IconButton>
                         <ModalDashboard
                             open={open}
                             handleClose={handleClose}
                         />
-
                     </Box>
                 </Tooltip>
                 <Notification
@@ -116,34 +152,43 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                     setBadgeOpen={setBadgeOpen}
                 />
                 <Tooltip title="Rearrange" placement="bottom">
-                    <IconButton disabled sx={{ color: '#13183e' }} aria-label="delete">
-                        <BsGrid size={'20px'} />
+                    <IconButton
+                        // disabled
+                        sx={{ fontSize: { xs: '14px', md: '20px' }, color: 'whiteSmoke' }}
+                        aria-label="delete">
+                        <BsGrid />
                     </IconButton>
                 </Tooltip>
                 <Tooltip title="Full screen" placement="bottom">
-                    <IconButton disabled sx={{ color: '#13183e' }} aria-label="delete">
-                        <GoScreenFull size={'20px'} />
+                    <IconButton
+                        // disabled
+                        sx={{ fontSize: { xs: '14px', md: '20px' }, color: 'whiteSmoke' }}
+                        aria-label="delete">
+                        <GoScreenFull />
                     </IconButton>
                 </Tooltip>
                 <Tooltip title="Setting" placement="bottom">
-                    <IconButton disabled sx={{ color: '#13183e' }} aria-label="setting">
-                        <AiOutlineSetting size={'20px'} />
+                    <IconButton
+                        // disabled
+                        sx={{ fontSize: { xs: '14px', md: '20px' }, color: 'whiteSmoke' }} aria-label="setting">
+                        <AiOutlineSetting />
                     </IconButton>
                 </Tooltip>
                 <Tooltip
-                    className={themeDark === 'false' ? styles.account_logo : styles.account_logo_dark}
                     onClick={handleClick}
                     title="Profile"
                     placement="bottom">
-                    <div>
-                        <Box sx={{ height: '30px', width: '30px', borderRadius: '50%' }}>
+                    <Box sx={{
+                        backgroundColor: '#1C2437', borderRadius: '25px', display: 'flex', alignItems: 'center', columnGap: '15px', cursor: 'pointer', padding: '4px 6px',
+                    }}
+                    >
+                        <Box component={'span'} sx={{ height: '30px', width: '30px', borderRadius: '50%' }}>
                             <Image objectFit='cover' height={200} width={200} src={avatar} alt='user' />
                         </Box>
-                        <button
-                            className={styles.header_right_single_logo}>
+                        <Box component={'span'} sx={{ fontSize: { xs: 14, md: 20 }, display: { xs: 'none', md: 'block' } }}>
                             <LiaUserCogSolid />
-                        </button>
-                    </div>
+                        </Box>
+                    </Box>
                 </Tooltip>
                 <Menu
                     disableScrollLock={true}
@@ -218,7 +263,7 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                             {
                                 fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
                                 '&:hover': {
-                                    backgroundColor: '#131926'
+                                    backgroundColor: '#7752FE'
                                 }
                             } : {
                                 fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
@@ -234,7 +279,7 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                         {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
                             '&:hover': {
-                                backgroundColor: '#131926'
+                                backgroundColor: '#7752FE'
                             }
                         } : {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
@@ -251,7 +296,7 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                         {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
                             '&:hover': {
-                                backgroundColor: '#131926'
+                                backgroundColor: '#7752FE'
                             }
                         } : {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
@@ -262,7 +307,7 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                     }
                         onClick={handleClose}>
                         <ListItemIcon>
-                            <BiUserPlus color={themeDark === 'true' ? '#3EC1A1' : '#131926'} size={20} />
+                            <BiUserPlus color={themeDark === 'true' ? '#3EC1A1' : '#7752FE'} size={20} />
                         </ListItemIcon>
                         Add another account
                     </MenuItem>
@@ -270,7 +315,7 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                         {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
                             '&:hover': {
-                                backgroundColor: '#131926'
+                                backgroundColor: '#7752FE'
                             }
                         } : {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
@@ -281,31 +326,53 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                     }
                         onClick={handleClose}>
                         <ListItemIcon>
-                            <CiSettings color={themeDark === 'true' ? '#3EC1A1' : '#131926'} size={20} />
+                            <CiSettings color={themeDark === 'true' ? '#3EC1A1' : '#7752FE'} size={20} />
                         </ListItemIcon>
                         Settings
                     </MenuItem>
-                    <MenuItem sx={themeDark === 'true' ?
+
+                    {user ? <MenuItem sx={themeDark === 'true' ?
                         {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
                             '&:hover': {
-                                backgroundColor: '#131926'
+                                backgroundColor: '#7752FE'
                             }
                         } : {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
                             // '&:hover': {
-                            //     backgroundColor: 'hrey'
+                            //     backgroundColor: 'grey'
                             // }
                         }
                     }
                         onClick={handleClose}>
                         <ListItemIcon>
-                            <CgLogOut color={themeDark === 'true' ? '#3EC1A1' : '#131926'} size={20} />
+                            <MdLogout color={themeDark === 'true' ? '#3EC1A1' : '#7752FE'} size={20} />
                         </ListItemIcon>
                         Logout
                     </MenuItem>
+                        :
+                        <MenuItem sx={themeDark === 'true' ?
+                            {
+                                fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                                '&:hover': {
+                                    backgroundColor: '#7752FE'
+                                }
+                            } : {
+                                fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                                // '&:hover': {
+                                //     backgroundColor: 'grey'
+                                // }
+                            }
+                        }
+                            onClick={() => router.push('/signin')}>
+                            <ListItemIcon>
+                                <MdOutlineLogin color={themeDark === 'true' ? '#3EC1A1' : '#7752FE'} size={20} />
+                            </ListItemIcon>
+                            Login
+                        </MenuItem>
+                    }
                 </Menu>
-            </div>
-        </header>
+            </Box>
+        </Box>
     )
 }

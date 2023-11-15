@@ -32,7 +32,7 @@ export default function PasswordInput({ passShow, setPassShow, register, errors 
                         color: '#1c2437',
                     },
                     '& .MuiOutlinedInput-root': {
-                        fontSize: 14,
+                        fontSize: { xs: 12, md: 14 },
                         backgroundColor: '#ebebeb',
                         height: { xs: 35, md: 40 },
                         '&.Mui-focused fieldset': {

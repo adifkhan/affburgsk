@@ -2,19 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 
-export type ThemeState = {
-    theme: string | null;
+export type AuthStateType = {
+    user: boolean;
 }
 
-const initialState: ThemeState = {
-    theme: 'false',
+const initialState: AuthStateType = {
+    user: false,
 }
 
 export const themeSlice = createSlice({
-    name: 'themeSlice',
+    name: 'authSlice',
     initialState,
     reducers: {
-        themeState: (state, action) => { state.theme = action.payload },
+        themeState: (state, action) => { state.user = action.payload },
     }
 })
 

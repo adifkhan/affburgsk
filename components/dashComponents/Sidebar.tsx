@@ -15,14 +15,13 @@ import { MdOutlinePayments } from 'react-icons/md';
 import { usePathname, useRouter } from 'next/navigation';
 import { AppDispatch, useAppSelector } from '@/app/GlobalRedux/store';
 import { useDispatch } from 'react-redux';
+import { Box, Typography, Button } from '@mui/material';
 
 
 type SidebarProps = {
     children: React.ReactNode;
     sidebarOpen: boolean;
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
-    // themeDark: string | null;
-    // setThemeDark: Dispatch<SetStateAction<string | null>>;
     reportsDropDownMenu: boolean;
     setReportDropDownMenu: Dispatch<SetStateAction<boolean>>;
     fqaDropDownMenu: boolean;
@@ -93,36 +92,103 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, reports
     }
 
     return (
-        <div className={themeDark === 'false' ? styles.sidebar_container :
-            styles.sidebar_container_dark}>
-            <div
-                className={sidebarOpen ?
-                    `${themeDark === 'false' ? styles.sidebar_wrapper_open : styles.sidebar_wrapper_open_dark}`
+        <Box component={'div'}
+            sx={{
+                display: 'flex',
+                width: '100%',
+                color: '#13183e',
+                height: '100vh',
+                backgroundColor: '#16192A',
+                justifyContent: 'space-between',
+                transition: '.2s',
+            }}>
+            <Box component={'div'}
+                sx={sidebarOpen ?
+                    {
+                        backgroundColor: '#E9E9E9',
+                        width: '20%',
+                        transition: '.2s'
+                    }
                     :
-                    `${themeDark === 'false' ? styles.sidebar_wrapper_close : styles.sidebar_wrapper_close_dark}`
+                    {
+                        backgroundColor: '#E9E9E9',
+                        width: '5%',
+                        transition: '.2s'
+                    }
                 }>
-                <div className={styles.sidebar_content}>
-
+                <Box component={'div'}
+                    sx={{
+                        backgroundColor: '#1c2437',
+                        width: '100%',
+                        height: '100%',
+                        padding: '15px',
+                        overflowY: 'scroll',
+                        transition: '.2s',
+                        '&::-webkit-scrollbar': { display: 'none' },
+                    }}>
                     {/* Profile info */}
-                    <div className={styles.profile_container}>
+                    <Box component={'div'}
+                        sx={{
+                            height: 80,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            color: '#d8d8d8',
+                            marginBottom: 6,
+                        }}>
                         <Image
-                            className={sidebarOpen ? styles.profile_image : styles.profile_image_collapse}
+                            style={{
+                                height: 45,
+                                width: 45,
+                                borderRadius: 50,
+                                border: '2px solid #3d475f',
+                                transition: '.3s',
+                            }}
                             alt="profile image"
                             src={tiggzy}
                             height={200}
                             width={200}
                             objectFit='cover'
                         />
-                        <h2
-                            className={sidebarOpen ? styles.profile_name : styles.profile_name_collapse}>
-                            Michael Larson
-                        </h2>
-                        <h3 className={sidebarOpen ? styles.profile_id : styles.profile_id_collapse}>ID: {'6d910632'}</h3>
-                    </div>
+                        <Typography variant='h4'
+                            sx={{
+                                fontWeight: 400,
+                                marginTop: 1,
+                                fontSize: { xs: 12, md: 16 },
+                                letterSpacing: '.1ch',
+                                transition: '.2s',
+                                opacity: `${sidebarOpen ? 1 : 0}`
+                            }}>
+                            Tiggzt IT
+                        </Typography>
+                        <Typography variant='body2'
+                            sx={{
+                                fontSize: '.8rem',
+                                letterSpacing: '.1ch',
+                                fontWeight: '500',
+                                transition: `${sidebarOpen ? '.3s' : '.1s'}`,
+                                color: '#36a689',
+                                marginTop: 1,
+                                opacity: `${sidebarOpen ? 1 : 0}`,
+                            }}>
+                            ID: {'6d910632'}</Typography>
+                    </Box>
 
                     {/*****Dashboard home*****/}
-                    <div className={styles.dashboard_menu_items_container}>
-                        <div className={sidebarOpen ? styles.menus_wrapper : styles.menus_wrapper_collapse}>
+                    <Box component={'div'}
+                        sx={{
+                            color: 'whiteSmoke',
+                        }}>
+                        <Box component={'div'}
+                            sx={sidebarOpen ?
+                                {
+
+                                }
+                                :
+                                {
+
+                                }}
+                            className={sidebarOpen ? styles.menus_wrapper : styles.menus_wrapper_collapse}>
                             <Link
                                 href={'/dashboard'}
                                 className={sidebarOpen ? `${pathname === '/dashboard' ?
@@ -134,23 +200,23 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, reports
                                         styles.single_menu_btn_collapse_selected
                                         :
                                         styles.single_menu_btn_collapse}`}>
-                                <span
+                                <Box component={'span'}
                                     className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
                                     <BsSpeedometer2 />
-                                </span>
-                                <span
+                                </Box>
+                                <Box component={'span'}
                                     className={sidebarOpen ? styles.sidebar_menu_text : styles.saidebar_menu_text_collapse}>
                                     Dashboard
-                                </span>
+                                </Box>
                             </Link>
-                        </div>
-                    </div>
+                        </Box>
+                    </Box>
 
                     {/*****Dashboard Menus*****/}
                     {/* Data section */}
-                    <div className={styles.main_menus_container}>
+                    <Box component={'div'} className={styles.main_menus_container}>
                         <h2 className={styles.menu_category}>Data</h2>
-                        <div className={sidebarOpen ? styles.menus_wrapper : styles.menus_wrapper_collapse}>
+                        <Box component={'div'} className={sidebarOpen ? styles.menus_wrapper : styles.menus_wrapper_collapse}>
                             {
                                 DataMenus.map((menu: DashboardMenuType, index: number) =>
                                     <Link
@@ -166,38 +232,38 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, reports
                                                 styles.single_menu_btn_collapse_selected
                                                 :
                                                 styles.single_menu_btn_collapse}`}>
-                                        <span
+                                        <Box component={'span'}
                                             className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
                                             {menu.icon}
-                                        </span>
-                                        <span
+                                        </Box>
+                                        <Box component={'span'}
                                             className={sidebarOpen ? styles.saidebar_menu_text : styles.saidebar_menu_text_collapse}>
                                             {menu.title}
-                                        </span>
+                                        </Box>
                                     </Link>
                                 )
                             }
-                        </div>
+                        </Box>
 
                         {/* Reports section */}
                         <h2 className={styles.menu_category}>Repots</h2>
-                        <div
+                        <Box component={'div'}
                             className={sidebarOpen ? styles.menus_wrapper : styles.menus_wrapper_collapse}>
-                            <button
+                            <Button
                                 onClick={() => handleDropdown('reports')}
                                 className={!reportsDropDownMenu || !sidebarOpen ? styles.dropdown_btn : styles.dropdown_btn_selected}>
-                                <span className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
+                                <Box component={'span'} className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
                                     <TbReport size={20} />
-                                </span>
-                                <span className={sidebarOpen ? styles.sidebar_menu_text : styles.saidebar_menu_text_collapse}>
+                                </Box>
+                                <Box component={'span'} className={sidebarOpen ? styles.sidebar_menu_text : styles.saidebar_menu_text_collapse}>
                                     Reports
-                                </span>
-                                <span
+                                </Box>
+                                <Box component={'span'}
                                     className={!reportsDropDownMenu || !sidebarOpen ? styles.report_btn_arrow_right : styles.report_btn_arrow_down}>
                                     <AiOutlineRight />
-                                </span>
-                            </button>
-                            <div className={reportsDropDownMenu ? `${sidebarOpen ? styles.dropdown_container_open : styles.sub_menus_wrapper_collapse}` : styles.dropdown_container_close}>
+                                </Box>
+                            </Button>
+                            <Box component={'div'} className={reportsDropDownMenu ? `${sidebarOpen ? styles.dropdown_container_open : styles.sub_menus_wrapper_collapse}` : styles.dropdown_container_close}>
                                 {
                                     ReportMenus.map((menu: DashboardMenuType, index: number) =>
                                         <Link
@@ -213,39 +279,39 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, reports
                                                     styles.single_menu_btn_collapse_selected
                                                     :
                                                     styles.single_menu_btn_collapse}`}>
-                                            <span
+                                            <Box component={'span'}
                                                 className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
                                                 {menu.icon}
-                                            </span>
-                                            <span
+                                            </Box>
+                                            <Box component={'span'}
                                                 className={sidebarOpen ? styles.saidebar_menu_text : styles.saidebar_menu_text_collapse}>
                                                 {menu.title}
-                                            </span>
+                                            </Box>
                                         </Link>
                                     )
                                 }
-                            </div>
-                        </div>
+                            </Box>
+                        </Box>
 
                         {/* Hele center */}
                         <h2 className={styles.menu_category}>Help</h2>
-                        <div
+                        <Box component={'div'}
                             className={sidebarOpen ? styles.menus_wrapper : styles.menus_wrapper_collapse}>
-                            <button
+                            <Button
                                 onClick={() => handleDropdown('fqa')}
                                 className={!fqaDropDownMenu || !sidebarOpen ? styles.dropdown_btn : styles.dropdown_btn_selected}>
-                                <span className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
+                                <Box component={'span'} className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
                                     <TbProgressHelp size={20} />
-                                </span>
-                                <span className={sidebarOpen ? styles.sidebar_menu_text : styles.saidebar_menu_text_collapse}>
+                                </Box>
+                                <Box component={'span'} className={sidebarOpen ? styles.sidebar_menu_text : styles.saidebar_menu_text_collapse}>
                                     Help Center
-                                </span>
-                                <span
+                                </Box>
+                                <Box component={'span'}
                                     className={!fqaDropDownMenu || !sidebarOpen ? styles.report_btn_arrow_right : styles.report_btn_arrow_down}>
                                     <AiOutlineRight />
-                                </span>
-                            </button>
-                            <div className={fqaDropDownMenu ? `${sidebarOpen ? styles.dropdown_container_open : styles.sub_menus_wrapper_collapse}` : styles.dropdown_container_close}>
+                                </Box>
+                            </Button>
+                            <Box component={'div'} className={fqaDropDownMenu ? `${sidebarOpen ? styles.dropdown_container_open : styles.sub_menus_wrapper_collapse}` : styles.dropdown_container_close}>
                                 {
                                     HelpMenus.map((menu: DashboardMenuType, index: number) =>
                                         <Link
@@ -261,65 +327,65 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, reports
                                                     styles.single_menu_btn_collapse_selected
                                                     :
                                                     styles.single_menu_btn_collapse}`}>
-                                            <span
+                                            <Box component={'span'}
                                                 className={sidebarOpen ? styles.saidebar_menu_icon : styles.saidebar_menu_icon_collapse}>
                                                 {menu.icon}
-                                            </span>
-                                            <span
+                                            </Box>
+                                            <Box component={'span'}
                                                 className={sidebarOpen ? styles.saidebar_menu_text : styles.saidebar_menu_text_collapse}>
                                                 {menu.title}
-                                            </span>
+                                            </Box>
                                         </Link>
                                     )
                                 }
-                            </div>
-                        </div>
-                    </div>
+                            </Box>
+                        </Box>
+                    </Box>
 
                     {/* logout and Go Home */}
-                    <div className={styles.log_home_btn_container}>
-                        <button
+                    <Box component={'div'} className={styles.log_home_btn_container}>
+                        <Button
                             onClick={() => router.push('/')}
                             className={styles.home_btn}>
-                            <span className={styles.home_icon}>
+                            <Box component={'span'} className={styles.home_icon}>
                                 <TbHomeDot />
-                            </span>
+                            </Box>
                             Go Home
-                        </button>
-                        <button
+                        </Button>
+                        <Button
                             className={styles.logout_btn}>
-                            <span className={styles.logout_icon}>
+                            <Box component={'span'} className={styles.logout_icon}>
                                 <BiLogOutCircle />
-                            </span>
+                            </Box>
                             Logout
-                        </button>
-                    </div>
+                        </Button>
+                    </Box>
 
                     {/* manager contact */}
-                    <div className={sidebarOpen ? styles.manager_contact_container : styles.manager_contact_container_hide}>
-                        <p className={styles.contact_manager_heading}>Manager Contact</p>
+                    <Box component={'div'} className={sidebarOpen ? styles.manager_contact_container : styles.manager_contact_container_hide}>
+                        <Typography variant='body2' className={styles.contact_manager_heading}>Manager Contact</Typography>
                         <Link href={'#'} className={styles.contact_single}>
-                            <span className={styles.contact_icon}><AiOutlineUser /></span>
-                            <p>Lyudmila ADSEMPIRE DIRECT</p>
+                            <Box component={'span'} className={styles.contact_icon}><AiOutlineUser /></Box>
+                            <Typography variant='body2'>Lyudmila ADSEMPIRE DIRECT</Typography>
                         </Link>
                         <Link href={'mailto:lyudmila@adsempire.com'} className={styles.contact_single}>
-                            <span className={styles.contact_icon}><HiOutlineMail /></span>
-                            <p>lyudmila@adsempire.com</p>
+                            <Box component={'span'} className={styles.contact_icon}><HiOutlineMail /></Box>
+                            <Typography variant='body2'>lyudmila@adsempire.com</Typography>
                         </Link>
                         <Link href={'#'} className={styles.contact_single}>
-                            <span className={styles.contact_icon}><AiOutlineSkype /></span>
-                            <p>live:.cid.59ad562d6d3a8ded</p>
+                            <Box component={'span'} className={styles.contact_icon}><AiOutlineSkype /></Box>
+                            <Typography variant='body2'>live:.cid.59ad562d6d3a8ded</Typography>
                         </Link>
                         <Link href={'#'} className={styles.contact_single}>
-                            <span className={styles.contact_icon}><PiPaperPlaneTiltLight /></span>
-                            <p>@Lyudmila_AED</p>
+                            <Box component={'span'} className={styles.contact_icon}><PiPaperPlaneTiltLight /></Box>
+                            <Typography variant='body2'>@Lyudmila_AED</Typography>
                         </Link>
-                    </div>
-                </div>
-            </div>
+                    </Box>
+                </Box>
+            </Box>
             <main className={styles.children_container}>
                 {children}
             </main>
-        </div >
+        </Box >
     )
 }
