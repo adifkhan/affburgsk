@@ -86,10 +86,10 @@
 
 .validate_label {
     color: indianred;
-    /* width: 100%; */
     padding-left: 14px;
-    margin-top: 6px;
-    font-size: 14px;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .signin_form {
@@ -145,7 +145,6 @@
     border-radius: 4px;
     color: whitesmoke;
     padding: 5px 10px;
-    filter: drop-shadow(0.1rem 0.20rem 0.2rem rgba(0, 0, 0, 0.3));
     gap: 10px;
     transition: .1s;
     font-size: 1.2rem;
@@ -154,7 +153,7 @@
 }
 
 .form_first_section button:hover {
-    background-color: #ED7D31;
+    background-color: #0a0f36;
 }
 
 .form_second_section button:active {
@@ -185,10 +184,11 @@
     display: flex;
     align-items: center;
     transition: .2s;
+    font-size: 12px;
 }
 
 .signIn_bottom button:hover {
-    background-color: #ED7D31;
+    background-color: #0a0f36;
 }
 
 .signin_bottom_contact {
@@ -270,10 +270,15 @@
     }
 
     .signIn_bottom button {
-        font-size: .7rem;
+        font-size: 12px;
     }
 
     .another_account_text {
+        font-size: .9rem;
+    }
+
+
+    .partner_btn_logo {
         font-size: .9rem;
     }
 
@@ -281,8 +286,8 @@
         font-size: .8rem;
     }
 
-    .partner_btn_logo {
-        font-size: .9rem;
+    .signin_bottom_contact {
+        font-size: .8rem;
     }
 
 }
@@ -353,6 +358,10 @@
     }
 
     .another_account_text {
+        font-size: 12px;
+    }
+
+    .partner_btn_logo {
         font-size: .9rem;
     }
 
@@ -360,8 +369,8 @@
         font-size: .8rem;
     }
 
-    .partner_btn_logo {
-        font-size: .9rem;
+    .signin_bottom_contact {
+        font-size: .8rem;
     }
 
 }
@@ -434,10 +443,14 @@
     }
 
     .signIn_bottom button {
-        font-size: .7rem;
+        font-size: 12px;
     }
 
     .signin_bottom_container p {
+        font-size: .8rem;
+    }
+
+    .signin_bottom_contact {
         font-size: .8rem;
     }
 
@@ -515,7 +528,11 @@
     }
 
     .signin_bottom_container p {
-        font-size: .8rem;
+        font-size: 12px;
+    }
+
+    .signin_bottom_contact {
+        font-size: .9rem;
     }
 
 }

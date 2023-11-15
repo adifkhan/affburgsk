@@ -33,16 +33,19 @@ export default function TextInput({ type, errors, register, label, fieldID, plac
                         })}
                     sx={{
                         '& .MuiFormLabel-root': {
-                            fontSize: '.8rem',
+                            fontSize: { xs: '.7rem', md: '.8rem' },
+                            fontWeight: 600,
                         },
                         '& label.Mui-focused': {
                             color: '#1c2437',
                         },
                         '& .MuiOutlinedInput-root': {
                             fontSize: 14,
+                            height: { xs: 35, md: 40 },
+                            backgroundColor: '#ebebeb',
                             '&.Mui-focused fieldset': {
-                                borderColor: '#1c2437',
-                                borderWidth: '1px'
+                                borderColor: '#2a3064',
+                                borderWidth: '2px'
                             },
                             '& fieldset span': {
                                 paddingRight: '6px',

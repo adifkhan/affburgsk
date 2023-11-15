@@ -1,14 +1,16 @@
 import { CountryType } from '@/types/models';
 import { Autocomplete, TextField, Box } from '@mui/material'
+import styles from '@/styles/SignIn.module.css'
 import Image from 'next/image'
 import React from 'react'
 
 type CountrySelectProps = {
     register: any;
     countries: CountryType[];
+    errors: any;
 }
 
-export default function CountrySelect({ register, countries }: CountrySelectProps) {
+export default function CountrySelect({ register, countries, errors }: CountrySelectProps) {
     return (
         <>
             <Autocomplete
@@ -16,35 +18,36 @@ export default function CountrySelect({ register, countries }: CountrySelectProp
                 id="countrySelect"
                 sx={{
 
+                    '& .MuiFormLabel-root': {
+                        fontSize: '.8rem',
+                        fontWeight: 600
+                    },
+                    '& label.Mui-focused': {
+                        color: '#1c2437',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                        fontSize: 14,
+                        height: { xs: 35, md: 40 },
+                        backgroundColor: '#ebebeb',
+                        '&.Mui-focused fieldset': {
+                            borderColor: '#1c2437',
+                            borderWidth: '1px'
+                        },
+                        '& fieldset span': {
+                            paddingRight: '6px',
+                        },
+                        '&.Mui-focused fieldset span': {
+                            paddingRight: '6px',
+                        },
+                    },
                 }}
                 options={countries}
-                getOptionLabel={(option) => option.label}
-                renderOption={(props, option, index) => (
+                getOptionLabel={(option: any) => option.label}
+                renderOption={(props, option) => (
                     <Box
                         component="li"
                         sx={{
                             '& > img': { mr: 2, flexShrink: 0 },
-
-                            '& .MuiFormLabel-root': {
-                                fontSize: '.8rem',
-                            },
-                            '& label.Mui-focused': {
-                                color: '#1c2437',
-                            },
-                            '& .MuiOutlinedInput-root': {
-                                fontSize: 14,
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#1c2437',
-                                    borderWidth: '1px'
-                                },
-                                '& fieldset span': {
-                                    paddingRight: '6px',
-                                },
-                                '&.Mui-focused fieldset span': {
-                                    paddingRight: '6px',
-                                },
-                            },
-
                         }} {...props}>
                         <Image
                             style={{ width: 'auto' }}
@@ -58,20 +61,16 @@ export default function CountrySelect({ register, countries }: CountrySelectProp
                 )}
                 renderInput={(params) => (
                     <TextField
+                        required
                         {...params}
                         label="Choose a country"
                         inputProps={{
                             ...params.inputProps
                         }}
-                        {...register('country',
-                            {
-                                required: {
-                                    value: true,
-                                    message: 'Counry is required',
-                                }
-                            })}
+                        {...register('country')}
                     />
-                )}
+                )
+                }
             />
         </>
     )

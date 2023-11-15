@@ -3,14 +3,14 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/SignUp.module.css';
 import { SiIcon } from 'react-icons/si';
-import { Autocomplete, Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material';
-import Image from 'next/image';
+import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material';
 import { CountryType } from '@/types/models';
 import TextInput from '@/components/ui/TextInput';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import EmailInput from '@/components/ui/EmailInput';
 import PasswordInput from '@/components/ui/PasswordInput';
 import CountrySelect from '@/components/ui/CountrySelect';
+import { set } from 'date-fns';
 
 
 type SignUpInputTypes = {
@@ -25,15 +25,14 @@ type SignUpInputTypes = {
 
 const steps = ['General', 'Address', 'Terms and Conditions'];
 
-export default function SignUp({ firstName, lastName, email, password, phone }: SignUpInputTypes) {
+export default function SignUp() {
     const router = useRouter();
     const [activeStep, setActiveStep] = React.useState(0);
     const [formPage, setFormPage] = useState<string>('general');
     const [passShow, setPassShow] = useState<boolean>(false);
     const [generalInfo, setGeneralInfo] = useState<object | null>(null);
-    const [address, setAddressInfo] = useState<object | null>(null);
-    const [termsInfo, setTermsInfo] = useState<object | null>(null);
     const [termCheckValue, setTermCheckValue] = useState<boolean>(false);
+    const [emailError, setEmailError] = useState<string>('');
 
     const {
         register,
@@ -57,31 +56,26 @@ export default function SignUp({ firstName, lastName, email, password, phone }: 
     }, [activeStep])
 
     const handleNext = (data: any) => {
+        if (data.email !== data.confirmEmail) {
+            return setEmailError("Email didn't match")
+        }
         setGeneralInfo({ ...generalInfo, data })
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        console.log(generalInfo)
+        setEmailError('')
     };
 
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    function handleTermCheck(e: any) {
-        console.log(e);
-    }
-
     return (
         <div className={`${styles.signUp_container} banner_dw`}>
-            <div className={styles.layer}></div>
             <Typography
                 sx={{
-                    position: 'absolute',
-                    top: { xs: 60, sm: 40, md: 40, lg: 50 },
                     color: '#00052D',
-                    fontSize: { xs: 20, sm: 25, md: 25, lg: 35 },
-                    left: '50%',
+                    fontSize: { xs: 16, sm: 25, md: 25, lg: 30 },
                     fontWeight: 600,
-                    transform: 'translate(-50%, -50%)'
+                    marginBottom: '30px'
                 }}
                 variant='h2'>Please Register</Typography>
             <Box className={styles.signup_info}>
@@ -93,7 +87,8 @@ export default function SignUp({ firstName, lastName, email, password, phone }: 
                     '& .MuiStepIcon-root': {
                         fontSize: { xs: 14, sm: 14, md: 18, lg: 20 },
 
-                    }
+                    },
+                    my: 1
                 }} activeStep={activeStep}>
                     {steps.map((label, index) => {
                         const stepProps: { completed?: boolean } = {};
@@ -158,12 +153,16 @@ export default function SignUp({ firstName, lastName, email, password, phone }: 
                                     register={register}
                                     label={'Email'}
                                     fieldID={'email'}
+                                    message='Email is required'
+                                    emailError={emailError}
                                 />
                                 <EmailInput
                                     errors={errors}
                                     register={register}
                                     label={'Confirm email'}
                                     fieldID={'confirmEmail'}
+                                    message='Confirm email is required'
+                                    emailError={emailError}
                                 />
                             </div>
                             <div className={styles.step_one_first_row}>
@@ -222,40 +221,43 @@ export default function SignUp({ firstName, lastName, email, password, phone }: 
                                 placeholder={'postCode'}
                             />
                         </div>
-                        <CountrySelect register={register} countries={countries} />
+                        <CountrySelect register={register} countries={countries} errors={errors} />
                     </div>}
-                    {formPage === 'terms' && <div className={styles.form_step_first}>
-                        <div className={styles.step_terms}>
-                            <p>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                            <p>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                            <p>3. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
-                            <ol type='1'>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                                <li>Lorem ipsum dolor sit amet.</li>
-                            </ol>
-                            <span className={styles.terms_logo}><SiIcon color='#ED7D31' size={50} />Affburg</span>
-                            <FormControlLabel required
-                                control={
-                                    <Checkbox
-                                        {...register('checkTerm')}
-                                        // value={checkValue}
-                                        onChange={(e) => setTermCheckValue(e.target.checked)}
-                                        sx={{
-                                            color: '#00052D',
-                                            '&.Mui-checked': {
+                    {formPage === 'terms' &&
+                        <div className={styles.form_step_first}>
+                            <div className={styles.step_terms}>
+                                <p>1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                                <p>2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                                <p>3. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos molestias dolor nostrum ipsam animi iste laboriosam eaque recusandae distinctio, harum eius, delectus tempora fugiat itaque, corporis reprehenderit temporibus sequi sed!</p>
+                                <ol type='1'>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                    <li>Lorem ipsum dolor sit amet.</li>
+                                </ol>
+                                <span className={styles.terms_logo}><SiIcon color='#ED7D31' size={50} />Affburg</span>
+                                <FormControlLabel required
+                                    control={
+                                        <Checkbox
+                                            {...register('checkTerm')}
+                                            // value={checkValue}
+                                            onChange={(e) => setTermCheckValue(e.target.checked)}
+                                            sx={{
                                                 color: '#00052D',
-                                            },
-                                        }}
-                                    />}
-                                label="Accept terms and conditions" />
-                        </div>
-                    </div>}
+                                                '&.Mui-checked': {
+                                                    color: '#00052D',
+                                                },
+                                            }}
+                                        />}
+                                    label="Accept terms and conditions" />
+                            </div>
+                        </div>}
 
-                    <Box sx={{ width: { xs: '100%', sm: '100%', md: '100%', lg: '100%', xl: '100%' }, display: 'flex', flexDirection: 'row', pt: 2 }}>
+                    <Box sx={{
+                        width: { xs: '100%', sm: '80%', md: '80%', lg: '80%', xl: '100%' }, display: 'flex', flexDirection: 'row', pt: 2, mx: 'auto'
+                    }}>
                         <Button
                             disabled={activeStep === 0}
                             onClick={handleBack}
@@ -269,7 +271,6 @@ export default function SignUp({ firstName, lastName, email, password, phone }: 
                             Back
                         </Button>
                         <Box sx={{ flex: '1 1 auto' }} />
-
                         {activeStep < 2 && <Button
                             onClick={handleSubmit(handleNext)}
                             variant='contained'

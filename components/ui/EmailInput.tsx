@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 import { TextField, Box } from '@mui/material';
 import styles from '@/styles/SignIn.module.css'
 
@@ -7,25 +7,27 @@ type EmailPropsType = {
     errors: any;
     label: string;
     fieldID: string;
+    message: string;
+    emailError: string;
 }
-export default function EmailInput({ register, errors, label, fieldID }: EmailPropsType) {
+export default function EmailInput({ register, errors, label, fieldID, message, emailError }: EmailPropsType) {
     return (
         <>
             <Box component={"div"} sx={{ width: '100%' }}>
                 <TextField
-                    required
                     fullWidth
                     autoComplete="off"
                     size='small'
                     type='email'
                     label={label}
                     id={fieldID}
+                    message={message}
                     placeholder='your email'
-                    {...register("email",
+                    {...register(fieldID,
                         {
                             required: {
                                 value: true,
-                                message: "Email is required",
+                                message: `${message}`,
                             },
                             pattern: {
                                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: 'Invalid email input'
@@ -33,16 +35,19 @@ export default function EmailInput({ register, errors, label, fieldID }: EmailPr
                         })}
                     sx={{
                         '& .MuiFormLabel-root': {
-                            fontSize: '.8rem',
+                            fontSize: { xs: '.7rem', md: '.8rem' },
+                            fontWeight: 600,
                         },
                         '& label.Mui-focused': {
                             color: '#1c2437',
                         },
                         '& .MuiOutlinedInput-root': {
                             fontSize: 14,
+                            backgroundColor: '#ebebeb',
+                            height: { xs: 35, md: 40 },
                             '&.Mui-focused fieldset': {
-                                borderColor: '#1c2437',
-                                borderWidth: '1px'
+                                borderColor: '#2a3064',
+                                borderWidth: '2px'
                             },
                             '& fieldset span': {
                                 paddingRight: '6px',
@@ -51,10 +56,13 @@ export default function EmailInput({ register, errors, label, fieldID }: EmailPr
                                 paddingRight: '6px',
                             },
                         },
-                    }} />
+                    }}
+                    onChange={e => console.log(e.target.value)}
+                />
                 <label className={styles.validate_label} htmlFor="email">
-                    {errors.email?.type === 'required' && <span>{errors.email.message}</span>}
-                    {errors.email?.type === 'pattern' && <span>{errors.email.message}</span>}
+                    {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
+                    {errors[fieldID]?.type === 'pattern' && <span>{errors[fieldID].message}</span>}
+                    {emailError && fieldID === 'confirmEmail' && <span>{emailError}</span>}
                 </label>
             </Box>
         </>

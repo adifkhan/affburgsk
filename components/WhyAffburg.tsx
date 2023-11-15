@@ -3,7 +3,6 @@ import React from 'react'
 import styles from '@/styles/WhyAffburg.module.css'
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { RxDotFilled } from 'react-icons/rx';
 import { LuShieldQuestion } from 'react-icons/lu';
 import Image from 'next/image';
 import affburgImage from '../public/affburg.png';
