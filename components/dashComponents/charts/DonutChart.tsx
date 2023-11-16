@@ -9,8 +9,8 @@ export const DonutChart = ({ data }: PaiDataProps) => (
 
     <ResponsivePie
         data={data}
-        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-        startAngle={-22}
+        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+        // startAngle={0}
         sortByValue={true}
         innerRadius={0.65}
         activeOuterRadiusOffset={8}

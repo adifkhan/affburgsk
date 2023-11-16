@@ -19,6 +19,7 @@ import Switch from '@mui/material/Switch';
 import { visuallyHidden } from '@mui/utils';
 import { LuListFilter } from 'react-icons/lu';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { Button } from '@mui/material';
 
 
 interface Data {
@@ -296,7 +297,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
             disableGutters={true}
             variant="dense"
             sx={{
-                pl: { sm: 2 },
+                pl: { xs: 2 },
                 pr: { xs: 1, sm: 1 },
 
                 ...(numSelected > 0 && {
@@ -310,7 +311,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         >
             {numSelected > 0 ? (
                 <Typography
-                    sx={{ flex: '1 1 100%', fontFamily: 'Dosis', fontSize: '1.2rem', letterSpacing: '.1ch', fontWidth: '700' }}
+                    sx={{ flex: '1 1 100%', fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch', fontWidth: '600' }}
                     color="inherit"
                     variant="subtitle1"
                     component="div"
@@ -319,7 +320,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                 </Typography>
             ) : (
                 <Typography
-                    sx={{ flex: '1 1 100%', fontSize: '1rem', }}
+                    sx={{ flex: '1 1 100%', fontSize: { xs: '.9rem', md: '1rem' }, }}
                     variant="h1"
                     id="tableTitle"
                     component="div"
