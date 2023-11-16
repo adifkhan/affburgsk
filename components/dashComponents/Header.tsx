@@ -99,7 +99,7 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                 height: '50px',
                 padding: '0 10px',
                 boxShadow: '0px 7px 18px -15px rgba(0, 0, 0, 0.51)',
-                // color: '#13183e',
+                zIndex: 100,
                 transition: '.3s',
             }}>
             <Box
@@ -204,7 +204,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                             color: 'lightGrey',
                             fontWeightL: 600,
                             backgroundColor: '#1C2437',
-                            // filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                             mt: 1.5,
                             '& .MuiAvatar-root': {
                                 width: 25,
@@ -232,7 +231,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                             color: '#131926',
                             fontWeightL: 600,
                             backgroundColor: 'whiteSmoke',
-                            // filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                             mt: 1.5,
                             '& .MuiAvatar-root': {
                                 width: 25,
@@ -267,9 +265,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                                 }
                             } : {
                                 fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
-                                // '&:hover': {
-                                //     backgroundColor: 'hrey'
-                                // }
                             }
                         }
                         onClick={handleClose}>
@@ -283,9 +278,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                             }
                         } : {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
-                            // '&:hover': {
-                            //     backgroundColor: 'hrey'
-                            // }
                         }
                     }
                         onClick={handleClose}>
@@ -319,9 +311,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                             }
                         } : {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
-                            // '&:hover': {
-                            //     backgroundColor: 'hrey'
-                            // }
                         }
                     }
                         onClick={handleClose}>
@@ -339,9 +328,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                             }
                         } : {
                             fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
-                            // '&:hover': {
-                            //     backgroundColor: 'grey'
-                            // }
                         }
                     }
                         onClick={handleClose}>
@@ -359,9 +345,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
                                 }
                             } : {
                                 fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
-                                // '&:hover': {
-                                //     backgroundColor: 'grey'
-                                // }
                             }
                         }
                             onClick={() => router.push('/signin')}>
