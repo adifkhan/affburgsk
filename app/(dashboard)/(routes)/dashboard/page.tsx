@@ -1,9 +1,8 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import styles from '@/styles/Dashboard/DashboardHome.module.css';
-import { Button, IconButton, Tooltip } from '@mui/material';
-import { BiDownload, BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
-import { styled } from '@mui/material/styles';
+
+import React, { useState } from 'react'
+import { Button, IconButton, Tooltip, Box, Typography, Card } from '@mui/material';
+import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import { Offer, PieChartData, TopCardData, transactionData } from '@/types/models';
 import { FaUserPlus } from 'react-icons/fa';
 import { MdMarkEmailRead, MdOutlineAccountBalanceWallet, MdPointOfSale } from 'react-icons/md';
@@ -28,7 +27,7 @@ const topCardsData: TopCardData[] = [
         title: 'Emails Sent',
         chartValue: 100,
         qualityLowHigh: 10,
-        color: '#383B8C'
+        color: '#1c2437'
     },
     {
         icon: <MdPointOfSale />,
@@ -36,7 +35,7 @@ const topCardsData: TopCardData[] = [
         title: 'Sales Obtained',
         chartValue: 100,
         qualityLowHigh: 10,
-        color: '#383B8C'
+        color: '#1c2437'
     },
     {
         icon: <FaUserPlus />,
@@ -44,7 +43,7 @@ const topCardsData: TopCardData[] = [
         title: 'New Client',
         chartValue: 100,
         qualityLowHigh: 10,
-        color: '#383B8C'
+        color: '#1c2437'
     },
     {
         icon: <RiTrafficLightFill />,
@@ -52,7 +51,7 @@ const topCardsData: TopCardData[] = [
         title: 'Traffic Received',
         chartValue: 100,
         qualityLowHigh: 10,
-        color: '#383B8C'
+        color: '#1c2437'
     }
 ]
 
@@ -197,58 +196,158 @@ export default function DashboardHomePage() {
     }
 
     return (
-        <div>
-            {/* <div className={styles.welcome_cotaianer}>
-                <div className={styles.balance_container}>
-                    <div className={styles.balance_container_left}>
-                        <span><MdOutlineAccountBalanceWallet /></span>
-                        <h1>Balance</h1>
-                    </div>
-                    <div className={styles.balance_container_right}>
-                        <p>$15,000.02</p>
-                    </div>
-                </div>
-                <div className={styles.welcome_cotaianer_right}>
-                    <ExportButton />
-                </div>
-            </div>
-            <div className={styles.top_cards_container}>
+        <>
+            <Box component={'div'} sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+            }}>
+                <Box
+                    component={'div'}
+                    sx={{
+                        width: { xs: 200, md: 200, lg: 300 },
+                        backgroundColor: '#1C2437',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        borderRadius: .5,
+                        padding: { xs: 1, md: 1, xl: 1.5 },
+                        color: 'whiteSmoke',
+                    }}>
+                    <Box
+                        component={'span'}
+                        sx={{ display: 'flex', alignItems: 'center', columnGap: 1 }}>
+                        <Box component={'span'} sx={{
+                            fontSize: {
+                                xs: 15, md: 20, xl: 25
+                            }
+                        }}><MdOutlineAccountBalanceWallet /></Box>
+                        <Typography variant='h2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 } }}>Balance</Typography>
+                    </Box>
+                    <Typography variant='body2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 }, color: '#ED7D31' }}>$12500.00</Typography>
+                </Box>
+                <ExportButton />
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: 5,
+                    flexWrap: 'wrap',
+                    gap: 1,
+                }}>
                 {
                     topCardsData.map((data: TopCardData, index: number) =>
-                        <div
+                        <Card
                             key={index}
-                            style={{ backgroundColor: `${data.color}` }}
-                            className={styles.single_top_card_container}>
-                            <div className={styles.single_top_card_left}>
-                                <span>{data.icon}</span>
-                                <h1>{data.value}</h1>
-                                <p>{data.title}</p>
-                            </div>
-                            <div className={styles.single_top_card_right}>
-                                <div className={styles.single_top_card_right_chart}>
+                            sx={{
+                                backgroundColor: `${data.color}`,
+                                display: 'flex',
+                                padding: 2,
+                                flex: '1 0 300px',
+                                justifyContent: 'space-between',
+                                // maxWidth: "300px"
+                            }}>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-around',
+                                    rowGap: 1,
+
+                                }}>
+                                <Typography variant='h2' sx={{ color: '#36a689', fontSize: 25, }}>
+                                    {data.icon}
+                                </Typography>
+                                <Typography variant='h2' sx={{ color: 'whitesmoke', fontSize: 20 }}>
+                                    {data.value}
+                                </Typography>
+                                <Typography variant='h5' sx={{ color: '#36a689', fontSize: 16 }}>
+                                    {data.title}
+                                </Typography>
+                            </Box>
+                            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-end', color: '#36a689' }}>
+                                <Box
+                                    sx={{
+                                        height: 30,
+                                        width: 30,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-end',
+                                        marginTop: 2,
+                                    }}>
                                     <DonutChart data={paiData[index]} />
-                                </div>
-                                <p>{handleCardPercentage(paiData[index])}%</p>
-                            </div>
-                        </div>
+                                </Box>
+                                <Typography variant='h5' sx={{ fontSize: 16, fontStyle: 'italic' }}>{handleCardPercentage(paiData[index])}%</Typography>
+                            </Box>
+                        </Card>
                     )}
-            </div>
-            <div className={styles.dashboard_middle_container}>
-                <div className={styles.dashboard_middle_container_left}>
-                    <div className={styles.dashboard_middle_container_left_top_info}>
-                        <span className='flex flex-col gap-y-1'>
-                            <h2>Recvenue Generated</h2>
-                            <h1>$12,500.88</h1>
-                        </span>
-                    </div>
-                    <div className={styles.lineChart_container}>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    height: { xs: 'fit-content', xl: 450 },
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    marginTop: 4,
+                    flexDirection: { xs: 'column', xl: 'row' },
+                    gap: 2,
+                }}>
+                <Card
+                    sx={{
+                        display: 'flex',
+                        height: '100%',
+                        width: { xs: '100%', xl: '65%' },
+                        flexDirection: 'column',
+                        padding: 3,
+                        backgroundColor: '#1C2437',
+                        justifyContent: 'space-between',
+                        overflowX: 'scroll',
+                        '&::-webkit-scrollbar': { display: 'none' },
+                    }}>
+                    <Box component='span'
+                        sx={{
+                            marginLeft: 6,
+                            marginBottom: 2
+                        }}>
+                        <Typography sx={{ fontSize: 20, color: 'whiteSmoke', marginBottom: 1 }} variant='h1'>Recvenue Generated</Typography>
+                        <Typography sx={{ fontSize: 16, color: '#36a689' }} variant='body1'>$12,500.88</Typography>
+                    </Box>
+                    <Box sx={{ height: 300, width: '100%', minWidth: 600, }} component={'div'}>
                         <LineChart />
-                    </div>
-                </div>
-                <div className={styles.dashboard_middle_container_right}>
-                    <div className={styles.best_offer_heading}>
-                        <h1>Best Offers</h1>
-                        <div className={styles.best_offer_heading_btns}>
+                    </Box>
+                </Card>
+                <Box component={'div'}
+                    sx={{
+                        height: '100%',
+                        width: { xs: '100%', lg: '35%' },
+                        borderRadius: '4px',
+                        overflowY: 'scroll',
+                        '&::-webkit-scrollbar': { display: 'none' },
+                        // '&::-webkit-scrollbar-track': { background: '#1c2437' },
+                        // '&::-webkit-scrollbar-thumb': { backgroundColor: '#444c61' },
+                    }}>
+                    <Box component={'div'}
+                        sx={{
+                            color: 'whitesmoke',
+                            padding: '10px 15px',
+                            backgroundColor: '#383B8C',
+                            position: 'sticky',
+                            top: 0,
+                            marginBottom: '8px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            zIndex: 10
+                        }}>
+
+                        <Typography sx={{ fontSize: 28, letterSpacing: '.1ch' }} variant='h1'>Best Offers</Typography>
+                        <Box component={'div'}
+                            sx={{
+                                width: '15%',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                            }}>
                             <Tooltip
                                 onClick={handleLtoH}
                                 title="Low to High"
@@ -266,69 +365,201 @@ export default function DashboardHomePage() {
                                     <BiSolidUpArrow size={15} />
                                 </IconButton>
                             </Tooltip>
-                        </div>
-                    </div>
-                    <div className={styles.allOffer_container}>
+                        </Box>
+                    </Box>
+                    <Box component={'div'}
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            rowGap: '5px',
+                            maxHeight: '450px',
+                        }}>
                         {
                             data.map((offer: Offer, index: number) =>
-                                <div
+                                <Box component={'div'}
                                     key={index}
-                                    className={styles.single_offer}>
+                                    sx={{
+                                        backgroundColor: '#1c2437',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        padding: '8px 10px',
+                                        alignItems: 'center',
+                                        fontSize: { xs: '.8rem', md: '.9rem' },
+                                        cursor: 'pointer',
+                                        flexWrap: 'wrap',
+                                        rowGap: '6px',
+                                        color: 'wHiteSmoke'
+                                    }}>
                                     <h2>{offer.title.slice(0, 25) + '...'}</h2>
-                                    <div className={styles.offer_image}>
+                                    <Box component={'div'} sx={{ width: '35px' }}>
                                         <Image src={NL} width={200} height={200} alt='flag' />
-                                    </div>
-                                    <span>{offer.countryName}</span>
-                                    <span>{offer.category}</span>
-                                    <span className={styles.price_container}>${(offer.price)}</span>
-                                    <button className={styles.offer_btn}>Achieve</button>
-                                </div>
+                                    </Box>
+                                    <Box component={'span'}>{offer.countryName}</Box>
+                                    <Box component={'span'}>{offer.category}</Box>
+                                    <Box component={'span'} sx={{ fontWeight: 600, color: '#ED7D31' }}>${(offer.price)}</Box>
+                                    <Button
+                                        size='small'
+                                        style={{
+                                            backgroundColor: '#3D30A2',
+                                            borderRadius: '2px',
+                                            letterSpacing: '.1ch',
+                                            transition: '.2s',
+                                            fontSize: '.8rem',
+                                            color: 'whitesmoke',
+                                        }}>Get</Button>
+                                </Box>
                             )
                         }
-                        <button className={styles.seeAllOffers_btn}>See All Offers</button>
-                    </div>
-                </div>
-
-            </div>
-            <div className={styles.report_by_days}>
+                        <Button
+                            style={{
+                                width: '100%',
+                                color: 'whitesmoke',
+                                backgroundColor: '#ED7D31',
+                                textAlign: 'center',
+                                fontSize: '.8rem',
+                                textTransform: 'capitalize',
+                                position: 'sticky',
+                                bottom: 0,
+                                transition: '.1s',
+                            }}>See All Offers</Button>
+                    </Box>
+                </Box>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    width: '100%',
+                    height: 'fit-content',
+                    marginTop: '20px',
+                }}>
                 <ReportByDays />
-            </div>
-            <div className={styles.dashboard_bottom_container}>
-                <div className={styles.dashboard_bottom_container_left}>
-                    <h3>Campaign</h3>
-                    <div className={styles.dashboard_bottom_container_left_chart}>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    height: { xs: 'auto', lg: '450px' },
+                    marginTop: '20px',
+                    display: 'flex',
+                    flexDirection: { xs: 'column', lg: 'row' },
+                    gap: 2,
+                    alignItems: 'center',
+                    justifyContent: { xs: 'center', lg: 'space-between' },
+                    marginBottom: '50px',
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        height: '100%',
+                        width: '100%',
+                        backgroundColor: '#1c2437',
+                        borderRadius: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexDirection: 'column',
+                        padding: '20px',
+                    }}>
+
+                    <Typography variant='h3'
+                        sx={{ fontSize: '1rem', color: 'whiteSmoke', width: '100%' }}>Campaign</Typography>
+                    <Box component={'div'} sx={{ height: '80%', }}>
                         <DonutChartCamp data={donutChartCampData} />
-                    </div>
-                    <div className={styles.dashboard_bottom_container_left_chart_info}>
-                        <h2>$32,345.56 revenue generated</h2>
-                        <p>Include extra misc expenditures ans costs</p>
-                    </div>
-                </div>
-                <div className={styles.dashboard_bottom_container_middle}>
-                    <h3 className={styles.dashboard_bottom_container_middle_heading}>Quantity</h3>
-                    <div className={styles.dashboard_bottom_container_middle_chart}>
+                    </Box>
+                    <Box component={'div'}
+                        sx={{
+                            textAlign: 'center',
+                            width: '100%',
+                            marginTop: '20px',
+                            color: 'whitesmoke',
+                        }}>
+                        <Typography
+                            sx={{ color: '#36a689' }} variant='body1'>$32,345.56 revenue generated</Typography>
+                        <Typography variant='body1'>Include extra misc expenditures ans costs</Typography>
+                    </Box>
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        height: '100%',
+                        width: '100%',
+                        backgroundColor: '#1c2437',
+                        borderRadius: '4px',
+                        padding: '20px',
+                    }}>
+                    <Typography variant='h3'
+                        sx={{ color: 'whitesmoke', fontSize: '1rem' }}>Quantity</Typography>
+                    <Box component={'div'} sx={{
+                        height: '100%',
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
                         <BarChart data={BarChartData} />
-                    </div>
-                </div>
-                <div className={styles.dashboard_bottom_container_right}>
-                    <h3 className={styles.dashboard_bottom_container_right_heading}>Recent Transactions</h3>
-                    <div className={styles.dashboard_bottom_container_right_contents}>
+                    </Box>
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        height: '100%',
+                        width: '100%',
+                        borderRadius: '4px',
+                        overflowY: 'scroll',
+                        '&::-webkit-scrollbar': { display: 'none' },
+                    }}>
+                    <Typography variant='body2'
+                        sx={{
+                            fontWeight: '500',
+                            fontSize: '1rem',
+                            backgroundColor: '#383B8C',
+                            padding: '10px 20px',
+                            marginBottom: '10px',
+                            position: 'sticky',
+                            top: 0,
+                            color: 'whitesmoke',
+                        }}>Recent Transactions</Typography>
+                    <Box component={'div'}
+                        sx={{
+                            color: 'whitesmoke',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            rowGap: '5px',
+                            width: '100%',
+                        }}>
                         {allTransactionReports.map((report: transactionData, index: number) =>
-                            <div
-                                className={styles.dashboard_bottom_container_right_single_content}
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    backgroundColor: '#1c2437',
+                                    flexWrap: 'wrap',
+                                    rowGap: '10px',
+                                    padding: '10px 20px',
+                                }}
                                 key={index}>
-                                <div className={styles.dashboard_bottom_container_right_single_content_info}>
-                                    <h2>{report.id}</h2>
-                                    <h6>{report.name}</h6>
-                                </div>
-                                <p>{report.date}</p>
-                                <span>${report.amount}</span>
-                            </div>
+                                <Box component={'div'}
+                                    sx={{
+                                        maxWidth: '30%',
+                                        textAlign: 'center',
+                                    }}>
+                                    <Typography sx={{ fontSize: 12, color: '#36a689' }} variant='h2'>{report.id}</Typography>
+                                    <Typography sx={{ fontSize: 12 }} variant='h6'>{report.name}</Typography>
+                                </Box>
+                                <Typography sx={{ fontSize: 10 }} variant='body2'>{report.date}</Typography>
+                                <Box sx={{ color: '#ED7D31', fontSize: 14 }} component={'span'}>${report.amount}</Box>
+                            </Box>
                         )}
-                        <button className={styles.all_transaction}>All Transaction</button>
-                    </div>
-                </div>
-            </div> */}
-        </div >
+                        <Button
+                            style={{
+                                width: '100%',
+                                color: 'whitesmoke',
+                                backgroundColor: '#383B8C',
+                                textAlign: 'center',
+                                fontSize: '.8rem',
+                                textTransform: 'capitalize',
+                                transition: '.1s',
+                                position: 'sticky',
+                                bottom: 0,
+                            }}>All Transaction</Button>
+                    </Box>
+                </Box>
+            </Box >
+        </>
     )
 }
