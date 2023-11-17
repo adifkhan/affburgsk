@@ -5,8 +5,8 @@ import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { SignUpInputTypes } from '@/types/models';
 
 type EmailPropsType = {
-    register: UseFormRegister<SignUpInputTypes>;
-    errors: FieldErrors<SignUpInputTypes>;
+    register: any;
+    errors: any;
     label: string;
     fieldID: string;
 }

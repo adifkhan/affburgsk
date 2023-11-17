@@ -3,14 +3,13 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/SignUp.module.css';
 import { SiIcon } from 'react-icons/si';
-import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import { CountryType, SignUpInputTypes } from '@/types/models';
 import TextInput from '@/components/ui/TextInput';
 import { useForm, SubmitHandler, UseFormRegister } from 'react-hook-form';
 import EmailInput from '@/components/ui/EmailInput';
 import PasswordInput from '@/components/ui/PasswordInput';
 import CountrySelect from '@/components/ui/CountrySelect';
-import { set } from 'date-fns';
 import ConfirmEmailInput from '@/components/ui/ConfirmEmailInput';
 
 
@@ -28,9 +27,8 @@ export default function SignUp() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
-    } = useForm<any>();
+    } = useForm<SignUpInputTypes>();
 
     const onSubmit: SubmitHandler<SignUpInputTypes> = (data) => console.log(data);
 

@@ -54,7 +54,6 @@ export default function SignIn() {
                                 register={register}
                                 label={'Email'}
                                 fieldID={'email'}
-                                message='Email is required'
                             />
                             <div className={styles.password_field}>
                                 <PasswordInput
