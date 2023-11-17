@@ -71,7 +71,7 @@
 
 .affburg_image_portion {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     border-radius: 4px;
     width: 40%;
 }

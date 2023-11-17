@@ -127,7 +127,7 @@
 
     .review_logo {
         font-size: 5rem;
-        justify-content: start;
+        justify-content: flex-start;
     }
 
     .review_text_heading {
@@ -170,7 +170,7 @@
 
     .review_logo {
         font-size: 6rem;
-        justify-content: start;
+        justify-content: flex-start;
     }
 
     .review_text_heading {

@@ -53,6 +53,7 @@ export default function SignUp() {
         else {
             setFormPage('terms')
         }
+
     }, [activeStep])
 
     const handleNext = (data: any) => {
