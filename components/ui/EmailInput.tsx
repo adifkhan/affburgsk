@@ -31,7 +31,12 @@ export default function EmailInput({ register, errors, label, fieldID, message, 
                             },
                             pattern: {
                                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: 'Invalid email input'
-                            }
+                            },
+                            validate: (emailError: any) => {
+                                return (
+                                    emailError.length !== 0 && "Email didn't match........"
+                                )
+                            },
                         })}
                     sx={{
                         '& .MuiFormLabel-root': {
@@ -60,9 +65,10 @@ export default function EmailInput({ register, errors, label, fieldID, message, 
                     onChange={e => console.log(e.target.value)}
                 />
                 <label className={styles.validate_label} htmlFor="email">
-                    {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
+                    {<span>{errors[fieldID]?.message}</span>}
+                    {/* {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
                     {errors[fieldID]?.type === 'pattern' && <span>{errors[fieldID].message}</span>}
-                    {emailError && fieldID === 'confirmEmail' && <span>{emailError}</span>}
+                    {errors[fieldID]?.type === 'notmatched' && <span>{errors[fieldID].message}</span>} */}
                 </label>
             </Box>
         </>
