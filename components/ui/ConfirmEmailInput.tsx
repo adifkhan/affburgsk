@@ -7,9 +7,8 @@ type EmailPropsType = {
     errors: any;
     label: string;
     emailError: string;
-    validateConfirmEmail: any;
 }
-export default function ConfirmEmailInput({ register, errors, label, validateConfirmEmail }: EmailPropsType) {
+export default function ConfirmEmailInput({ register, errors, label, emailError }: EmailPropsType) {
     return (
         <>
             <Box component={"div"} sx={{ width: '100%' }}>
@@ -29,7 +28,6 @@ export default function ConfirmEmailInput({ register, errors, label, validateCon
                             pattern: {
                                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: 'Invalid email input'
                             },
-                            validate: (value: any) => validateConfirmEmail(value),
                         })}
                     sx={{
                         '& .MuiFormLabel-root': {
@@ -58,10 +56,8 @@ export default function ConfirmEmailInput({ register, errors, label, validateCon
                 // onChange={e => console.log(e.target.value)}
                 />
                 <label className={styles.validate_label} htmlFor="email">
-                    {errors.confirmEmail && <p>{errors.confirmEmail.message}</p>}
-                    {/* {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
-                    {errors[fieldID]?.type === 'pattern' && <span>{errors[fieldID].message}</span>}
-                    {errors[fieldID]?.type === 'notmatched' && <span>{errors[fieldID].message}</span>} */}
+                    {<span>{errors.confirmEmail?.message}</span>}
+                    {emailError && <span>{emailError}</span>}
                 </label>
             </Box>
         </>

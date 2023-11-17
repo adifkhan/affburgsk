@@ -11,6 +11,7 @@ import EmailInput from '@/components/ui/EmailInput';
 import PasswordInput from '@/components/ui/PasswordInput';
 import CountrySelect from '@/components/ui/CountrySelect';
 import { set } from 'date-fns';
+import ConfirmEmailInput from '@/components/ui/ConfirmEmailInput';
 
 
 const steps = ['General', 'Address', 'Terms and Conditions'];
@@ -143,15 +144,11 @@ export default function SignUp() {
                                     register={register}
                                     label={'Email'}
                                     fieldID={'email'}
-                                    message='Email is required'
-                                    emailError={emailError}
                                 />
-                                <EmailInput
+                                <ConfirmEmailInput
                                     errors={errors}
                                     register={register}
                                     label={'Confirm email'}
-                                    fieldID={'confirmEmail'}
-                                    message='Confirm email is required'
                                     emailError={emailError}
                                 />
                             </div>

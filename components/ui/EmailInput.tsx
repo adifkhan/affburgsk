@@ -1,16 +1,16 @@
 import React, { ChangeEventHandler } from 'react'
 import { TextField, Box } from '@mui/material';
 import styles from '@/styles/SignIn.module.css'
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { SignUpInputTypes } from '@/types/models';
 
 type EmailPropsType = {
-    register: any;
-    errors: any;
+    register: UseFormRegister<SignUpInputTypes>;
+    errors: FieldErrors<SignUpInputTypes>;
     label: string;
     fieldID: string;
-    message: string;
-    emailError: string;
 }
-export default function EmailInput({ register, errors, label, fieldID, message, emailError }: EmailPropsType) {
+export default function EmailInput({ register, errors, label, fieldID }: EmailPropsType) {
     return (
         <>
             <Box component={"div"} sx={{ width: '100%' }}>
@@ -21,13 +21,12 @@ export default function EmailInput({ register, errors, label, fieldID, message, 
                     type='email'
                     label={label}
                     id={fieldID}
-                    message={message}
                     placeholder='your email'
-                    {...register(fieldID,
+                    {...register('email',
                         {
                             required: {
                                 value: true,
-                                message: `${message}`,
+                                message: 'Email is required',
                             },
                             pattern: {
                                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: 'Invalid email input'
@@ -60,9 +59,10 @@ export default function EmailInput({ register, errors, label, fieldID, message, 
                     onChange={e => console.log(e.target.value)}
                 />
                 <label className={styles.validate_label} htmlFor="email">
-                    {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
+                    <span>{errors.email?.message}</span>
+                    {/* {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
                     {errors[fieldID]?.type === 'pattern' && <span>{errors[fieldID].message}</span>}
-                    {emailError && fieldID === 'confirmEmail' && <span>{emailError}</span>}
+                    {emailError && fieldID === 'confirmEmail' && <span>{emailError}</span>} */}
                 </label>
             </Box>
         </>
