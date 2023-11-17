@@ -6,7 +6,7 @@ import { SiIcon } from 'react-icons/si';
 import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material';
 import { CountryType, SignUpInputTypes } from '@/types/models';
 import TextInput from '@/components/ui/TextInput';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, UseFormRegister } from 'react-hook-form';
 import EmailInput from '@/components/ui/EmailInput';
 import PasswordInput from '@/components/ui/PasswordInput';
 import CountrySelect from '@/components/ui/CountrySelect';
@@ -30,7 +30,7 @@ export default function SignUp() {
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm<SignUpInputTypes>();
+    } = useForm<any>();
 
     const onSubmit: SubmitHandler<SignUpInputTypes> = (data) => console.log(data);
 
