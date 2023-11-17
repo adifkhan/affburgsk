@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '@/styles/SignUp.module.css';
 import { SiIcon } from 'react-icons/si';
 import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material';
-import { CountryType } from '@/types/models';
+import { CountryType, SignUpInputTypes } from '@/types/models';
 import TextInput from '@/components/ui/TextInput';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import EmailInput from '@/components/ui/EmailInput';
@@ -12,16 +12,6 @@ import PasswordInput from '@/components/ui/PasswordInput';
 import CountrySelect from '@/components/ui/CountrySelect';
 import { set } from 'date-fns';
 
-
-type SignUpInputTypes = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string
-    password: string;
-    country: string;
-    checkTerm: string;
-}
 
 const steps = ['General', 'Address', 'Terms and Conditions'];
 
@@ -53,7 +43,6 @@ export default function SignUp() {
         else {
             setFormPage('terms')
         }
-
     }, [activeStep])
 
     const handleNext = (data: any) => {

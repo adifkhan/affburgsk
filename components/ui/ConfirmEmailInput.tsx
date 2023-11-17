@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from 'react'
+import React from 'react'
 import { TextField, Box } from '@mui/material';
 import styles from '@/styles/SignIn.module.css'
 
@@ -6,11 +6,10 @@ type EmailPropsType = {
     register: any;
     errors: any;
     label: string;
-    fieldID: string;
-    message: string;
     emailError: string;
+    validateConfirmEmail: any;
 }
-export default function EmailInput({ register, errors, label, fieldID, message, emailError }: EmailPropsType) {
+export default function ConfirmEmailInput({ register, errors, label, validateConfirmEmail }: EmailPropsType) {
     return (
         <>
             <Box component={"div"} sx={{ width: '100%' }}>
@@ -20,18 +19,17 @@ export default function EmailInput({ register, errors, label, fieldID, message, 
                     size='small'
                     type='email'
                     label={label}
-                    id={fieldID}
-                    message={message}
                     placeholder='your email'
-                    {...register(fieldID,
+                    {...register('confirmEmail',
                         {
                             required: {
                                 value: true,
-                                message: `${message}`,
+                                message: 'Confirm email is required',
                             },
                             pattern: {
                                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: 'Invalid email input'
-                            }
+                            },
+                            validate: (value: any) => validateConfirmEmail(value),
                         })}
                     sx={{
                         '& .MuiFormLabel-root': {
@@ -57,12 +55,13 @@ export default function EmailInput({ register, errors, label, fieldID, message, 
                             },
                         },
                     }}
-                    onChange={e => console.log(e.target.value)}
+                // onChange={e => console.log(e.target.value)}
                 />
                 <label className={styles.validate_label} htmlFor="email">
-                    {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
+                    {errors.confirmEmail && <p>{errors.confirmEmail.message}</p>}
+                    {/* {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
                     {errors[fieldID]?.type === 'pattern' && <span>{errors[fieldID].message}</span>}
-                    {emailError && fieldID === 'confirmEmail' && <span>{emailError}</span>}
+                    {errors[fieldID]?.type === 'notmatched' && <span>{errors[fieldID].message}</span>} */}
                 </label>
             </Box>
         </>
