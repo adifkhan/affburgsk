@@ -3,25 +3,15 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/SignUp.module.css';
 import { SiIcon } from 'react-icons/si';
-import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, TextField, Typography } from '@mui/material';
-import { CountryType } from '@/types/models';
+import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, Typography } from '@mui/material';
+import { CountryType, SignUpInputTypes } from '@/types/models';
 import TextInput from '@/components/ui/TextInput';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, UseFormRegister } from 'react-hook-form';
 import EmailInput from '@/components/ui/EmailInput';
 import PasswordInput from '@/components/ui/PasswordInput';
 import CountrySelect from '@/components/ui/CountrySelect';
-import { set } from 'date-fns';
+import ConfirmEmailInput from '@/components/ui/ConfirmEmailInput';
 
-
-type SignUpInputTypes = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string
-    password: string;
-    country: string;
-    checkTerm: string;
-}
 
 const steps = ['General', 'Address', 'Terms and Conditions'];
 
@@ -37,7 +27,6 @@ export default function SignUp() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<SignUpInputTypes>();
 
@@ -53,7 +42,6 @@ export default function SignUp() {
         else {
             setFormPage('terms')
         }
-
     }, [activeStep])
 
     const handleNext = (data: any) => {
@@ -154,15 +142,11 @@ export default function SignUp() {
                                     register={register}
                                     label={'Email'}
                                     fieldID={'email'}
-                                    message='Email is required'
-                                    emailError={emailError}
                                 />
-                                <EmailInput
+                                <ConfirmEmailInput
                                     errors={errors}
                                     register={register}
                                     label={'Confirm email'}
-                                    fieldID={'confirmEmail'}
-                                    message='Confirm email is required'
                                     emailError={emailError}
                                 />
                             </div>

@@ -1,16 +1,14 @@
-import React, { ChangeEventHandler } from 'react'
+import React from 'react'
 import { TextField, Box } from '@mui/material';
 import styles from '@/styles/SignIn.module.css'
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { SignUpInputTypes } from '@/types/models';
 
 type EmailPropsType = {
     register: any;
     errors: any;
     label: string;
-    fieldID: string;
+    emailError: string;
 }
-export default function EmailInput({ register, errors, label, fieldID }: EmailPropsType) {
+export default function ConfirmEmailInput({ register, errors, label, emailError }: EmailPropsType) {
     return (
         <>
             <Box component={"div"} sx={{ width: '100%' }}>
@@ -20,17 +18,16 @@ export default function EmailInput({ register, errors, label, fieldID }: EmailPr
                     size='small'
                     type='email'
                     label={label}
-                    id={fieldID}
                     placeholder='your email'
-                    {...register('email',
+                    {...register('confirmEmail',
                         {
                             required: {
                                 value: true,
-                                message: 'Email is required',
+                                message: 'Confirm email is required',
                             },
                             pattern: {
                                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/, message: 'Invalid email input'
-                            }
+                            },
                         })}
                     sx={{
                         '& .MuiFormLabel-root': {
@@ -56,13 +53,11 @@ export default function EmailInput({ register, errors, label, fieldID }: EmailPr
                             },
                         },
                     }}
-                    onChange={e => console.log(e.target.value)}
+                // onChange={e => console.log(e.target.value)}
                 />
                 <label className={styles.validate_label} htmlFor="email">
-                    <span>{errors.email?.message}</span>
-                    {/* {errors[fieldID]?.type === 'required' && <span>{errors[fieldID].message}</span>}
-                    {errors[fieldID]?.type === 'pattern' && <span>{errors[fieldID].message}</span>}
-                    {emailError && fieldID === 'confirmEmail' && <span>{emailError}</span>} */}
+                    {<span>{errors.confirmEmail?.message}</span>}
+                    {emailError && <span>{emailError}</span>}
                 </label>
             </Box>
         </>
