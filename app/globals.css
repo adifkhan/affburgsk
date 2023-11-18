@@ -48,3 +48,12 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background-color: #00052D;
 }
+
+.rdrDefinedRangesWrapper {
+  display: none;
+}
+
+.rdrDateRangeWrapper {
+  border-radius: 6px;
+  overflow-x: hidden;
+}

@@ -11,8 +11,7 @@ export default function DateRangeButton({ handleCalenderOpen }: CalBtnProps) {
         <Button
             onClick={handleCalenderOpen}
             sx={{
-                bgcolor: '#ED7D31', pl: '12px', pr: '16px', fontSize: '.7rem', py: '11px', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap',
-                '&:hover': {
+                bgcolor: '#ED7D31', pl: '12px', pr: '16px', fontSize: '.7rem', py: '12px', letterSpacing: '.1ch', fontFamily: 'Dosis', whiteSpace: 'nowrap', width: { xs: '100%', sm: '92%', xl: '100%' }, '&:hover': {
                     bgcolor: '#ED7D31', boxShadow: 'none',
                 },
             }} component="label" variant="contained" endIcon={<BsCalendar3 size={15} />}>

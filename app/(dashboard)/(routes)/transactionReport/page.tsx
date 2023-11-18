@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import styles from '@/styles/Dashboard/TransactionReport.module.css'
-import { Autocomplete, Box, Button, MenuItem, TextField, IconButton } from '@mui/material';
+import { Autocomplete, Box, Button, MenuItem, TextField, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
 import { CountryType, TransactionDataType, dateType } from '@/types/models';
 import { format } from 'date-fns';
@@ -11,7 +11,7 @@ import { AiOutlineClear } from 'react-icons/ai';
 import { TbStatusChange, TbTransform } from 'react-icons/tb';
 import { MdClear } from 'react-icons/md';
 import { BiSelectMultiple, BiTransfer } from 'react-icons/bi';
-import { RiInsertColumnLeft } from 'react-icons/ri';
+import { RiInsertColumnLeft, RiInsertColumnRight } from 'react-icons/ri';
 import TransReportTable from '@/components/dashComponents/tables/TransReportTable';
 import ExportButton from '@/components/ui/ExportButton';
 import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
@@ -22,6 +22,7 @@ import SelectAllCheckBtn from '@/components/ui/SelectAllCheckBtn';
 import SelectTextfield from '@/components/ui/SelectTextfield';
 import AdvancedFilterBtn from '@/components/ui/AdvancedFilterBtn';
 import FilledTextField from '@/components/ui/FilledTextField';
+import ReadOnlyDateShow from '@/components/ui/ReadOnlyDateShow';
 
 function createData(
     id: string,
@@ -116,24 +117,27 @@ export default function TransactionReport() {
         endDate: new Date(),
         key: 'selection',
     })
-    const [yesterday, setYesterday] = useState<Date | number>(new Date(tenDaysAgo));
-    const [startDate, setStartDate] = useState<Date>(new Date(rangeDate.startDate));
-    const [endDate, setEndtDate] = useState<Date>(new Date(rangeDate.endDate));
-    const [filterClear, setFilterClear] = useState<boolean>(false);
+    const startDate = format(new Date(rangeDate.startDate), 'dd-MMM-yyyy');
+    const endDate = format(new Date(rangeDate.endDate), 'dd-MMM-yyyy');
+    // const [yesterday, setYesterday] = useState<Date | number>(new Date(tenDaysAgo));
+    // const [startDate, setStartDate] = useState<Date>(new Date(rangeDate.startDate));
+    // const [endDate, setEndtDate] = useState<Date>(new Date(rangeDate.endDate));
+    // const [filterClear, setFilterClear] = useState<boolean>(false);
 
 
-    useEffect(() => {
-        const diffDays = rangeDate.endDate.getDate() - rangeDate.startDate.getDate();
-        diffDaysRef.current = diffDays;
+    // useEffect(() => {
+    //     const diffDays = rangeDate.endDate.getDate() - rangeDate.startDate.getDate();
+    //     diffDaysRef.current = diffDays;
 
-        if (diffDays > 0) {
-            setYesterday(rangeDate.startDate);
-        }
-    }, [diffDaysRef, filterClear, rangeDate.endDate, rangeDate.startDate, tenDaysAgo])
+    //     if (diffDays > 0) {
+    //         setYesterday(rangeDate.startDate);
+    //     }
+    // }, [diffDaysRef, filterClear, rangeDate.endDate, rangeDate.startDate, tenDaysAgo])
 
 
 
-    function handleCalenderOpen() {
+    function handleCalenderOpen(e: React.ChangeEvent<HTMLInputElement>) {
+        e.stopPropagation();
         setCalenderOpen((prev) => !prev)
     }
     function handleChange(ranges: any) {
@@ -143,202 +147,378 @@ export default function TransactionReport() {
         console.log('Check box value underdevelop !!!!!!!!!!!!!!!!!')
     }
     return (
-        <div className={styles.transaction_report_container}>
-            <div className={styles.transaction_heading_module}>
-                <h1>Transaction Report</h1>
-            </div>
-            <div className={styles.trans_filter_input_modules}>
-                <SelectTextfield options={cpaOffers} fieldID={"select-cpa-offer"} fieldLabel={"CPA Offer"} />
-                <Autocomplete
-                    id="country-select-demo"
-                    fullWidth
+        <Box component={'div'} onClick={() => setCalenderOpen(false)}>
+            <Typography variant='h5'
+                sx={{
+                    fontSize: '1.8rem',
+                    color: '#ED7D31',
+                }}>Transaction Report</Typography>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    columnGap: '10px',
+                    alignItems: 'center',
+                    backgroundColor: '#1c2437',
+                    padding: '30px 20px',
+                    borderRadius: '4px',
+                    marginTop: '50px',
+                    flexDirection: { xs: 'column', xl: 'row' },
+                    rowGap: '10px',
+                }}>
+                <Box component={'div'}
                     sx={{
-                        // '& .MuiFilledInput-underline': {
-                        //     color: 'red',
-                        //     backgroundColor: 'red'
-                        // },
-                        "& .MuiFilledInput-root": {
-                            maxHeight: '45px',
-                            backgroundColor: "#1c2437",
-                            color: 'lightGrey',
-                            border: '1px solid #ED7D31',
-                            borderRadius: '3px',
-                            fontSize: '.7rem',
-                            '&.Mui-focused': {
-                                backgroundColor: "#131926",
-                                color: 'WhiteSmoke',
-                                border: '2px solid #ED7D31',
-                                "& .MuiSvgIcon-root": {
-                                    color: "#ED7D31"
+                        display: 'flex', width: '100%', columnGap: '10px', flexDirection: { xs: 'column', sm: 'row' }, rowGap: '10px'
+                    }}>
+                    <SelectTextfield options={cpaOffers} fieldID={"select-cpa-offer"} fieldLabel={"CPA Offer"} />
+                    <Autocomplete
+                        id="country-select-demo"
+                        fullWidth
+                        sx={{
+                            // '& .MuiFilledInput-underline': {
+                            //     color: 'red',
+                            //     backgroundColor: 'red'
+                            // },
+                            "& .MuiFilledInput-root": {
+                                maxHeight: '45px',
+                                backgroundColor: "#1c2437",
+                                color: 'lightGrey',
+                                border: '1px solid #ED7D31',
+                                borderRadius: '3px',
+                                fontSize: '.7rem',
+                                '&.Mui-focused': {
+                                    backgroundColor: "#131926",
+                                    color: 'WhiteSmoke',
+                                    border: '2px solid #ED7D31',
+                                    "& .MuiSvgIcon-root": {
+                                        color: "#ED7D31"
+                                    },
+                                },
+                                '&:hover': {
+                                    backgroundColor: "#131926",
+                                    // color: 'WhiteSmoke',
+                                    // border: '2px solid #ED7D31',
+                                    // "& .MuiSvgIcon-root": {
+                                    //     color: "#ED7D31"
+                                    // },
                                 },
                             },
-                            '&:hover': {
-                                backgroundColor: "#131926",
-                                // color: 'WhiteSmoke',
-                                // border: '2px solid #ED7D31',
-                                // "& .MuiSvgIcon-root": {
-                                //     color: "#ED7D31"
-                                // },
+                            "& .MuiSvgIcon-root": {
+                                color: "#ED7D31"
                             },
-                        },
-                        "& .MuiSvgIcon-root": {
-                            color: "#ED7D31"
-                        },
 
-                        '& label': {
-                            color: 'whiteSmoke',
-                            fontSize: '.7rem'
-                        },
-                        '& label.Mui-focused': {
-                            color: 'whiteSmoke',
-                        },
-                        // '&:hover label': {
-                        //     color: 'white',
-                        // },
+                            '& label': {
+                                color: 'whiteSmoke',
+                                fontSize: '.7rem'
+                            },
+                            '& label.Mui-focused': {
+                                color: 'whiteSmoke',
+                            },
+                            // '&:hover label': {
+                            //     color: 'white',
+                            // },
 
-                    }}
+                        }}
 
-                    options={countries}
-                    getOptionLabel={(option) => option.label}
-                    renderOption={(props, option) => (
-                        <Box
-                            component="li"
-                            sx={{
+                        options={countries}
+                        getOptionLabel={(option) => option.label}
+                        renderOption={(props, option) => (
+                            <Box
+                                component="li"
+                                sx={{
 
-                            }} {...props}>
-                            <Image
-                                height={15}
-                                width={15}
-                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-                                alt=""
+                                }} {...props}>
+                                <Image
+                                    height={15}
+                                    width={15}
+                                    src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                    alt=""
+                                />
+                                {option.label} ({option.code})
+                            </Box>
+                        )}
+                        renderInput={(params) => (
+                            <TextField
+                                variant="filled"
+                                {...params}
+                                label="Choose country"
+                                inputProps={{ ...params.inputProps }}
                             />
-                            {option.label} ({option.code})
-                        </Box>
-                    )}
-                    renderInput={(params) => (
-                        <TextField
-                            variant="filled"
-                            {...params}
-                            label="Choose country"
-                            inputProps={{ ...params.inputProps }}
-                        />
-                    )}
-                />
-                <SelectTextfield options={platforms} fieldID={'select-platforms'} fieldLabel={"Platforms"} />
-                <div className={styles.date_range_show_module_trans}>
+                        )}
+                    />
+                    <SelectTextfield options={platforms} fieldID={'select-platforms'} fieldLabel={"Platforms"} />
+                </Box>
+                <Box component={'div'}
+                    onClick={(e) => e.stopPropagation()}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        position: 'relative',
+                        columnGap: '10px',
+                        rowGap: '10px',
+                        width: '100%',
+                    }}>
                     <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
-                    <h5>{format(yesterday, "dd-MMM-yyyy")}</h5>
-                    <p>to</p>
-                    <h5>{format(rangeDate.endDate, "dd-MMM-yyyy")}</h5>
-                    {calenderOpen && <div className={styles.date_range_container}>
+                    <ReadOnlyDateShow label='Start date' value={startDate} />
+                    <ReadOnlyDateShow label='End date' value={endDate} />
+                    {calenderOpen && <Box component={'div'}
+                        sx={{
+                            marginTop: '2px',
+                            position: 'absolute',
+                            left: 0,
+                            bottom: { xs: '-240px', sm: '-355px', lg: '-360px' },
+                            zIndex: 1,
+                        }}>
                         <DateRangePickerComp rangeDate={rangeDate} setRangeDate={setRangeDate} handleChange={handleChange} />
-                    </div>}
-                </div>
-            </div>
-            <div className={styles.filter_btn_module}>
+                    </Box>}
+                </Box>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: '20px',
+                    marginTop: '20px',
+                }}>
                 <FilterButton />
                 <AdvancedFilterBtn />
                 <IconButton aria-label="delete">
                     <AiOutlineClear size='1.2rem' color='#ED7D31' />
                 </IconButton>
-            </div>
-            <div className={styles.advance_filter_types_module}>
-                <div className={styles.advance_filter_types_module_left}>
-                    <div className={styles.advance_filter_types_module_left_checks}>
-                        <h2><TbTransform size='1.5rem' />Tansactions Type</h2>
-                        <div className={styles.checkbox_module}>
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        </div>
-                    </div>
-                    <div className={styles.clear_all_and_select_btns_module}>
-                        <ClearAllcheckBtn />
-                        <SelectAllCheckBtn />
-                    </div>
-                </div>
-                <div className={styles.advance_filter_types_module_right}>
+            </Box>
+            <Typography variant='h5'
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: '10px',
+                    fontSize: '1.2rem',
+                    color: '#ED7D31',
+                    marginTop: '50px'
+                }}>
+                <TbTransform size='1.5rem' />
+                Tansactions Type
+            </Typography>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    rowGap: '15px',
+                    marginTop: '20px',
+                    width: { xs: '100%', md: '50%', },
+                    paddingLeft: '40px',
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        columnGap: '15px',
+                    }}>
                     <FilledTextField fieldLabel={'Sub ID'} fieldID={'sub-id-field'} />
                     <FilledTextField fieldLabel={'Click ID'} fieldID={'click-id-field'} />
-                </div>
-            </div>
-            <div className={styles.advance_filter_types_module}>
-                <div className={styles.advance_filter_types_module_left}>
-                    <div className={styles.advance_filter_types_module_left_checks}>
-                        <h2><BiTransfer size='1.5rem' />Conversion currency</h2>
-                        <div className={styles.checkbox_module}>
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        </div>
-                    </div>
-                    <div className={styles.clear_all_and_select_btns_module}>
-                        <ClearAllcheckBtn />
-                        <SelectAllCheckBtn />
-                    </div>
-                </div>
-                <div className={styles.advance_filter_types_module_right}>
-                    <div className={styles.advance_filter_types_module_left_checks}>
-                        <h2><TbStatusChange size='1.5rem' />Status</h2>
-                        <div className={styles.checkbox_module}>
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        </div>
-                        <div className={styles.clear_all_and_select_btns_module}>
-                            <ClearAllcheckBtn />
-                            <SelectAllCheckBtn />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className={styles.advance_filter_types_module_column_show}>
-                <div className={styles.advance_filter_types_module_left_checks}>
-                    <h2><RiInsertColumnLeft size='1.5rem' />Show additional columns</h2>
-                    <div className={styles.checkbox_module}>
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                    </div>
-                </div>
-
-                <div className={styles.clear_all_and_select_btns_module}>
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        color: 'whitesmoke',
+                    }}>
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        columnGap: '15px',
+                    }}>
                     <ClearAllcheckBtn />
                     <SelectAllCheckBtn />
-                </div>
-            </div>
-            <div className={styles.transaction_table_module}>
-                <div className={styles.export_btn_module}>
+                </Box>
+            </Box>
+
+            {/* convertion and status section */}
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    columnGap: '50px',
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    rowGap: '15px'
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        rowGap: '15px',
+                        width: { xs: '100%', md: '50%' }
+                    }}>
+                    <Typography variant='h5'
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            columnGap: '10px',
+                            fontSize: '1.2rem',
+                            color: '#ED7D31',
+                            marginTop: { xs: '20px', sm: '30px', xl: '50px' },
+                        }}>
+                        <BiTransfer size='1.5rem' />
+                        Convertion Type
+                    </Typography>
+                    <Box component={'div'}
+                        sx={{
+                            color: 'whitesmoke',
+                            marginLeft: '40px',
+                        }}>
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    </Box>
+                    <Box component={'div'}
+                        sx={{
+                            display: 'flex',
+                            columnGap: '15px',
+                            marginLeft: '40px',
+                        }}>
+                        <ClearAllcheckBtn />
+                        <SelectAllCheckBtn />
+                    </Box>
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        rowGap: '15px',
+                        width: { xs: '100%', md: '50%' }
+                    }}>
+                    <Typography variant='h5'
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            columnGap: '10px',
+                            fontSize: '1.2rem',
+                            color: '#ED7D31',
+                            marginTop: { xs: '20px', sm: '30px', xl: '50px' },
+                        }}>
+                        <TbStatusChange size='1.5rem' />
+                        Status
+                    </Typography>
+                    <Box component={'div'}
+                        sx={{
+                            color: 'whitesmoke',
+                            marginLeft: '40px',
+                        }}>
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    </Box>
+                    <Box component={'div'}
+                        sx={{
+                            display: 'flex',
+                            columnGap: '15px',
+                            marginLeft: '40px',
+                        }}>
+                        <ClearAllcheckBtn />
+                        <SelectAllCheckBtn />
+                    </Box>
+                </Box>
+            </Box>
+
+            {/* Additional column section */}
+            <Typography variant='h5'
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: '10px',
+                    fontSize: '1.2rem',
+                    color: '#ED7D31',
+                    marginTop: '50px'
+                }}>
+                <RiInsertColumnRight size='1.5rem' />
+                Additional Columns
+            </Typography>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    rowGap: '15px',
+                    marginTop: '20px',
+                    paddingLeft: '40px',
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        color: 'whitesmoke',
+                    }}>
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        columnGap: '15px',
+                    }}>
+                    <ClearAllcheckBtn />
+                    <SelectAllCheckBtn />
+                </Box>
+            </Box>
+            <Box component={'div'} sx={{ mt: '30px' }}>
+                <Box component={'div'}
+                    sx={{
+                        textAlign: 'right',
+                        marginBottom: '20px',
+                    }}>
                     <ExportButton />
-                </div>
+                </Box>
                 <TransReportTable transReportAllData={rowsData} />
-                <div className={styles.summay_module}>
-                    <span>
-                        <h2>Samamry</h2>
-                        <p>$12000520</p>
-                    </span>
-                    <span>
-                        <h2>Total</h2>
-                        <p>$65251222</p>
-                    </span>
-                </div>
-            </div>
-        </div>
+                <Box component={'div'}
+                    sx={{
+                        padding: '20px 20px',
+                        backgroundColor: '#1c2437',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        rowGap: '10px',
+                        marginBottom: '50px',
+                    }}>
+                    <Box component={'span'}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            backgroundColor: '#27374D',
+                            padding: '10px 20px',
+                            borderRadius: '4px',
+                            color: 'whitesmoke'
+                        }}>
+                        <Typography variant='body2'>Samamry</Typography>
+                        <Typography variant='body2' sx={{ color: '#ED7D31' }}>$12000520</Typography>
+                    </Box>
+                    <Box component={'span'}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            backgroundColor: '#27374D',
+                            padding: '10px 20px',
+                            borderRadius: '4px',
+                            color: 'whitesmoke'
+                        }}>
+                        <Typography variant='body2'>Total</Typography>
+                        <Typography variant='body2' sx={{ color: '#ED7D31' }}>$65251222</Typography>
+                    </Box>
+                </Box>
+            </Box>
+        </Box >
     )
 }
 

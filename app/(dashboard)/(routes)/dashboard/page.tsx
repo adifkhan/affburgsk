@@ -459,7 +459,7 @@ export default function DashboardHomePage() {
 
                     <Typography variant='h3'
                         sx={{ fontSize: '1rem', color: 'whiteSmoke', width: '100%' }}>Campaign</Typography>
-                    <Box component={'div'} sx={{ height: '80%', }}>
+                    <Box component={'div'} sx={{ height: '75%', width: '75%' }}>
                         <DonutChartCamp data={donutChartCampData} />
                     </Box>
                     <Box component={'div'}

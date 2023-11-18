@@ -1,15 +1,10 @@
 'use client'
 
 import React from 'react'
-import styles from '@/styles/Dashboard/Fqa.module.css';
-import Search from '@/components/dashComponents/Search';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { MdExpandMore, MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md';
 import { useAppSelector } from '@/app/GlobalRedux/store';
 import AccordionFqa from '@/components/ui/AccordionFqa';
+import { Box } from '@mui/material';
 
 
 export default function FQA() {
@@ -21,7 +16,7 @@ export default function FQA() {
     const [expandedAccordian6, setExpandedAccordian6] = React.useState<string | false>(false);
 
     // const dispatch = useDispatch<AppDispatch>();
-    const themeDark = useAppSelector((state) => state.themeReducer.theme);
+    // const themeDark = useAppSelector((state) => state.themeReducer.theme);
 
     const handleChangeAccordian1 = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
         setExpandedAccordian1(isExpanded ? panel : false);
@@ -47,25 +42,48 @@ export default function FQA() {
         (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
             setExpandedAccordian6(isExpanded ? panel : false);
         };
-    // console.log(themeDark)
     return (
-        <div className={styles.fqa_container}>
-            <h1 className={styles.fqa_heading}>Ask Frequent Question</h1>
-            <div className={styles.search_module}>
-                <Search themeDark={themeDark} />
-            </div>
-            <div className={styles.questions_module}>
-                <div className={styles.questions_module_left}>
+        <Box component={'div'}
+            sx={{
+                width: '100%',
+                display: 'flex',
+                margin: '0 auto',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}>
+            <Typography variant='h5'
+                sx={{
+                    fontSize: '1.8rem',
+                    color: '#ED7D31',
+                }}>Ask Frequent Question</Typography>
+            <Box component={'div'}
+                sx={{
+                    backgroundColor: '#1c2437',
+                    padding: '20px',
+                    borderRadius: '4px',
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
+                    columnGap: '20px',
+                    width: { xs: '100%', lg: '80%' },
+                    marginTop: '30px',
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        width: '100%'
+                    }}>
                     <AccordionFqa expandedAccordian={expandedAccordian1} handleChangeAccordian={handleChangeAccordian1} />
                     <AccordionFqa expandedAccordian={expandedAccordian2} handleChangeAccordian={handleChangeAccordian2} />
                     <AccordionFqa expandedAccordian={expandedAccordian3} handleChangeAccordian={handleChangeAccordian3} />
-                </div>
-                <div className={styles.questions_module_right}>
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        width: '100%'
+                    }}>
                     <AccordionFqa expandedAccordian={expandedAccordian4} handleChangeAccordian={handleChangeAccordian4} />
                     <AccordionFqa expandedAccordian={expandedAccordian5} handleChangeAccordian={handleChangeAccordian5} />
                     <AccordionFqa expandedAccordian={expandedAccordian6} handleChangeAccordian={handleChangeAccordian6} />
-                </div>
-            </div>
-        </div >
+                </Box>
+            </Box>
+        </Box >
     )
 }

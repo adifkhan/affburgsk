@@ -39,9 +39,9 @@ export default function OpenLinkDetailsTable() {
                         backgroundColor: '#27374D',
                     }} >
                     <TableRow>
-                        <TableCell sx={{ fontSize: '1.2rem', color: 'lightGrey', fontWidth: 600, borderBottom: 0 }}>Parameter</TableCell>
-                        <TableCell sx={{ fontSize: '1.2rem', color: 'lightGrey', fontWidth: 600, borderBottom: 0 }} align="left">Description</TableCell>
-                        <TableCell sx={{ fontSize: '1.2rem', color: 'lightGrey', fontWidth: 600, borderBottom: 0 }} align="left">Example</TableCell>
+                        <TableCell sx={{ fontSize: { xs: '.8rem', md: '1rem', lg: '1.2rem' }, color: 'lightGrey', fontWidth: 600, borderBottom: 0 }}>Parameter</TableCell>
+                        <TableCell sx={{ fontSize: { xs: '.8rem', md: '1rem', lg: '1.2rem' }, color: 'lightGrey', fontWidth: 600, borderBottom: 0 }} align="left">Description</TableCell>
+                        <TableCell sx={{ fontSize: { xs: '.8rem', md: '1rem', lg: '1.2rem' }, color: 'lightGrey', fontWidth: 600, borderBottom: 0 }} align="left">Example</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -54,11 +54,11 @@ export default function OpenLinkDetailsTable() {
                                 }
                             }}
                         >
-                            <TableCell sx={{ fontSize: '1rem', width: '20%', color: '#ED7D31', borderBottom: '1px solid #121622' }} component="th" scope="row">
+                            <TableCell sx={{ fontSize: { xs: '.8rem', md: '1rem' }, width: '20%', color: '#ED7D31', borderBottom: '1px solid #121622' }} component="th" scope="row">
                                 {row.Parameter}
                             </TableCell>
-                            <TableCell sx={{ fontSize: '1rem', width: '40%', color: 'lightGrey', textAlign: 'left', borderBottom: '1px solid #121622', }} align="center">{row.Description}</TableCell>
-                            <TableCell sx={{ fontSize: '1rem', width: '20%', color: 'lightGrey', borderBottom: '1px solid #121622' }} align="left">{row.Example}</TableCell>
+                            <TableCell sx={{ fontSize: { xs: '.8rem', md: '1rem' }, width: '40%', color: 'lightGrey', textAlign: 'left', borderBottom: '1px solid #121622', }} align="center">{row.Description}</TableCell>
+                            <TableCell sx={{ fontSize: { xs: '.8rem', md: '1rem' }, width: '20%', color: 'lightGrey', borderBottom: '1px solid #121622' }} align="left">{row.Example}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

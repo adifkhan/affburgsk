@@ -1,8 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import styles from '@/styles/Dashboard/MainReport.module.css'
-import { IconButton, MenuItem, TextField, styled } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import { MainReportData, dateType } from '@/types/models';
 import DateRangePickerComp from '@/components/dashComponents/DateRangePickerComp';
@@ -14,6 +13,7 @@ import DateRangeButton from '@/components/ui/DateRangeButton';
 import FilterButton from '@/components/ui/FilterButton';
 import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
 import SelectTextfield from '@/components/ui/SelectTextfield';
+import ReadOnlyDateShow from '@/components/ui/ReadOnlyDateShow';
 
 
 
@@ -88,31 +88,35 @@ const rowsData = [
 
 export default function MainReport() {
     const today: any = new Date();
-    const tenDaysAgo: Date | number = today - 1000 * 60 * 60 * 24 * 10;
-    let diffDaysRef = useRef(0);
+    // const tenDaysAgo: Date | number = today - 1000 * 60 * 60 * 24 * 10;
+    // let diffDaysRef = useRef(0);
 
     const [calenderOpen, setCalenderOpen] = useState<boolean>(false);
     const [rangeDate, setRangeDate] = useState<dateType>({
         startDate: new Date(),
         endDate: new Date(),
         key: 'selection',
-    })
-    const [ago, setAgo] = useState<Date | number>(new Date(tenDaysAgo));
-    const [startDate, setStartDate] = useState<Date>(new Date(rangeDate.startDate));
-    const [endDate, setEndtDate] = useState<Date>(new Date(rangeDate.endDate));
+    });
+
+    const startDate = format(new Date(rangeDate.startDate), 'dd-MMM-yyyy');
+    const endDate = format(new Date(rangeDate.endDate), 'dd-MMM-yyyy');
+    // const [ago, setAgo] = useState<Date | number>(new Date(tenDaysAgo));
+    // const [startDate, setStartDate] = useState<Date>(new Date(rangeDate.startDate));
+    // const [endDate, setEndtDate] = useState<Date>(new Date(rangeDate.endDate));
 
 
-    useEffect(() => {
-        const diffDays = rangeDate.endDate.getDate() - rangeDate.startDate.getDate();
-        diffDaysRef.current = diffDays;
+    // useEffect(() => {
+    //     const diffDays = rangeDate.endDate.getDate() - rangeDate.startDate.getDate();
+    //     diffDaysRef.current = diffDays;
 
-        if (diffDays > 0) {
-            setAgo(rangeDate.startDate);
-        }
-    }, [diffDaysRef, rangeDate.endDate, rangeDate.startDate, tenDaysAgo])
+    //     if (diffDays > 0) {
+    //         setAgo(rangeDate.startDate);
+    //     }
+    // }, [diffDaysRef, rangeDate.endDate, rangeDate.startDate, tenDaysAgo])
 
 
-    function handleCalenderOpen() {
+    function handleCalenderOpen(e: React.ChangeEvent<HTMLInputElement>) {
+        e.stopPropagation();
         setCalenderOpen((prev) => !prev)
     }
     function handleChange(ranges: any) {
@@ -122,46 +126,124 @@ export default function MainReport() {
         console.log('Check box value underdevelop !!!!!!!!!!!!!!!!!')
     }
     return (
-        <div>
-            <h1 className={styles.main_heading}>Main Report</h1>
-            <div className={styles.main_report_desc}>
-                <h5>Conversions are subjected to automatic fraud check conducted by our system within 10 minutes after receiving them. Upon check completion, all conversions in <q>Approved</q> status will be sent to you via S2S Postback (in case you installed it). Please note that the advertiser reserves the right to conduct an additional fraud check within the current payment period.</h5>
-            </div>
-            <div className={styles.export_btn_module}>
+        <Box component={'div'} onClick={() => setCalenderOpen(false)} >
+            <Typography variant='h5'
+                sx={{
+                    fontSize: '1.8rem',
+                    color: '#ED7D31',
+                }}>Main Report</Typography>
+            <Box component={'div'}
+                sx={{
+                    marginTop: '30px',
+                    paddingLeft: '20px',
+                    borderLeft: '4px solid #ED7D31',
+                    color: 'whiteSmoke'
+                }}>
+                <Typography
+                    variant='h6'
+                    sx={{
+                        fontSize: { xs: '.8rem', sm: '1rem' },
+                        letterSpacing: '.1ch', textAlign: 'justify'
+                    }}
+                >Conversions are subjected to automatic fraud check conducted by our system within 10 minutes after receiving them. Upon check completion, all conversions in <q>Approved</q> status will be sent to you via S2S Postback (in case you installed it). Please note that the advertiser reserves the right to conduct an additional fraud check within the current payment period.</Typography>
+            </Box>
+            <Box component={'div'} sx={{
+                width: '100%',
+                height: 'fit-content',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                marginTop: '50px',
+                marginBottom: '20px',
+            }}>
                 <ExportButton />
-            </div>
-
-            <div className={styles.filter_section}>
-                <div className={styles.date_range_show_module}>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
+                    columnGap: '10px',
+                    backgroundColor: '#1C2437',
+                    padding: '30px 20px',
+                    borderRadius: '4px',
+                    zIndex: -1,
+                    rowGap: '10px'
+                }}>
+                <Box component={'div'}
+                    onClick={(e) => e.stopPropagation()}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        position: 'relative',
+                        columnGap: '10px',
+                        rowGap: '10px',
+                        width: '100%',
+                    }}>
                     <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
-                    <h5>{format(ago, "dd-MMM-yyyy")}</h5>
-                    <p>to</p>
-                    <h5>{format(rangeDate.endDate, "dd-MMM-yyyy")}</h5>
-                    {calenderOpen && <div className={styles.date_range_container}>
+                    <ReadOnlyDateShow label='Start date' value={startDate} />
+                    <ReadOnlyDateShow label='End date' value={endDate} />
+                    {calenderOpen && <Box component={'div'}
+                        sx={{
+                            marginTop: '2px',
+                            position: 'absolute',
+                            left: 0,
+                            bottom: { xs: '-240px', sm: '-355px', lg: '-360px' },
+                            zIndex: 30,
+                        }}>
                         <DateRangePickerComp rangeDate={rangeDate} setRangeDate={setRangeDate} handleChange={handleChange} />
-                    </div>}
-                </div>
-                <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
-                <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
-                <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
-            </div>
-            <div className={styles.filter_btn_module}>
+                    </Box>}
+                </Box>
+                <Box sx={{ display: 'flex', width: '100%', columnGap: '10px', flexDirection: { xs: 'column', sm: 'row' }, rowGap: '10px' }}>
+                    <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
+                    <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
+                    <SelectTextfield options={vertical} fieldID={"filled-select-currency"} fieldLabel={"Conversion Type"} />
+                </Box>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    columnGap: '20px',
+                    marginTop: '20px',
+                    padding: '0 20px',
+                }}>
                 <FilterButton />
                 <IconButton aria-label="delete">
                     <AiOutlineClear size='1.2rem' color='#ED7D31' />
                 </IconButton>
-            </div>
-            <div className={styles.additional_column_module}>
-                <span><IoMdAddCircleOutline size={22} />Add additional columns:</span>
-                <div className={styles.column_check_module}>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    columnGap: '20px',
+                    marginTop: '40px',
+                    paddingLeft: '20px',
+                    color: '#ED7D31',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    marginBottom: '50px',
+                    alignItems: { xs: 'flex-start', sm: 'center' },
+                    flexDirection: { xs: 'column', sm: 'row' },
+                }}>
+                <Box component={'span'}
+                    sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        columnGap: '10px',
+                    }}><IoMdAddCircleOutline size={22} />Add additional columns:</Box>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        columnGap: '10px',
+                        color: 'lightgrey',
+                    }}>
                     <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                     <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                     <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                </div>
-            </div>
-            <div>
+                </Box>
+            </Box>
+            <Box component={'div'}>
                 <MainReportTable mainReportAllData={rowsData} />
-            </div>
-        </div >
+            </Box>
+        </ Box>
     )
 }

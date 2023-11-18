@@ -1,10 +1,9 @@
 'use client'
 
-import styles from '@/styles/Dashboard/Header.module.css';
 import { AiOutlineSetting } from 'react-icons/ai';
 import { LiaUserCogSolid } from 'react-icons/lia';
 import { TbMenu2 } from 'react-icons/tb';
-import { CgLogOut, CgMenuLeft } from 'react-icons/cg';
+import { CgMenuLeft } from 'react-icons/cg';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Box, IconButton, Tooltip } from '@mui/material';
 import avatar from '../../public/pngegg.png';
@@ -32,13 +31,13 @@ import { useRouter } from 'next/navigation';
 type HeaderProps = {
     sidebarOpen: boolean;
     setSidebarOpen: Dispatch<SetStateAction<boolean>>;
-    reportsDropDownMenu: boolean;
-    setReportDropDownMenu: Dispatch<SetStateAction<boolean>>;
-    fqaDropDownMenu: boolean;
-    setFqaDropDownMenu: Dispatch<SetStateAction<boolean>>;
+    dropDownOpen: string | null;
+    setDropDownOpen: Dispatch<SetStateAction<string | null>>;
+    getDropdown: string | null;
+    setGetDropdown: Dispatch<SetStateAction<string | null>>;
 }
 
-export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMenu, setReportDropDownMenu, fqaDropDownMenu, setFqaDropDownMenu }: HeaderProps) {
+export default function Header({ sidebarOpen, setSidebarOpen, dropDownOpen, setDropDownOpen, getDropdown, setGetDropdown }: HeaderProps) {
     const router = useRouter();
     const user = useAppSelector((state) => state.authReducer.user);
 
@@ -62,11 +61,11 @@ export default function Header({ sidebarOpen, setSidebarOpen, reportsDropDownMen
     };
 
     const handleSidebar = () => {
-        if (reportsDropDownMenu) {
-            setReportDropDownMenu(!reportsDropDownMenu)
+        if (dropDownOpen) {
+            setDropDownOpen(null);
         }
-        if (fqaDropDownMenu) {
-            setFqaDropDownMenu(!fqaDropDownMenu)
+        else {
+            setDropDownOpen(getDropdown)
         }
         setSidebarOpen(!sidebarOpen)
     }
