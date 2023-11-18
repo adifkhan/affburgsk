@@ -1,0 +1,90 @@
+/* .main_heading {
+    fontSize: '2rem',
+    color: '#ED7D31',
+} */
+
+/* .main_report_desc {
+    marginTop: '30px',
+    paddingLeft: '20px',
+    borderLeft: '4px solid #ED7D31',
+} */
+
+/* .main_report_desc h5 {
+    fontSize: '1.2rem',
+        letterSpacing: '.1ch',
+} */
+
+/* .export_btn_module {
+    width: '100%',
+    height: 'fit-content',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginTop: '50px';
+    marginBottom: '20px',
+} */
+
+/* .filter_section {
+    display: 'flex',
+    alignItems: 'center',
+    columnGap: '20px,
+    backgroundColor: '#1C2437',
+    padding: '30px 20px',
+    borderRadius: '4px',
+    zIndex: -1,
+} */
+
+/* .date_range_show_module {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    position: 'relative',
+    columnGap: '20px',
+}
+
+.date_range_show_module h5 {
+    border: 1px solid #ED7D31;
+    padding: 11px 20px;
+    border-radius: 4px;
+    letter-spacing: .1ch;
+    white-space: nowrap;
+    font-size: .8rem;
+} */
+
+/* .date_range_container {
+    marginTop: '2px',
+    position: 'absolute',
+    left: 0,
+    bottom: '-360px',
+    zIndex: 1,
+} */
+
+/* .filter_btn_module {
+    display: 'flex',
+    columnGap: '20px',
+    marginTop: '20px',
+    padding: '0 20px',
+} */
+/* 
+.additional_column_module {
+    display: 'flex',
+    columnGap: '20px',
+    marginTop: '40px',
+    paddingLeft: '20px',
+    color: '#ED7D31',
+    fontSize: '1rem',
+    fontWeight: 500,
+    marginBottom: '50px',
+    alignItems: 'center',
+} */
+/* 
+.additional_column_module span {
+    display: 'flex',
+    alignItems: 'center',
+    columnGap: '10px',
+} */
+
+/* .column_check_module {
+    display: 'flex',
+    columnGap: '10px',
+    color: 'lightgrey',
+} */

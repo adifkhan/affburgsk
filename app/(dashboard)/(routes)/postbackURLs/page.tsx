@@ -60,7 +60,7 @@ export default function PostbackURLs() {
                     color: '#ED7D31',
                     fontSize: '2rem',
                 }}>
-                <Typography variant='h5'>Postback Urls</Typography>
+                <Typography sx={{ fontSize: '1.8rem' }} variant='h5'>Postback Urls</Typography>
             </Box>
             <Box component={'div'}
                 sx={{
@@ -79,10 +79,9 @@ export default function PostbackURLs() {
 
                 <TextField
                     helperText="See how to block below for the details"
-                    autoComplete='false'
+                    autoComplete={'false'}
                     size='small'
                     required
-                    id="filled-required"
                     label="Tracking code"
                     variant="filled"
                     fullWidth
@@ -124,20 +123,14 @@ export default function PostbackURLs() {
                 />
                 <Button
                     onClick={handleTrackingField}
-                    sx={{
-                        bgcolor: '#ED7D31',
+                    style={{
+                        backgroundColor: '#ED7D31',
                         fontSize: '.7rem',
-                        px: '10px',
-                        py: '6px',
+                        padding: '6px 10px',
                         letterSpacing: '.1ch',
                         fontFamily: 'Dosis',
-                        '&:hover': {
-                            bgcolor: '#ED7D31',
-                            boxShadow: 'none',
-
-                        }
+                        boxShadow: 'none',
                     }}
-                    component="label"
                     variant="contained"
                     startIcon={!trackingOpen ?
                         <AiFillLock size={18} />
@@ -156,6 +149,7 @@ export default function PostbackURLs() {
                         padding: '30px 20px',
                     }}>
                     <Typography
+                        variant='h2'
                         sx={{
                             color: 'lightGrey',
                             display: 'flex',
@@ -166,6 +160,7 @@ export default function PostbackURLs() {
                         Informational events postback
                     </Typography>
                     <Typography
+                        variant='h5'
                         sx={{
                             color: '#ED7D31',
                             display: 'flex',
@@ -175,6 +170,7 @@ export default function PostbackURLs() {
                         <MdOutlineAddLink size='1.8rem' /> Add a new link
                     </Typography>
                     <Box
+                        component='div'
                         sx={{
                             display: 'flex',
                             columnGap: { xs: 0, sm: '10px', md: '20px' },
@@ -182,8 +178,7 @@ export default function PostbackURLs() {
                             margin: '20px 0',
                             rowGap: { xs: '10px', sm: 0 },
                             flexDirection: { xs: 'column', sm: 'row' }
-                        }}
-                        component='div' >
+                        }}>
                         <SelectTextfield
                             options={vertical}
                             fieldID={"select-event-type"}
@@ -197,19 +192,15 @@ export default function PostbackURLs() {
                             fieldLabel={'Event Code'} />
                     </Box>
                     <Button
-                        sx={{
-                            bgcolor: '#ED7D31',
+                        style={{
+                            backgroundColor: '#ED7D31',
                             fontSize: '.7rem',
-                            py: '6px',
+                            padding: '6px 10px',
                             letterSpacing: '.1ch',
                             fontFamily: 'Dosis',
                             width: '150px',
-                            '&:hover': {
-                                bgcolor: '#ED7D31',
-                                boxShadow: 'none',
-                            },
+                            boxShadow: 'none',
                         }}
-                        component="label"
                         variant="contained"
                         startIcon={<MdOutlineSaveAs size={15} />}>
                         Save Changes
@@ -248,19 +239,19 @@ export default function PostbackURLs() {
                             aria-controls="panel1bh-content"
                             id="panel1bh-header">
                             <Typography
-                                component='p'
+                                variant='body2'
                                 sx={{
                                     width: { xs: '100%', md: '33%' },
                                     display: 'flex',
                                     flexShrink: 0,
-                                    fontSize: { xs: '1rem', lg: '1.2rem' },
+                                    fontSize: { xs: '1rem', lg: '1rem' },
                                     textTransform: "capitalize",
                                     fontWeight: '400',
                                     fontFamily: 'Ubuntu'
                                 }}>
                                 How to create own postback URLs
                             </Typography>
-                            <Typography component={'p'} sx={{ color: 'lightGrey', display: { xs: 'none', md: 'block' } }}>Details about adding a ne postback URL</Typography>
+                            <Typography variant='body2' sx={{ color: 'lightGrey', display: { xs: 'none', md: 'block' } }}>Details about adding a ne postback URL</Typography>
                         </AccordionSummary>
                         <AccordionDetails
                             sx={{
@@ -270,6 +261,7 @@ export default function PostbackURLs() {
                             }}
                         >
                             <Box
+                                component={'div'}
                                 sx={{
                                     display: 'flex',
                                     width: '100%',
@@ -277,14 +269,16 @@ export default function PostbackURLs() {
                                     flexDirection: { xs: 'column-reverse', lg: 'row' },
                                 }}>
                                 <Box
+                                    component={'div'}
                                     sx={{
                                         rowGap: '15px',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         justifyContent: 'flex-start',
                                     }}
-                                    component={'div'}>
-                                    <Typography
+                                >
+                                    <Box
+                                        component={'span'}
                                         sx={{
                                             color: 'whiteSmoke',
                                             display: 'flex',
@@ -294,22 +288,11 @@ export default function PostbackURLs() {
                                         }}>
                                         <RxDotFilled
                                             color='#ED7D31'
-                                            size={20} /> Here you can create your own postback URLs that will be sent any time you have a new transaction.
-                                    </Typography>
+                                            size={20} />Here you can create your own postback URLs that will be sent any time you have a new transaction.
+                                    </Box>
 
-                                    <Typography
-                                        sx={{
-                                            color: 'whiteSmoke',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            fontSize: { xs: '.8rem', md: '1rem', lg: '1rem' }
-                                        }}>
-                                        <RxDotFilled
-                                            color='#ED7D31'
-                                            size={20} />
-                                        <Typography sx={{ display: 'flex', fontSize: { xs: '.8rem', md: '1rem', lg: '1rem' } }}>The example of postback URL: <Link style={{ color: '#ED7D31', }} href='#'>http://your-domain.com</Link></Typography>
-                                    </Typography>
-                                    <Typography
+                                    <Box
+                                        component={'span'}
                                         sx={{
                                             color: 'whiteSmoke',
                                             display: 'flex',
@@ -319,8 +302,21 @@ export default function PostbackURLs() {
                                         }}>
                                         <RxDotFilled
                                             color='#ED7D31'
-                                            size={20} /> After creating the postback URL, ask your manager to approve it. If the code is not approved, it will not work.
-                                    </Typography>
+                                            size={20} />The example of postback URL: Lorem ipsum dolor sit amet: <Link style={{ color: '#ED7D31', }} href='#'>http://your-domain.com</Link>
+                                    </Box>
+                                    <Box
+                                        component={'span'}
+                                        sx={{
+                                            color: 'whiteSmoke',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '10px',
+                                            fontSize: { xs: '.8rem', md: '1rem', lg: '1rem' }
+                                        }}>
+                                        <RxDotFilled
+                                            color='#ED7D31'
+                                            size={20} />After creating the postback URL, ask your manager to approve it. If the code is not approved, it will not work.
+                                    </Box>
                                 </Box>
                                 <Box
                                     sx={{ mx: 'auto' }}
@@ -331,7 +327,7 @@ export default function PostbackURLs() {
                                         size='8rem' />
                                 </Box>
                             </Box>
-                            <Box sx={{ marginTop: '50px' }}>
+                            <Box component={'div'} sx={{ marginTop: '50px' }}>
                                 <OpenLinkDetailsTable />
                             </Box>
                         </AccordionDetails>

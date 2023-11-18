@@ -43,7 +43,7 @@ export default function Offerwall() {
                 <Typography variant='h5'
                     sx={{
                         color: '#ED7D31',
-                        fontSize: '2rem'
+                        fontSize: '1.8rem'
                     }}>Offerwall</Typography>
             </Box>
             <Box component={'div'}

@@ -79,66 +79,50 @@
         alignItems: 'flex-start',
 } */
 
-.advance_filter_types_module_right h2 {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-    font-size: 1.2rem;
-    color: #ED7D31;
-}
 
+/* .checkbox_module {
+    marginTop: '6px',
+    color: 'whitesmoke',
+    paddingLeft: '30px',
+} */
 
-.checkbox_module {
-    margin-top: 6px;
-    color: whitesmoke;
-    padding-left: 30px;
-}
+/* .clear_all_and_select_btns_module {
+    display: 'flex',
+    columnGap: '20px',
+    paddingLeft: '30px',
+    marginTop: '10px',
+} */
 
-.clear_all_and_select_btns_module {
-    display: flex;
-    column-gap: 20px;
-    padding-left: 30px;
-    margin-top: 10px;
-}
+/* .advance_filter_types_module_column_show {
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: '30px',
+} */
 
-.advance_filter_types_module_column_show {
-    display: flex;
-    flex-direction: column;
+/* .export_btn_module {
+    textAlign: 'right',
+    marginBottom: '20px',
+} */
+
+/* .transaction_table_module {
     margin-top: 30px;
-}
+} */
 
-.advance_filter_types_module_left_checks h2 {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-    font-size: 1.2rem;
-    color: #ED7D31;
-}
-
-.export_btn_module {
-    text-align: right;
-    margin-bottom: 20px;
-}
-
-.transaction_table_module {
-    margin-top: 30px;
-}
-
-.summay_module {
-    padding: 20px 20px;
-    background-color: #1c2437;
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    margin-bottom: 50px;
-}
+/* .summay_module {
+    padding: '20px 20px',
+    backgroundColor: '#1c2437',
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: '10px',
+    marginBottom: '50px',
+} */
 
 .summay_module span {
-    display: flex;
-    justify-content: space-between;
-    background-color: #27374D;
-    padding: 10px 20px;
-    border-radius: 4px;
+    display: 'flex',
+        justifyContent: 'space-between',
+        backgroundColor: '#27374D',
+        padding: '10px 20px',
+        borderRadius: '4px',
 }
 
 .summay_module span>p {

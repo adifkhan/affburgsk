@@ -35,8 +35,8 @@ export default function BarChart({ data }: BarChartDataProps) {
                 'Sales'
             ]}
             indexBy="country"
-            margin={{ top: 40, right: 0, bottom: 150, left: 0 }}
-            padding={0.4}
+            margin={{ top: 80, right: 80, bottom: 100, left: 0 }}
+            padding={0.3}
             valueScale={{ type: 'linear' }}
             indexScale={{ type: 'band', round: true }}
             colors={['#C2D9FF', '#8E8FFA', '#7752FE', '#793FDF', '#64CCC5', '#ED7D31']}
@@ -77,14 +77,14 @@ export default function BarChart({ data }: BarChartDataProps) {
             legends={[
                 {
                     dataFrom: 'keys',
-                    anchor: 'bottom',
-                    direction: 'row',
+                    anchor: 'right',
+                    direction: 'column',
                     justify: false,
-                    translateX: 0,
-                    translateY: 100,
+                    translateX: 60,
+                    translateY: 50,
                     itemsSpacing: 5,
                     itemWidth: 63,
-                    itemHeight: 0,
+                    itemHeight: 20,
                     itemDirection: 'left-to-right',
                     itemOpacity: 1,
                     symbolSize: 8,

@@ -103,15 +103,17 @@ export default function PayoutHistory() {
             }}>
             <Typography sx={{
                 color: '#ED7D31',
-                fontSize: '2rem'
+                fontSize: '1.8rem'
             }} variant='h5'>Payout Histoty</Typography>
             <Box component={'div'}
                 sx={{
                     display: 'flex',
-                    alignItems: 'center',
                     marginTop: '30px',
+                    alignItems: { xs: 'normal', sm: 'center' },
                     marginBottom: '5px',
                     justifyContent: 'space-between',
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    width: '100%'
                 }}>
                 <Box component={'div'}
                     sx={{
@@ -144,7 +146,9 @@ export default function PayoutHistory() {
                         <AiOutlineClear size='1.4rem' color='#ED7D31' />
                     </IconButton>
                 </Box>
-                <ExportButton />
+                <Box>
+                    <ExportButton />
+                </Box>
             </Box>
             <Box component={'div'}
                 sx={{

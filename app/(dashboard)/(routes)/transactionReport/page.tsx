@@ -11,7 +11,7 @@ import { AiOutlineClear } from 'react-icons/ai';
 import { TbStatusChange, TbTransform } from 'react-icons/tb';
 import { MdClear } from 'react-icons/md';
 import { BiSelectMultiple, BiTransfer } from 'react-icons/bi';
-import { RiInsertColumnLeft } from 'react-icons/ri';
+import { RiInsertColumnLeft, RiInsertColumnRight } from 'react-icons/ri';
 import TransReportTable from '@/components/dashComponents/tables/TransReportTable';
 import ExportButton from '@/components/ui/ExportButton';
 import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
@@ -150,7 +150,7 @@ export default function TransactionReport() {
         <Box component={'div'} onClick={() => setCalenderOpen(false)}>
             <Typography variant='h5'
                 sx={{
-                    fontSize: '2rem',
+                    fontSize: '1.8rem',
                     color: '#ED7D31',
                 }}>Transaction Report</Typography>
             <Box component={'div'}
@@ -162,7 +162,7 @@ export default function TransactionReport() {
                     padding: '30px 20px',
                     borderRadius: '4px',
                     marginTop: '50px',
-                    flexDirection: { xs: 'column', md: 'row' },
+                    flexDirection: { xs: 'column', xl: 'row' },
                     rowGap: '10px',
                 }}>
                 <Box component={'div'}
@@ -266,7 +266,7 @@ export default function TransactionReport() {
                             marginTop: '2px',
                             position: 'absolute',
                             left: 0,
-                            bottom: '-360px',
+                            bottom: { xs: '-240px', sm: '-355px', lg: '-360px' },
                             zIndex: 1,
                         }}>
                         <DateRangePickerComp rangeDate={rangeDate} setRangeDate={setRangeDate} handleChange={handleChange} />
@@ -286,125 +286,235 @@ export default function TransactionReport() {
                     <AiOutlineClear size='1.2rem' color='#ED7D31' />
                 </IconButton>
             </Box>
+            <Typography variant='h5'
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: '10px',
+                    fontSize: '1.2rem',
+                    color: '#ED7D31',
+                    marginTop: '50px'
+                }}>
+                <TbTransform size='1.5rem' />
+                Tansactions Type
+            </Typography>
             <Box component={'div'}
                 sx={{
                     display: 'flex',
-                    marginTop: '50px',
+                    flexDirection: 'column',
+                    rowGap: '15px',
+                    marginTop: '20px',
+                    width: { xs: '100%', md: '50%', },
+                    paddingLeft: '40px',
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        columnGap: '15px',
+                    }}>
+                    <FilledTextField fieldLabel={'Sub ID'} fieldID={'sub-id-field'} />
+                    <FilledTextField fieldLabel={'Click ID'} fieldID={'click-id-field'} />
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        color: 'whitesmoke',
+                    }}>
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        columnGap: '15px',
+                    }}>
+                    <ClearAllcheckBtn />
+                    <SelectAllCheckBtn />
+                </Box>
+            </Box>
+
+            {/* convertion and status section */}
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
                     width: '100%',
                     justifyContent: 'space-between',
-                    alignItems: 'center',
-                    zIndex: -1,
+                    columnGap: '50px',
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    rowGap: '15px'
                 }}>
                 <Box component={'div'}
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        width: '50%',
+                        rowGap: '15px',
+                        width: { xs: '100%', md: '50%' }
                     }}>
-                    <Box component={'div'}>
-                        <Typography variant='h5'
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                columnGap: '10px',
-                                fontSize: '1.2rem',
-                                color: '#ED7D31',
-                            }}><TbTransform size='1.5rem' />Tansactions Type</Typography>
-                        <Box component={'div'} className={styles.checkbox_module}>
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        </Box>
+                    <Typography variant='h5'
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            columnGap: '10px',
+                            fontSize: '1.2rem',
+                            color: '#ED7D31',
+                            marginTop: { xs: '20px', sm: '30px', xl: '50px' },
+                        }}>
+                        <BiTransfer size='1.5rem' />
+                        Convertion Type
+                    </Typography>
+                    <Box component={'div'}
+                        sx={{
+                            color: 'whitesmoke',
+                            marginLeft: '40px',
+                        }}>
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                     </Box>
-                    <Box component={'div'} className={styles.clear_all_and_select_btns_module}>
+                    <Box component={'div'}
+                        sx={{
+                            display: 'flex',
+                            columnGap: '15px',
+                            marginLeft: '40px',
+                        }}>
                         <ClearAllcheckBtn />
                         <SelectAllCheckBtn />
                     </Box>
                 </Box>
                 <Box component={'div'}
                     sx={{
-                        width: '50%',
                         display: 'flex',
-                        columnGap: '20px',
-                        alignItems: 'flex-start',
+                        flexDirection: 'column',
+                        rowGap: '15px',
+                        width: { xs: '100%', md: '50%' }
                     }}>
-                    <FilledTextField fieldLabel={'Sub ID'} fieldID={'sub-id-field'} />
-                    <FilledTextField fieldLabel={'Click ID'} fieldID={'click-id-field'} />
-                </Box>
-            </Box>
-            <Box component={'div'} className={styles.advance_filter_types_module}>
-                <Box component={'div'} className={styles.advance_filter_types_module_left}>
-                    <Box component={'div'} className={styles.advance_filter_types_module_left_checks}>
-                        <Typography variant='h5'><BiTransfer size='1.5rem' />Conversion currency</Typography>
-                        <Box component={'div'} className={styles.checkbox_module}>
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        </Box>
+                    <Typography variant='h5'
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            columnGap: '10px',
+                            fontSize: '1.2rem',
+                            color: '#ED7D31',
+                            marginTop: { xs: '20px', sm: '30px', xl: '50px' },
+                        }}>
+                        <TbStatusChange size='1.5rem' />
+                        Status
+                    </Typography>
+                    <Box component={'div'}
+                        sx={{
+                            color: 'whitesmoke',
+                            marginLeft: '40px',
+                        }}>
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
                     </Box>
-                    <Box component={'div'} className={styles.clear_all_and_select_btns_module}>
+                    <Box component={'div'}
+                        sx={{
+                            display: 'flex',
+                            columnGap: '15px',
+                            marginLeft: '40px',
+                        }}>
                         <ClearAllcheckBtn />
                         <SelectAllCheckBtn />
                     </Box>
                 </Box>
-                <Box component={'div'} className={styles.advance_filter_types_module_right}>
-                    <Box component={'div'} className={styles.advance_filter_types_module_left_checks}>
-                        <h2><TbStatusChange size='1.5rem' />Status</h2>
-                        <Box component={'div'} className={styles.checkbox_module}>
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        </Box>
-                        <Box component={'div'} className={styles.clear_all_and_select_btns_module}>
-                            <ClearAllcheckBtn />
-                            <SelectAllCheckBtn />
-                        </Box>
-                    </Box>
-                </Box>
             </Box>
-            <Box component={'div'} className={styles.advance_filter_types_module_column_show}>
-                <Box component={'div'} className={styles.advance_filter_types_module_left_checks}>
-                    <h2><RiInsertColumnLeft size='1.5rem' />Show additional columns</h2>
-                    <Box component={'div'} className={styles.checkbox_module}>
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                        <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
-                    </Box>
-                </Box>
 
-                <Box component={'div'} className={styles.clear_all_and_select_btns_module}>
+            {/* Additional column section */}
+            <Typography variant='h5'
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    columnGap: '10px',
+                    fontSize: '1.2rem',
+                    color: '#ED7D31',
+                    marginTop: '50px'
+                }}>
+                <RiInsertColumnRight size='1.5rem' />
+                Additional Columns
+            </Typography>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    rowGap: '15px',
+                    marginTop: '20px',
+                    paddingLeft: '40px',
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        color: 'whitesmoke',
+                    }}>
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                    <CheckBoxFilter label={'Install'} handleOnChange={handleOnChange} />
+                </Box>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        columnGap: '15px',
+                    }}>
                     <ClearAllcheckBtn />
                     <SelectAllCheckBtn />
                 </Box>
             </Box>
-            <Box component={'div'} className={styles.transaction_table_module}>
-                <Box component={'div'} className={styles.export_btn_module}>
+            <Box component={'div'} sx={{ mt: '30px' }}>
+                <Box component={'div'}
+                    sx={{
+                        textAlign: 'right',
+                        marginBottom: '20px',
+                    }}>
                     <ExportButton />
                 </Box>
                 <TransReportTable transReportAllData={rowsData} />
-                <Box component={'div'} className={styles.summay_module}>
-                    <Box component={'span'}>
-                        <h2>Samamry</h2>
-                        <p>$12000520</p>
+                <Box component={'div'}
+                    sx={{
+                        padding: '20px 20px',
+                        backgroundColor: '#1c2437',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        rowGap: '10px',
+                        marginBottom: '50px',
+                    }}>
+                    <Box component={'span'}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            backgroundColor: '#27374D',
+                            padding: '10px 20px',
+                            borderRadius: '4px',
+                            color: 'whitesmoke'
+                        }}>
+                        <Typography variant='body2'>Samamry</Typography>
+                        <Typography variant='body2' sx={{ color: '#ED7D31' }}>$12000520</Typography>
                     </Box>
-                    <Box component={'span'}>
-                        <h2>Total</h2>
-                        <p>$65251222</p>
+                    <Box component={'span'}
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            backgroundColor: '#27374D',
+                            padding: '10px 20px',
+                            borderRadius: '4px',
+                            color: 'whitesmoke'
+                        }}>
+                        <Typography variant='body2'>Total</Typography>
+                        <Typography variant='body2' sx={{ color: '#ED7D31' }}>$65251222</Typography>
                     </Box>
                 </Box>
             </Box>
