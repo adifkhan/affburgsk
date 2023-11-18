@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { DateRangePicker } from 'react-date-range'
-import styles from '@/styles/Dashboard/DateRangePickerComp.module.css';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { dateType } from '@/types/models';
+import { Box } from '@mui/material';
 
 type CalenderProps = {
   rangeDate: object;
@@ -14,12 +14,17 @@ type CalenderProps = {
 export default function DateRangePickerComp({ rangeDate, setRangeDate, handleChange }: CalenderProps) {
 
   return (
-    <div className={styles.date_range_parent}>
+    <Box component={'div'}
+      sx={{
+        display: 'flex',
+        flexWrap: 'nowrap',
+        flexDirection: 'row',
+        flex: '1 1 0px',
+      }}>
       <DateRangePicker
-        className={styles.date_range}
         ranges={[rangeDate]}
         maxDate={new Date()}
         onChange={handleChange} />
-    </div>
+    </Box>
   )
 }

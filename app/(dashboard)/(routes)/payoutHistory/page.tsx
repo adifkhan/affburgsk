@@ -1,30 +1,15 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
-import styles from '@/styles/Dashboard/PayoutHistory.module.css';
+import React, { useState } from 'react'
 import DateRangePickerComp from '@/components/dashComponents/DateRangePickerComp';
-import { Button, IconButton, styled } from '@mui/material';
-import { BsCalendar3 } from 'react-icons/bs';
+import { Box, TextField, IconButton, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import { PayoutHistoryData, dateType } from '@/types/models';
 import PayoutHistoryTable from '@/components/dashComponents/tables/PayoutHistoryTable';
-import { BiDownload } from 'react-icons/bi';
 import { AiOutlineClear } from 'react-icons/ai';
 import ExportButton from '@/components/ui/ExportButton';
 import DateRangeButton from '@/components/ui/DateRangeButton';
+import ReadOnlyDateShow from '@/components/ui/ReadOnlyDateShow';
 
-
-
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
 
 function createData(
     id: string,
@@ -77,8 +62,8 @@ const rowsData = [
 
 export default function PayoutHistory() {
     const today: any = new Date();
-    const tenDaysAgo: Date | number = today - 1000 * 60 * 60 * 24 * 10;
-    let diffDaysRef = useRef(0);
+    // const tenDaysAgo: Date | number = today - 1000 * 60 * 60 * 24 * 10;
+    // let diffDaysRef = useRef(0);
 
     const [calenderOpen, setCalenderOpen] = useState<boolean>(false);
     const [rangeDate, setRangeDate] = useState<dateType>({
@@ -86,20 +71,20 @@ export default function PayoutHistory() {
         endDate: new Date(),
         key: 'selection',
     })
-    const [yesterday, setYesterday] = useState<Date | number>(new Date(tenDaysAgo));
-    const [startDate, setStartDate] = useState<Date>(new Date(rangeDate.startDate));
-    const [endDate, setEndtDate] = useState<Date>(new Date(rangeDate.endDate));
-    const [filterClear, setFilterClear] = useState<boolean>(false);
+    // const [yesterday, setYesterday] = useState<Date | number>(new Date(tenDaysAgo));
+    // const [filterClear, setFilterClear] = useState<boolean>(false);
+    const startDate = format(new Date(rangeDate.startDate), 'dd-MMM-yyyy');
+    const endDate = format(new Date(rangeDate.endDate), 'dd-MMM-yyyy')
 
 
-    useEffect(() => {
-        const diffDays = rangeDate.endDate.getDate() - rangeDate.startDate.getDate();
-        diffDaysRef.current = diffDays;
+    // useEffect(() => {
+    //     const diffDays = rangeDate.endDate.getDate() - rangeDate.startDate.getDate();
+    //     diffDaysRef.current = diffDays;
 
-        if (diffDays > 0) {
-            setYesterday(rangeDate.startDate);
-        }
-    }, [diffDaysRef, filterClear, rangeDate.endDate, rangeDate.startDate, tenDaysAgo])
+    //     if (diffDays > 0) {
+    //         setYesterday(rangeDate.startDate);
+    //     }
+    // }, [diffDaysRef, filterClear, rangeDate.endDate, rangeDate.startDate, tenDaysAgo])
 
 
 
@@ -107,45 +92,67 @@ export default function PayoutHistory() {
         e.stopPropagation();
         setCalenderOpen((prev) => !prev)
     }
-    function handleChange(ranges: any, e: React.ChangeEvent<HTMLInputElement>) {
+    function handleChange(ranges: any) {
         setRangeDate(ranges.selection)
     }
-    // function handleClearFilter() {
-    //     setFilterClear(true)
-    //     console.log(filterClear)
-    // }
-
-    // const lastTenDaysData = () => rowsData.filter((row) => row.Date >= startDate && row.Date <= endDate)
-    // console.log(rangeDate)
-    // console.log(typeof (startDate))
-
     return (
-        <div onClick={() => setCalenderOpen(false)} className={styles.payout_history_container}>
-            <div className={styles.payout_history_heading}>
-                <h1>Payout Histoty</h1>
-            </div>
-            <div className={styles.date_range_show_module}>
-                <div className={styles.date_range_show_module_left}>
+        <Box component={'div'} onClick={() => setCalenderOpen(false)}
+            sx={{
+                height: '100%',
+                width: '100%',
+            }}>
+            <Typography sx={{
+                color: '#ED7D31',
+                fontSize: '2rem'
+            }} variant='h5'>Payout Histoty</Typography>
+            <Box component={'div'}
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginTop: '30px',
+                    marginBottom: '5px',
+                    justifyContent: 'space-between',
+                }}>
+                <Box component={'div'}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        alignItems: 'center',
+                        columnGap: '20px',
+                        rowGap: '10px',
+                        position: 'relative',
+                    }}>
                     <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
-                    <h5>{format(yesterday, "dd-MMM-yyyy")}</h5>
-                    <p>to</p>
-                    <h5>{format(rangeDate.endDate, "dd-MMM-yyyy")}</h5>
+                    <ReadOnlyDateShow label='Start date' value={startDate} />
+                    <ReadOnlyDateShow label='End date' value={endDate} />
                     {calenderOpen &&
-                        <div onClick={(e) => e.stopPropagation()} className={styles.date_range_container}>
+                        <Box component={'div'} onClick={(e) => e.stopPropagation()}
+                            sx={{
+                                marginTop: '2px',
+                                position: 'absolute',
+                                bottom: { xs: '-350px', sm: '-360px' },
+                                left: 0,
+                                zIndex: 1,
+                                width: '100%'
+                            }}>
                             <DateRangePickerComp
                                 rangeDate={rangeDate}
                                 setRangeDate={setRangeDate} handleChange={handleChange}
                             />
-                        </div>}
+                        </Box>}
                     <IconButton aria-label="delete">
-                        <AiOutlineClear size='1.2rem' color='#ED7D31' />
+                        <AiOutlineClear size='1.4rem' color='#ED7D31' />
                     </IconButton>
-                </div>
+                </Box>
                 <ExportButton />
-            </div>
-            <div className={styles.history_table_container}>
+            </Box>
+            <Box component={'div'}
+                sx={{
+                    marginTop: '50px',
+                    zIndex: -1,
+                }}>
                 <PayoutHistoryTable rowsAllData={rowsData} />
-            </div>
-        </div>
+            </Box>
+        </Box >
     )
 }

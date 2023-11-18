@@ -1,24 +1,24 @@
 /* .transaction_report_container {} */
 
-.transaction_heading_module {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 2rem;
-    color: #ED7D31;
-}
+/* .transaction_heading_module {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    fontSize: '2'rem',
+    color: '#ED7D31',
+} */
 
-.trans_filter_input_modules {
-    display: flex;
-    column-gap: 20px;
-    align-items: center;
-    background-color: #1c2437;
-    padding: 30px 20px;
-    border-radius: 4px;
-    margin-top: 50px;
-}
+/* .trans_filter_input_modules {
+    display: 'flex',
+        columnGap: '20px',
+        align-items: 'center',
+        backgroundColor: '#1c2437',
+        padding: '30px 20px',
+        borderRadius: '4px',
+        marginTop: '50px',
+} */
 
-.date_range_show_module_trans {
+/* .date_range_show_module_trans {
     display: flex;
     align-items: center;
     column-gap: 20px;
@@ -40,44 +40,44 @@
     bottom: -360px;
     left: -35px;
     z-index: 2;
-}
+} */
 
-.filter_btn_module {
-    display: flex;
-    align-items: center;
-    column-gap: 20px;
-    margin-top: 20px;
-}
+/* .filter_btn_module {
+    display: 'flex',
+        alignItems: 'center',
+        columnGap: '20px',
+        marginTop: '20px',
+} */
 
-.advance_filter_types_module {
-    display: flex;
-    margin-top: 50px;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    z-index: -1;
-}
+/* .advance_filter_types_module {
+    display: 'flex',
+    margin-top: '50px',
+    width: '100%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    zIndex: -1,
+} */
 
-.advance_filter_types_module_left {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
+/* .advance_filter_types_module_left {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '50%',
+} */
 
-.advance_filter_types_module_left h2 {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-    font-size: 1.2rem;
-    color: #ED7D31;
-}
+/* .advance_filter_types_module_left h2 {
+    display: 'flex',
+    alignItems: 'center',
+    columnGap: '10px',
+    fontSize: '1.2rem',
+    color:'#ED7D31',
+} */
 
-.advance_filter_types_module_right {
-    width: 50%;
-    display: flex;
-    column-gap: 20px;
-    align-items: flex-start;
-}
+/* .advance_filter_types_module_right {
+    width: '50%',
+        display: 'flex',
+        columnGap: '20px',
+        alignItems: 'flex-start',
+} */
 
 .advance_filter_types_module_right h2 {
     display: flex;
