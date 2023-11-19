@@ -100,7 +100,10 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
     //for theme state from redux
     const themeDark = useAppSelector((state) => state.themeReducer.theme);
     const dispatch = useDispatch<AppDispatch>();
-    const [hover, setHover] = useState<string>('')
+    //for hover inside style
+    const [hover, setHover] = useState<string>('');
+
+
 
     //for dropdown button handle
     function handleDropdownOpen(id: string) {
@@ -113,7 +116,6 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
         setSidebarOpen(true)
     }
 
-
     return (
         <Box component={'div'}
             sx={{
@@ -124,6 +126,7 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
                 backgroundColor: '#121622',
             }}>
             <Box component={'div'}
+                onClick={() => setSidebarOpen(false)}
                 sx={sidebarOpen ?
                     {
                         width: { xs: '100%', md: '30%', lg: '20%' },
@@ -152,6 +155,7 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
                         transition: { xs: 0, md: '.3s' }
                     }}>
                 <Box component={'div'}
+                    onClick={(e) => e.stopPropagation()}
                     sx={sidebarOpen ?
                         {
                             backgroundColor: '#1c2437',

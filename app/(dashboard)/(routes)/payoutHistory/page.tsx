@@ -113,6 +113,7 @@ export default function PayoutHistory() {
                     marginBottom: '5px',
                     justifyContent: 'space-between',
                     flexDirection: { xs: 'column', sm: 'row' },
+                    position: 'relative',
                     width: '100%'
                 }}>
                 <Box component={'div'}
@@ -122,7 +123,6 @@ export default function PayoutHistory() {
                         alignItems: 'center',
                         columnGap: '20px',
                         rowGap: '10px',
-                        position: 'relative',
                     }}>
                     <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
                     <ReadOnlyDateShow label='Start date' value={startDate} />
@@ -130,12 +130,10 @@ export default function PayoutHistory() {
                     {calenderOpen &&
                         <Box component={'div'} onClick={(e) => e.stopPropagation()}
                             sx={{
-                                marginTop: '2px',
                                 position: 'absolute',
-                                bottom: { xs: '-350px', sm: '-360px' },
                                 left: 0,
-                                zIndex: 1,
-                                width: '100%'
+                                bottom: { xs: '-165px', sm: '-355px', lg: '-360px' },
+                                zIndex: 30,
                             }}>
                             <DateRangePickerComp
                                 rangeDate={rangeDate}

@@ -1,8 +1,6 @@
-import React, { ChangeEventHandler } from 'react'
+import React from 'react'
 import { TextField, Box } from '@mui/material';
 import styles from '@/styles/SignIn.module.css'
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { SignUpInputTypes } from '@/types/models';
 
 type EmailPropsType = {
     register: any;
@@ -34,16 +32,16 @@ export default function EmailInput({ register, errors, label, fieldID }: EmailPr
                         })}
                     sx={{
                         '& .MuiFormLabel-root': {
-                            fontSize: { xs: '.7rem', md: '.8rem' },
-                            fontWeight: 600,
+                            // fontSize: { xs: '1rem', md: '1rem' },
+                            fontWeight: 500,
                         },
                         '& label.Mui-focused': {
                             color: '#1c2437',
                         },
                         '& .MuiOutlinedInput-root': {
-                            fontSize: { xs: 12, md: 14 },
+                            // fontSize: { xs: 12, md: 14 },
                             backgroundColor: '#ebebeb',
-                            height: { xs: 35, md: 40 },
+                            // height: { xs: 35, md: 40 },
                             '&.Mui-focused fieldset': {
                                 borderColor: '#2a3064',
                                 borderWidth: '2px'
@@ -56,7 +54,7 @@ export default function EmailInput({ register, errors, label, fieldID }: EmailPr
                             },
                         },
                     }}
-                    onChange={e => console.log(e.target.value)}
+                // onChange={e => console.log(e.target.value)}
                 />
                 <label className={styles.validate_label} htmlFor="email">
                     <span>{errors.email?.message}</span>

@@ -41,6 +41,14 @@
     position: relative;
 }
 
+.validate_label {
+    color: indianred;
+    padding-left: 14px;
+    margin-top: -40px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
 .step_terms {
     display: flex;
     flex-direction: column;

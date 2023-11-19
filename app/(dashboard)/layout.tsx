@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState } from 'react';
 import { Props } from '@/types/models';
 import Header from '@/components/dashComponents/Header';
@@ -6,7 +7,7 @@ import Sidebar from '@/components/dashComponents/Sidebar';
 
 export default function DashboardLayout({ children }: Props) {
 
-    const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
+    const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
     const [getDropdown, setGetDropdown] = useState<string | null>(null)
     const [dropDownOpen, setDropDownOpen] = useState<string | null>(null);
 
