@@ -2,7 +2,7 @@ import { CountryType } from '@/types/models';
 import { Autocomplete, TextField, Box } from '@mui/material'
 import styles from '@/styles/SignIn.module.css'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 
 type CountrySelectProps = {
     register: any;
@@ -19,15 +19,15 @@ export default function CountrySelect({ register, countries, errors }: CountrySe
                 sx={{
 
                     '& .MuiFormLabel-root': {
-                        fontSize: '.8rem',
-                        fontWeight: 600
+                        // fontSize: '.8rem',
+                        fontWeight: 500
                     },
                     '& label.Mui-focused': {
                         color: '#1c2437',
                     },
                     '& .MuiOutlinedInput-root': {
-                        fontSize: { xs: 12, md: 14 },
-                        height: { xs: 35, md: 40 },
+                        // fontSize: { xs: 12, md: 14 },
+                        // height: { xs: 35, md: 40 },
                         backgroundColor: '#ebebeb',
                         '&.Mui-focused fieldset': {
                             borderColor: '#1c2437',
@@ -61,17 +61,24 @@ export default function CountrySelect({ register, countries, errors }: CountrySe
                 )}
                 renderInput={(params) => (
                     <TextField
-                        required
                         {...params}
                         label="Choose a country"
                         inputProps={{
                             ...params.inputProps
                         }}
-                        {...register('country')}
+                        {...register('country',
+                            {
+                                required: {
+                                    value: true,
+                                    message: 'Country is required',
+                                },
+                            })}
                     />
-                )
-                }
+                )}
             />
+            <label className={styles.validate_label} htmlFor="countrySelect">
+                <span className={styles.validate_label}>{errors.country?.message}</span>
+            </label>
         </>
     )
 }

@@ -184,7 +184,6 @@ export default function MainReport() {
                     <ReadOnlyDateShow label='End date' value={endDate} />
                     {calenderOpen && <Box component={'div'}
                         sx={{
-                            marginTop: '2px',
                             position: 'absolute',
                             left: 0,
                             bottom: { xs: '-240px', sm: '-355px', lg: '-360px' },

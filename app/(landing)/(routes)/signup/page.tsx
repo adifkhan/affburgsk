@@ -1,4 +1,5 @@
 'use client'
+
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/SignUp.module.css';
@@ -6,7 +7,7 @@ import { SiIcon } from 'react-icons/si';
 import { Box, Button, Checkbox, FormControlLabel, Step, StepLabel, Stepper, Typography } from '@mui/material';
 import { CountryType, SignUpInputTypes } from '@/types/models';
 import TextInput from '@/components/ui/TextInput';
-import { useForm, SubmitHandler, UseFormRegister } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import EmailInput from '@/components/ui/EmailInput';
 import PasswordInput from '@/components/ui/PasswordInput';
 import CountrySelect from '@/components/ui/CountrySelect';
@@ -20,7 +21,6 @@ export default function SignUp() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [formPage, setFormPage] = useState<string>('general');
     const [passShow, setPassShow] = useState<boolean>(false);
-    const [generalInfo, setGeneralInfo] = useState<object | null>(null);
     const [termCheckValue, setTermCheckValue] = useState<boolean>(false);
     const [emailError, setEmailError] = useState<string>('');
 
@@ -48,7 +48,6 @@ export default function SignUp() {
         if (data.email !== data.confirmEmail) {
             return setEmailError("Email didn't match")
         }
-        setGeneralInfo({ ...generalInfo, data })
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
         setEmailError('')
     };
@@ -62,7 +61,7 @@ export default function SignUp() {
             <Typography
                 sx={{
                     color: '#00052D',
-                    fontSize: { xs: 16, sm: 25, md: 25, lg: 30 },
+                    fontSize: { xs: 20, sm: 25, md: 25, lg: 30 },
                     fontWeight: 600,
                     marginBottom: '30px'
                 }}

@@ -25,16 +25,16 @@ export default function PasswordInput({ passShow, setPassShow, register, errors 
                 placeholder='your password'
                 sx={{
                     '& .MuiFormLabel-root': {
-                        fontSize: { xs: '.7rem', md: '.8rem' },
-                        fontWeight: 600,
+                        // fontSize: { xs: '.7rem', md: '.8rem' },
+                        fontWeight: 500,
                     },
                     '& label.Mui-focused': {
                         color: '#1c2437',
                     },
                     '& .MuiOutlinedInput-root': {
-                        fontSize: { xs: 12, md: 14 },
+                        // fontSize: { xs: 12, md: 14 },
                         backgroundColor: '#ebebeb',
-                        height: { xs: 35, md: 40 },
+                        // height: { xs: 35, md: 40 },
                         '&.Mui-focused fieldset': {
                             borderColor: '#2a3064',
                             borderWidth: '2px'
