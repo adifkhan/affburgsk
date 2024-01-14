@@ -8,13 +8,14 @@ import { PiPaperPlaneTiltLight } from 'react-icons/pi';
 import { TbHomeSignal, TbNavigationDiscount, TbProgressHelp, TbReport } from 'react-icons/tb';
 import { BsQuestionDiamond, BsQuestionLg, BsSpeedometer2 } from 'react-icons/bs';
 import { DashboardMenuType } from '@/types/models';
-import { RiSecurePaymentLine, RiShutDownLine } from 'react-icons/ri';
+import { RiLuggageDepositLine, RiSecurePaymentLine, RiShutDownLine } from 'react-icons/ri';
 import { MdOutlinePayments } from 'react-icons/md';
 import { usePathname, useRouter } from 'next/navigation';
 import { AppDispatch, useAppSelector } from '@/app/GlobalRedux/store';
 import { useDispatch } from 'react-redux';
 import { Box, Typography, Button, Tooltip } from '@mui/material';
 import { LiaEdit } from 'react-icons/lia';
+import { IoBarChartOutline } from 'react-icons/io5';
 
 
 type SidebarProps = {
@@ -61,6 +62,16 @@ const DataMenus: DashboardMenuType[] = [
         icon: <TbNavigationDiscount />
     },
     {
+        title: 'Deposite',
+        path: '/deposite',
+        icon: <RiLuggageDepositLine />
+    },
+    {
+        title: 'Statistics',
+        path: '/statistics',
+        icon: <IoBarChartOutline />
+    },
+    {
         title: 'Postback URls',
         path: '/postbackURLs',
         icon: <HiLink />
@@ -70,8 +81,12 @@ const DataMenus: DashboardMenuType[] = [
         path: '/payoutHistory',
         icon: <RiSecurePaymentLine />
     },
+    {
+        title: 'Tracking',
+        path: '/tracking',
+        icon: <RiSecurePaymentLine />
+    },
 ]
-
 const ReportMenus: DashboardMenuType[] = [
     {
         title: 'Main Report',
@@ -84,7 +99,30 @@ const ReportMenus: DashboardMenuType[] = [
         icon: <MdOutlinePayments />
     },
 ]
-
+const campaignMenus: DashboardMenuType[] = [
+    {
+        title: 'Create New Campaign',
+        path: '/createNewCampaign',
+        icon: <HiOutlineDocumentReport />
+    },
+    {
+        title: 'Manage Campaign',
+        path: '/manageCampaign',
+        icon: <MdOutlinePayments />
+    },
+]
+const sourcsMenus: DashboardMenuType[] = [
+    {
+        title: 'CPC Sourcesn',
+        path: '/cpcSources',
+        icon: <HiOutlineDocumentReport />
+    },
+    {
+        title: 'CPI/CPA Sources',
+        path: '/cpi/cpaSources',
+        icon: <MdOutlinePayments />
+    },
+]
 const HelpMenus: DashboardMenuType[] = [
     {
         title: 'FQA',
@@ -226,7 +264,7 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
                             width: "100%",
                             backgroundColor: '#293247',
                             justifyContent: 'space-between',
-                            mb: 5,
+                            mb: 2,
                             borderRadius: `${sidebarOpen ? '2px' : '4px'}`,
                             transition: '.3s',
                         }}>
@@ -264,8 +302,7 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
                     </Box>
 
                     {/*****Dashboard home*****/}
-                    <Box component={'div'}
-                    >
+                    <Box component={'div'}>
                         <Link href={'/dashboard'}
                             onMouseEnter={() => setHover('Dashboard')}
                             onMouseLeave={() => setHover('')}
@@ -307,21 +344,9 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
                             </Box>
                         </Link>
                     </Box>
-
                     {/*****Dashboard Menus*****/}
                     {/* Data section */}
-                    <Box component={'div'} sx={{ my: 3 }}>
-                        <Typography variant='body2'
-                            sx={{
-                                fontFamily: 'Dosis',
-                                letterSpacing: '.1ch',
-                                color: 'darkGrey',
-                                fontSize: '1rem',
-                                pb: 2,
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 1,
-                            }}>Data <Box sx={{ width: '100%', borderBottom: '1px dashed #444444' }} component={'span'}></Box></Typography>
+                    <Box component={'div'}>
                         <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', gap: .5 }}>
                             {
                                 DataMenus.map((menu: DashboardMenuType, index: number) =>
@@ -370,268 +395,458 @@ export default function Sidebar({ children, sidebarOpen, setSidebarOpen, dropDow
                                 )
                             }
                         </Box>
-
-                        {/* Reports section */}
-                        <Typography variant='body2'
-                            sx={{
-                                fontFamily: 'Dosis',
-                                letterSpacing: '.1ch',
-                                color: 'darkGrey',
-                                fontSize: '1rem',
-                                pb: 2,
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 1,
-                                mt: 3,
-                            }}>Reports <Box sx={{ width: '100%', borderBottom: '1px dashed #444444' }} component={'span'}></Box></Typography>
-                        <Box component={'div'}>
-                            <Box
-                                component={'div'}
-                                onMouseEnter={() => setHover('Reports')}
-                                onMouseLeave={() => setHover('')}
-                                onClick={() => handleClick('reports')}
-                                style={sidebarOpen ?
-                                    {
-                                        display: 'flex',
-                                        color: 'whitesmoke',
-                                        alignItems: 'center',
-                                        justifyContent: 'space-between',
-                                        backgroundColor: `${hover === "Reports" || dropDownOpen === 'reports' ? '#3d475f63' : ''}`,
-                                        gap: '10px',
-                                        textTransform: 'capitalize',
-                                        padding: '8px',
-                                        borderRadius: '2px',
-                                        transition: '.2s',
-                                        fontSize: '.8rem',
-                                        width: '100%',
-                                        cursor: 'pointer'
-                                    }
-                                    :
-                                    {
-                                        display: 'flex',
-                                        color: 'whitesmoke',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        backgroundColor: `${getDropdown === 'reports' || hover === 'Reports' ? '#3d475f63' : ''}`,
-                                        textTransform: 'capitalize',
-                                        padding: '8px',
-                                        borderRadius: '2px',
-                                        transition: '.2s',
-                                        fontSize: '.8rem',
-                                        cursor: 'pointer'
-                                    }}>
-                                <Box component={'span'} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <TbReport size={18} />
-                                    <Typography variant='body2'
-                                        sx={sidebarOpen ?
-                                            {
-                                                display: 'block', fontFamily: 'Dosis', letterSpacing: '.1ch'
-                                            }
-                                            :
-                                            { display: 'none' }}>
-                                        Reports
-                                    </Typography>
-                                </Box>
-                                <Box component={'span'}
-                                    sx={dropDownOpen !== 'reports' || !sidebarOpen ?
+                        {/* campaign section */}
+                        <Box
+                            component={'div'}
+                            onMouseEnter={() => setHover('Campaigns')}
+                            onMouseLeave={() => setHover('')}
+                            onClick={() => handleClick('campaigns')}
+                            style={sidebarOpen ?
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    backgroundColor: `${hover === "Campaigns" || dropDownOpen === 'campaigns' ? '#3d475f63' : ''}`,
+                                    gap: '10px',
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    width: '100%',
+                                    cursor: 'pointer'
+                                }
+                                :
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: `${getDropdown === 'campaigns' || hover === 'Campaigns' ? '#3d475f63' : ''}`,
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    cursor: 'pointer'
+                                }}>
+                            <Box component={'span'} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <TbReport size={18} />
+                                <Typography variant='body2'
+                                    sx={sidebarOpen ?
                                         {
-                                            display: `${sidebarOpen ? 'block' : 'none'}`,
-                                            fontSize: '.8rem',
-                                            transition: '.2s',
+                                            display: 'block', fontFamily: 'Dosis', letterSpacing: '.1ch'
                                         }
                                         :
-                                        {
-                                            display: `${sidebarOpen ? 'block' : 'none'}`,
-                                            fontSize: '.8rem',
-                                            transform: 'rotate(-90deg)',
-                                            transition: '.2s',
-                                        }}>
-                                    <AiOutlineRight />
-                                </Box>
+                                        { display: 'none' }}>
+                                    Campaigns
+                                </Typography>
                             </Box>
-                            <Box component={'div'}
-                                sx={dropDownOpen === 'reports' ?
+                            <Box component={'span'}
+                                sx={dropDownOpen !== 'campaigns' || !sidebarOpen ?
                                     {
-                                        height: 'fit-content',
-                                        transformOrigin: 'top',
-                                        backgroundColor: '#121622',
-                                        padding: '10px 0 10px 0',
-                                        transition: '.3s',
-
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transition: '.2s',
                                     }
                                     :
                                     {
-                                        height: 0,
-                                        transformOrigin: 'top',
-                                        transition: '.3s',
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transform: 'rotate(-90deg)',
+                                        transition: '.2s',
                                     }}>
-                                {
-                                    ReportMenus.map((menu: DashboardMenuType, index: number) =>
-                                        <Link
-                                            onMouseEnter={() => setHover(menu.title)}
-                                            onMouseLeave={() => setHover('')}
-                                            key={index}
-                                            href={menu.path}
-                                            style={dropDownOpen === 'reports' ? {
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                columnGap: '10px',
-                                                color: `${pathname === menu.path || hover === menu.title ? '#ED7D31' : 'whiteSmoke'}`,
-                                                textTransform: 'capitalize',
-                                                letterSpacing: '.1ch',
-                                                fontSize: '.8rem',
-                                                padding: '8px',
-                                                marginLeft: '20px',
-                                                borderRadius: '2px',
-                                                whiteSpace: 'nowrap',
-                                                transition: '.2s',
-                                            } : { display: 'none' }}>
-                                            {/* <Box component={'span'}
-                                                sx={{ fontSize: '18px' }}>
-                                                {menu.icon}
-                                            </Box> */}
-                                            <Box component={'span'}>
-                                                {menu.title}
-                                            </Box>
-                                        </Link>
-                                    )
-                                }
+                                <AiOutlineRight />
                             </Box>
                         </Box>
-
-                        {/* Contact center */}
-                        <Typography variant='body2'
-                            sx={{
-                                fontFamily: 'Dosis',
-                                letterSpacing: '.1ch',
-                                color: 'darkGrey',
-                                fontSize: '1rem',
-                                pb: 2,
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 1,
-                                mt: 3,
-                                whiteSpace: 'nowrap'
-                            }}>Contact<Box sx={{ width: '100%', borderBottom: '1px dashed #444444' }} component={'span'}></Box></Typography>
-                        <Box component={'div'}>
-                            <Box
-                                component={'div'}
-                                onMouseEnter={() => setHover('Help Center')}
-                                onMouseLeave={() => setHover('')}
-                                onClick={() => handleClick('contact')}
-                                style={sidebarOpen ?
-                                    {
-                                        display: 'flex',
-                                        color: 'whitesmoke',
-                                        alignItems: 'center',
-                                        justifyContent: 'space-between',
-                                        backgroundColor: `${hover === "Help Center" || dropDownOpen === 'contact' ? '#3d475f63' : ''}`,
-                                        columnGap: '10px',
-                                        textTransform: 'capitalize',
-                                        padding: '8px',
-                                        borderRadius: '2px',
-                                        transition: '.2s',
-                                        fontSize: '.8rem',
-                                        width: '100%',
-                                        whiteSpace: 'nowrap',
-                                        cursor: 'pointer',
-                                    }
-                                    :
-                                    {
-                                        display: 'flex',
-                                        color: 'whitesmoke',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        backgroundColor: `${getDropdown === 'contact' || hover === 'Help Center' ? '#3d475f63' : ''}`,
-                                        gap: '10px',
-                                        textTransform: 'capitalize',
-                                        padding: '8px',
-                                        borderRadius: '2px',
-                                        transition: '.2s',
-                                        fontSize: '.8rem',
-                                        width: '100%',
-                                        cursor: 'pointer',
-                                    }}>
-                                <Box component={'span'} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                    <TbProgressHelp size={18} />
-                                    <Typography variant='body2'
-                                        sx={sidebarOpen ?
-                                            {
-                                                display: 'block', fontFamily: 'Dosis', letterSpacing: '.1ch'
-                                            }
-                                            :
-                                            { display: 'none' }}>
-                                        Help Center
-                                    </Typography>
-                                </Box>
-                                <Box component={'span'}
-                                    sx={dropDownOpen !== 'contact' || !sidebarOpen ?
-                                        {
-                                            display: `${sidebarOpen ? 'block' : 'none'}`,
-                                            fontSize: '.8rem',
-                                            transition: '.2s',
-                                        }
-                                        :
-                                        {
-                                            display: `${sidebarOpen ? 'block' : 'none'}`,
-                                            fontSize: '.8rem',
-                                            transform: 'rotate(-90deg)',
-                                            transition: '.2s',
-                                        }}>
-                                    <AiOutlineRight />
-                                </Box>
-                            </Box>
-                            <Box component={'div'}
-                                sx={dropDownOpen === 'contact' ?
-                                    {
-                                        height: 'fit-content',
-                                        transformOrigin: 'top',
-                                        backgroundColor: '#121622',
-                                        padding: '10px 0 10px 0',
-                                        transition: '.3s',
-
-                                    }
-                                    :
-                                    {
-                                        height: 0,
-                                        transformOrigin: 'top',
-                                        transition: '.3s',
-                                    }}>
+                        <Box component={'div'}
+                            sx={dropDownOpen === 'campaigns' ?
                                 {
-                                    HelpMenus.map((menu: DashboardMenuType, index: number) =>
-                                        <Link
-                                            onMouseEnter={() => setHover(menu.title)}
-                                            onMouseLeave={() => setHover('')}
-                                            key={index}
-                                            href={menu.path}
-                                            style={dropDownOpen === 'contact' ? {
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                columnGap: '10px',
-                                                color: `${pathname === menu.path || hover === menu.title ? '#ED7D31' : 'whiteSmoke'}`,
-                                                textTransform: 'capitalize',
-                                                letterSpacing: '.1ch',
-                                                fontSize: '.8rem',
-                                                padding: '8px',
-                                                marginLeft: '20px',
-                                                borderRadius: '2px',
-                                                whiteSpace: 'nowrap',
-                                                transition: '.2s',
-                                            } : { display: 'none' }}>
-                                            {/* <Box component={'span'}
+                                    height: 'fit-content',
+                                    transformOrigin: 'top',
+                                    backgroundColor: '#121622',
+                                    padding: '10px 0 10px 0',
+                                    transition: '.3s',
+
+                                }
+                                :
+                                {
+                                    height: 0,
+                                    transformOrigin: 'top',
+                                    transition: '.3s',
+                                }}>
+                            {
+                                campaignMenus.map((menu: DashboardMenuType, index: number) =>
+                                    <Link
+                                        onMouseEnter={() => setHover(menu.title)}
+                                        onMouseLeave={() => setHover('')}
+                                        key={index}
+                                        href={menu.path}
+                                        style={dropDownOpen === 'campaigns' ? {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '10px',
+                                            color: `${pathname === menu.path || hover === menu.title ? '#ED7D31' : 'whiteSmoke'}`,
+                                            textTransform: 'capitalize',
+                                            letterSpacing: '.1ch',
+                                            fontSize: '.8rem',
+                                            padding: '8px',
+                                            marginLeft: '20px',
+                                            borderRadius: '2px',
+                                            whiteSpace: 'nowrap',
+                                            transition: '.2s',
+                                        } : { display: 'none' }}>
+                                        {/* <Box component={'span'}
                                                 sx={{ fontSize: '18px' }}>
                                                 {menu.icon}
                                             </Box> */}
-                                            <Box component={'span'}>
-                                                {menu.title}
-                                            </Box>
-                                        </Link>
-                                    )
+                                        <Box component={'span'}>
+                                            {menu.title}
+                                        </Box>
+                                    </Link>
+                                )
+                            }
+                        </Box>
+                        {/* Sources section */}
+                        <Box
+                            component={'div'}
+                            onMouseEnter={() => setHover('Sources')}
+                            onMouseLeave={() => setHover('')}
+                            onClick={() => handleClick('sources')}
+                            style={sidebarOpen ?
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    backgroundColor: `${hover === "Sources" || dropDownOpen === 'sources' ? '#3d475f63' : ''}`,
+                                    gap: '10px',
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    width: '100%',
+                                    cursor: 'pointer'
                                 }
+                                :
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: `${getDropdown === 'sources' || hover === 'Sources' ? '#3d475f63' : ''}`,
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    cursor: 'pointer'
+                                }}>
+                            <Box component={'span'} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <TbReport size={18} />
+                                <Typography variant='body2'
+                                    sx={sidebarOpen ?
+                                        {
+                                            display: 'block', fontFamily: 'Dosis', letterSpacing: '.1ch'
+                                        }
+                                        :
+                                        { display: 'none' }}>
+                                    Sources
+                                </Typography>
                             </Box>
+                            <Box component={'span'}
+                                sx={dropDownOpen !== 'sources' || !sidebarOpen ?
+                                    {
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transition: '.2s',
+                                    }
+                                    :
+                                    {
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transform: 'rotate(-90deg)',
+                                        transition: '.2s',
+                                    }}>
+                                <AiOutlineRight />
+                            </Box>
+                        </Box>
+                        <Box component={'div'}
+                            sx={dropDownOpen === 'sources' ?
+                                {
+                                    height: 'fit-content',
+                                    transformOrigin: 'top',
+                                    backgroundColor: '#121622',
+                                    padding: '10px 0 10px 0',
+                                    transition: '.3s',
+
+                                }
+                                :
+                                {
+                                    height: 0,
+                                    transformOrigin: 'top',
+                                    transition: '.3s',
+                                }}>
+                            {
+                                sourcsMenus.map((menu: DashboardMenuType, index: number) =>
+                                    <Link
+                                        onMouseEnter={() => setHover(menu.title)}
+                                        onMouseLeave={() => setHover('')}
+                                        key={index}
+                                        href={menu.path}
+                                        style={dropDownOpen === 'sources' ? {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '10px',
+                                            color: `${pathname === menu.path || hover === menu.title ? '#ED7D31' : 'whiteSmoke'}`,
+                                            textTransform: 'capitalize',
+                                            letterSpacing: '.1ch',
+                                            fontSize: '.8rem',
+                                            padding: '8px',
+                                            marginLeft: '20px',
+                                            borderRadius: '2px',
+                                            whiteSpace: 'nowrap',
+                                            transition: '.2s',
+                                        } : { display: 'none' }}>
+                                        <Box component={'span'}>
+                                            {menu.title}
+                                        </Box>
+                                    </Link>
+                                )
+                            }
+                        </Box>
+                        {/* Reports section */}
+                        <Box
+                            component={'div'}
+                            onMouseEnter={() => setHover('Reports')}
+                            onMouseLeave={() => setHover('')}
+                            onClick={() => handleClick('reports')}
+                            style={sidebarOpen ?
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    backgroundColor: `${hover === "Reports" || dropDownOpen === 'reports' ? '#3d475f63' : ''}`,
+                                    gap: '10px',
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    width: '100%',
+                                    cursor: 'pointer'
+                                }
+                                :
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: `${getDropdown === 'reports' || hover === 'Reports' ? '#3d475f63' : ''}`,
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    cursor: 'pointer'
+                                }}>
+                            <Box component={'span'} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <TbReport size={18} />
+                                <Typography variant='body2'
+                                    sx={sidebarOpen ?
+                                        {
+                                            display: 'block', fontFamily: 'Dosis', letterSpacing: '.1ch'
+                                        }
+                                        :
+                                        { display: 'none' }}>
+                                    Reports
+                                </Typography>
+                            </Box>
+                            <Box component={'span'}
+                                sx={dropDownOpen !== 'reports' || !sidebarOpen ?
+                                    {
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transition: '.2s',
+                                    }
+                                    :
+                                    {
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transform: 'rotate(-90deg)',
+                                        transition: '.2s',
+                                    }}>
+                                <AiOutlineRight />
+                            </Box>
+                        </Box>
+                        <Box component={'div'}
+                            sx={dropDownOpen === 'reports' ?
+                                {
+                                    height: 'fit-content',
+                                    transformOrigin: 'top',
+                                    backgroundColor: '#121622',
+                                    padding: '10px 0 10px 0',
+                                    transition: '.3s',
+
+                                }
+                                :
+                                {
+                                    height: 0,
+                                    transformOrigin: 'top',
+                                    transition: '.3s',
+                                }}>
+                            {
+                                ReportMenus.map((menu: DashboardMenuType, index: number) =>
+                                    <Link
+                                        onMouseEnter={() => setHover(menu.title)}
+                                        onMouseLeave={() => setHover('')}
+                                        key={index}
+                                        href={menu.path}
+                                        style={dropDownOpen === 'reports' ? {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '10px',
+                                            color: `${pathname === menu.path || hover === menu.title ? '#ED7D31' : 'whiteSmoke'}`,
+                                            textTransform: 'capitalize',
+                                            letterSpacing: '.1ch',
+                                            fontSize: '.8rem',
+                                            padding: '8px',
+                                            marginLeft: '20px',
+                                            borderRadius: '2px',
+                                            whiteSpace: 'nowrap',
+                                            transition: '.2s',
+                                        } : { display: 'none' }}>
+                                        {/* <Box component={'span'}
+                                                sx={{ fontSize: '18px' }}>
+                                                {menu.icon}
+                                            </Box> */}
+                                        <Box component={'span'}>
+                                            {menu.title}
+                                        </Box>
+                                    </Link>
+                                )
+                            }
+                        </Box>
+                        {/* Contact center */}
+                        <Box
+                            component={'div'}
+                            onMouseEnter={() => setHover('Help Center')}
+                            onMouseLeave={() => setHover('')}
+                            onClick={() => handleClick('contact')}
+                            style={sidebarOpen ?
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                    backgroundColor: `${hover === "Help Center" || dropDownOpen === 'contact' ? '#3d475f63' : ''}`,
+                                    columnGap: '10px',
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    width: '100%',
+                                    whiteSpace: 'nowrap',
+                                    cursor: 'pointer',
+                                }
+                                :
+                                {
+                                    display: 'flex',
+                                    color: 'whitesmoke',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: `${getDropdown === 'contact' || hover === 'Help Center' ? '#3d475f63' : ''}`,
+                                    gap: '10px',
+                                    textTransform: 'capitalize',
+                                    padding: '8px',
+                                    borderRadius: '2px',
+                                    transition: '.2s',
+                                    fontSize: '.8rem',
+                                    width: '100%',
+                                    cursor: 'pointer',
+                                }}>
+                            <Box component={'span'} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                <TbProgressHelp size={18} />
+                                <Typography variant='body2'
+                                    sx={sidebarOpen ?
+                                        {
+                                            display: 'block', fontFamily: 'Dosis', letterSpacing: '.1ch'
+                                        }
+                                        :
+                                        { display: 'none' }}>
+                                    Help Center
+                                </Typography>
+                            </Box>
+                            <Box component={'span'}
+                                sx={dropDownOpen !== 'contact' || !sidebarOpen ?
+                                    {
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transition: '.2s',
+                                    }
+                                    :
+                                    {
+                                        display: `${sidebarOpen ? 'block' : 'none'}`,
+                                        fontSize: '.8rem',
+                                        transform: 'rotate(-90deg)',
+                                        transition: '.2s',
+                                    }}>
+                                <AiOutlineRight />
+                            </Box>
+                        </Box>
+                        <Box component={'div'}
+                            sx={dropDownOpen === 'contact' ?
+                                {
+                                    height: 'fit-content',
+                                    transformOrigin: 'top',
+                                    backgroundColor: '#121622',
+                                    padding: '10px 0 10px 0',
+                                    transition: '.3s',
+
+                                }
+                                :
+                                {
+                                    height: 0,
+                                    transformOrigin: 'top',
+                                    transition: '.3s',
+                                }}>
+                            {
+                                HelpMenus.map((menu: DashboardMenuType, index: number) =>
+                                    <Link
+                                        onMouseEnter={() => setHover(menu.title)}
+                                        onMouseLeave={() => setHover('')}
+                                        key={index}
+                                        href={menu.path}
+                                        style={dropDownOpen === 'contact' ? {
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            columnGap: '10px',
+                                            color: `${pathname === menu.path || hover === menu.title ? '#ED7D31' : 'whiteSmoke'}`,
+                                            textTransform: 'capitalize',
+                                            letterSpacing: '.1ch',
+                                            fontSize: '.8rem',
+                                            padding: '8px',
+                                            marginLeft: '20px',
+                                            borderRadius: '2px',
+                                            whiteSpace: 'nowrap',
+                                            transition: '.2s',
+                                        } : { display: 'none' }}>
+                                        {/* <Box component={'span'}
+                                                sx={{ fontSize: '18px' }}>
+                                                {menu.icon}
+                                            </Box> */}
+                                        <Box component={'span'}>
+                                            {menu.title}
+                                        </Box>
+                                    </Link>
+                                )
+                            }
                         </Box>
                     </Box>
-
                     {/* manager contact */}
                     <Box component={'div'}
                         sx={sidebarOpen ?
