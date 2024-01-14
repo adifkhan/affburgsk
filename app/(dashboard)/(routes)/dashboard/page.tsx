@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, IconButton, Tooltip, Box, Typography, Card } from '@mui/material';
+import { Button, IconButton, Tooltip, Box, Typography, Card, CardContent } from '@mui/material';
 import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
 import { Offer, PieChartData, TopCardData, transactionData } from '@/types/models';
 import { FaUserPlus } from 'react-icons/fa';
@@ -16,6 +16,8 @@ import { DonutChartCamp } from '@/components/dashComponents/charts/DonutChartCam
 import ReportByDays from '@/components/dashComponents/tables/ReportByDays';
 import BarChart from '@/components/dashComponents/charts/BarChart';
 import ExportButton from '@/components/ui/ExportButton';
+import { BsCurrencyDollar } from 'react-icons/bs';
+import { CiCirclePlus, CiImageOn } from 'react-icons/ci';
 
 
 
@@ -196,43 +198,74 @@ export default function DashboardHomePage() {
     }
 
     return (
-        <>
+        <Box component={'div'}
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.5,
+            }}>
             <Box component={'div'} sx={{
                 display: 'flex',
+                flexWrap: 'wrap',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                color: 'whiteSmoke',
             }}>
                 <Box
                     component={'div'}
                     sx={{
-                        width: { xs: 200, md: 200, lg: 300 },
                         backgroundColor: '#1C2437',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        borderRadius: .5,
-                        padding: { xs: 1, md: 1, xl: 1.5 },
-                        color: 'whiteSmoke',
+                        borderRadius: 1,
+                        gap: { xs: 2, sm: 3, md: 3, xl: 6 },
+                        px: { xs: 1, md: 1, xl: 2.5 },
+                        py: { xs: 1, md: 1, xl: 1.5 },
                     }}>
-                    <Box
-                        component={'span'}
-                        sx={{ display: 'flex', alignItems: 'center', columnGap: 1 }}>
-                        <Box component={'span'} sx={{
-                            fontSize: {
-                                xs: 15, md: 20, xl: 25
-                            }
-                        }}><MdOutlineAccountBalanceWallet /></Box>
-                        <Typography variant='h2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 } }}>Balance</Typography>
+                    <Box component={'span'}
+                        sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <Typography variant='h2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 }, fontWeight: 600 }}>Balance</Typography>
+                        <Typography variant='body2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 }, color: '#ED7D31' }}>$12500.00</Typography>
                     </Box>
-                    <Typography variant='body2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 }, color: '#ED7D31' }}>$12500.00</Typography>
+                    <Box component={'span'}
+                        sx={{
+                            fontSize: 45,
+                            color: '#36A689'
+                        }}
+                    >
+                        <BsCurrencyDollar />
+                    </Box>
                 </Box>
-                <ExportButton />
+                <Box
+                    component={'div'}
+                    sx={{
+                        backgroundColor: '#1C2437',
+                        display: 'flex',
+                        alignItems: 'center',
+                        borderRadius: 1,
+                        gap: { xs: 2, sm: 3, md: 3, xl: 6 },
+                        px: { xs: 1, md: 1, xl: 2.5 },
+                        py: { xs: 1, md: 1, xl: 1.5 },
+                    }}>
+                    <Box component={'span'}
+                        sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        <Typography variant='h2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 }, fontWeight: 600 }}>Campaigns</Typography>
+                        <Typography variant='body2' sx={{ fontSize: { xs: 12, md: 14, xl: 16 }, color: '#ED7D31' }}>0</Typography>
+                    </Box>
+                    <Box component={'span'}
+                        sx={{
+                            fontSize: 45,
+                            color: '#36A689'
+                        }}
+                    >
+                        <CiImageOn />
+                    </Box>
+                </Box>
             </Box>
             <Box
                 sx={{
                     display: 'flex',
                     justifyContent: 'center',
-                    marginTop: 5,
                     flexWrap: 'wrap',
                     gap: 1,
                 }}>
@@ -283,15 +316,169 @@ export default function DashboardHomePage() {
                         </Card>
                     )}
             </Box>
+            <Box component={'div'} sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                color: 'whiteSmoke',
+                gap: 1,
+            }}>
+                <Card
+                    sx={{
+                        flex: '1 0 300px',
+                        backgroundColor: '#1C2437'
+                    }}>
+                    <CardContent>
+                        <Typography variant='h5' sx={{ fontSize: 16, fontWeight: 600, color: 'whitesmoke', mb: 1 }}>Click</Typography>
+                        <Box component={'div'}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                            }}>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>Today</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>Yesterday</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>This week</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>Month to date</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                        </Box>
+                    </CardContent>
+                </Card>
+                <Card
+                    sx={{
+                        flex: '1 0 300px',
+                        backgroundColor: '#1C2437'
+                    }}>
+                    <CardContent>
+                        <Typography variant='h5' sx={{ fontSize: 16, fontWeight: 600, color: 'whitesmoke', mb: 1 }}>Cost</Typography>
+                        <Box component={'div'}
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                            }}>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>Today</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>Yesterday</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>This week</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                            <Box component={'div'}
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    borderBottom: '1px solid #32394B',
+                                    color: 'whitesmoke',
+                                    p: .5,
+                                }}>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>Month to date</Typography>
+                                <Typography variant='body2' sx={{ fontSize: 12 }}>0</Typography>
+                            </Box>
+                        </Box>
+                    </CardContent>
+                </Card>
+            </Box>
+            <Card
+                sx={{
+                    backgroundColor: '#1C2437',
+                    width: '100%'
+                }}>
+                <CardContent>
+                    <Typography variant='h5' sx={{ fontSize: 16, fontWeight: 600, color: 'whitesmoke', mb: 1 }}>Manage Campaign</Typography>
+                    <Box component={'div'}
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            backgroundColor: '#252F48',
+                            p: 2,
+                            borderRadius: 1,
+                            gap: 1,
+                        }}>
+                        <Typography variant='body2' sx={{ fontSize: 14, color: '#ED7D31' }}>No Campaigns</Typography>
+                        <Typography variant='body2' sx={{ fontSize: 12, color: 'lightgray' }}>You do not have any campaigns setup.</Typography>
+                        <Button
+                            size='small'
+                            sx={{
+                                bgcolor: '#ED7D31', fontSize: '.7rem', px: '12px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', boxShadow: 'none', width: 'fit-content',
+                                '&:hover': {
+                                    bgcolor: '#ED7D31', boxShadow: 'none',
+                                },
+                            }} component="label" variant="contained">
+                            Create campaign
+                        </Button>
+                    </Box>
+                </CardContent>
+            </Card>
             <Box component={'div'}
                 sx={{
                     height: { xs: 'fit-content', xl: 450 },
                     width: '100%',
                     display: 'flex',
-                    justifyContent: 'space-between',
-                    marginTop: 4,
                     flexDirection: { xs: 'column', xl: 'row' },
-                    gap: 2,
+                    gap: 1.5,
                 }}>
                 <Card
                     sx={{
@@ -425,24 +612,17 @@ export default function DashboardHomePage() {
                     </Box>
                 </Box>
             </Box>
-            <Box component={'div'}
-                sx={{
-                    width: '100%',
-                    height: 'fit-content',
-                    marginTop: '20px',
-                }}>
+            <Box component={'div'}>
                 <ReportByDays />
             </Box>
             <Box component={'div'}
                 sx={{
                     height: { xs: 'auto', lg: '450px' },
-                    marginTop: '20px',
                     display: 'flex',
                     flexDirection: { xs: 'column', lg: 'row' },
-                    gap: 2,
+                    gap: 1.5,
                     alignItems: 'center',
                     justifyContent: { xs: 'center', lg: 'space-between' },
-                    marginBottom: '50px',
                 }}>
                 <Box component={'div'}
                     sx={{
@@ -560,6 +740,6 @@ export default function DashboardHomePage() {
                     </Box>
                 </Box>
             </Box >
-        </>
+        </Box>
     )
 }
