@@ -423,7 +423,7 @@ export default function ReportByDays() {
 
     return (
         <Box sx={{ width: '100%', }}>
-            <Paper sx={{ width: '100%', mb: 2, backgroundColor: '#383B8C', borderRadius: '8px 8px 9px 9px', color: 'lightgrey', fontFamily: 'Dosis' }}>
+            <Paper sx={{ width: '100%', backgroundColor: '#383B8C', borderRadius: '8px 8px 9px 9px', color: 'lightgrey', fontFamily: 'Dosis' }}>
                 <EnhancedTableToolbar numSelected={selected.length} dense={dense} handleChangeDense={handleChangeDense} rowsPerPage={rowsPerPage} />
                 <TableContainer>
                     <Table
