@@ -3,9 +3,14 @@ import React from 'react'
 import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import NativeTextInput from '@/components/ui/NativeTextInput';
 import DepositTable from '@/components/dashComponents/tables/DepositTable';
+import { useAppSelector } from '@/app/GlobalRedux/store';
+import Search from '@/components/dashComponents/Search';
+import GlobalSearch from '@/components/dashComponents/GlobalSearch';
 
 
 export default function Deposit() {
+    const themeDark = useAppSelector((state) => state.themeReducer.theme);
+
     return (
         <Box component={'div'}
             sx={{

@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
 import { DepositTableDataType } from '@/types/models';
+import GlobalSearch from '../GlobalSearch';
 
 
 const rows: DepositTableDataType[] = [
@@ -169,19 +170,22 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
             disableGutters={true}
             variant="dense"
             sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
                 pl: { xs: 2 },
                 pr: { xs: 1, sm: 1 },
-                minHeight: 35
+                minHeight: 48,
             }}
         >
             <Typography
-                sx={{ flex: '1 1 100%', fontSize: { xs: '.9rem', md: '1rem' }, }}
+                sx={{ flex: '1 1 100%', fontSize: { xs: '.8rem' }, }}
                 variant="h1"
                 id="tableTitle"
                 component="div"
             >
                 Report for last {rowsPerPage} days
             </Typography>
+            <GlobalSearch />
         </Toolbar >
     );
 }
