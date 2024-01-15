@@ -23,8 +23,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import { BiUserPlus } from 'react-icons/bi';
-import { CiSettings } from 'react-icons/ci';
-import { MdLogout, MdOutlineLogin } from 'react-icons/md';
+import { MdLogout, MdOutlineLogin, MdOutlineSettings } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
 
 
@@ -201,7 +200,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, dropDownOpen, setD
                         sx: {
                             overflow: 'visible',
                             color: 'lightGrey',
-                            fontWeightL: 600,
                             backgroundColor: '#1C2437',
                             mt: 1.5,
                             '& .MuiAvatar-root': {
@@ -228,7 +226,6 @@ export default function Header({ sidebarOpen, setSidebarOpen, dropDownOpen, setD
                         sx: {
                             overflow: 'visible',
                             color: '#131926',
-                            fontWeightL: 600,
                             backgroundColor: 'whiteSmoke',
                             mt: 1.5,
                             '& .MuiAvatar-root': {
@@ -258,42 +255,39 @@ export default function Header({ sidebarOpen, setSidebarOpen, dropDownOpen, setD
                     <MenuItem
                         sx={themeDark === 'true' ?
                             {
-                                fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                                fontSize: '.8rem',
                                 '&:hover': {
                                     backgroundColor: '#7752FE'
                                 }
                             } : {
-                                fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                                fontSize: '.8rem',
                             }
                         }
                         onClick={handleClose}>
-                        <Avatar /> Profile
+                        <Avatar sizes='small' /> Profile
                     </MenuItem>
                     <MenuItem sx={themeDark === 'true' ?
                         {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                            fontSize: '.8rem',
                             '&:hover': {
                                 backgroundColor: '#7752FE'
                             }
                         } : {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                            fontSize: '.8rem',
                         }
                     }
                         onClick={handleClose}>
-                        <Avatar /> My account
+                        <Avatar sizes='small' /> My account
                     </MenuItem>
                     <Divider />
                     <MenuItem sx={themeDark === 'true' ?
                         {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                            fontSize: '.8rem',
                             '&:hover': {
                                 backgroundColor: '#7752FE'
                             }
                         } : {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
-                            // '&:hover': {
-                            //     backgroundColor: 'hrey'
-                            // }
+                            fontSize: '.8rem',
                         }
                     }
                         onClick={handleClose}>
@@ -304,29 +298,29 @@ export default function Header({ sidebarOpen, setSidebarOpen, dropDownOpen, setD
                     </MenuItem>
                     <MenuItem sx={themeDark === 'true' ?
                         {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                            fontSize: '.8rem',
                             '&:hover': {
                                 backgroundColor: '#7752FE'
                             }
                         } : {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                            fontSize: '.8rem',
                         }
                     }
                         onClick={handleClose}>
                         <ListItemIcon>
-                            <CiSettings color={themeDark === 'true' ? '#3EC1A1' : '#7752FE'} size={20} />
+                            <MdOutlineSettings color={themeDark === 'true' ? '#3EC1A1' : '#7752FE'} size={20} />
                         </ListItemIcon>
                         Settings
                     </MenuItem>
 
                     {user ? <MenuItem sx={themeDark === 'true' ?
                         {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                            fontSize: '.8rem',
                             '&:hover': {
                                 backgroundColor: '#7752FE'
                             }
                         } : {
-                            fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                            fontSize: '.8rem',
                         }
                     }
                         onClick={handleClose}>
@@ -338,12 +332,12 @@ export default function Header({ sidebarOpen, setSidebarOpen, dropDownOpen, setD
                         :
                         <MenuItem sx={themeDark === 'true' ?
                             {
-                                fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                                fontSize: '.8rem',
                                 '&:hover': {
                                     backgroundColor: '#7752FE'
                                 }
                             } : {
-                                fontFamily: 'Dosis', fontSize: '1rem', letterSpacing: '.1ch',
+                                fontSize: '.8rem',
                             }
                         }
                             onClick={() => router.push('/signin')}>

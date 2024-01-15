@@ -7,7 +7,7 @@ import Sidebar from '@/components/dashComponents/Sidebar';
 
 export default function DashboardLayout({ children }: Props) {
 
-    const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
+    const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
     const [getDropdown, setGetDropdown] = useState<string | null>(null)
     const [dropDownOpen, setDropDownOpen] = useState<string | null>(null);
 

@@ -160,3 +160,12 @@ export type SignUpInputTypes = {
     country: string;
     checkTerm: string;
 }
+export type DepositTableDataType = {
+    id: string;
+    date: string;
+    creditDebit: string;
+    type: string;
+    transactionID: string;
+    status: string;
+    invoice: string;
+}

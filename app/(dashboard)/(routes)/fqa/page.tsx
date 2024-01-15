@@ -53,7 +53,7 @@ export default function FQA() {
             }}>
             <Typography variant='h5'
                 sx={{
-                    fontSize: '1.8rem',
+                    fontSize: '1.5rem',
                     color: '#ED7D31',
                 }}>Ask Frequent Question</Typography>
             <Box component={'div'}

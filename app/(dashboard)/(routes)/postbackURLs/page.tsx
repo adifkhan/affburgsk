@@ -60,7 +60,7 @@ export default function PostbackURLs() {
                     color: '#ED7D31',
                     fontSize: '2rem',
                 }}>
-                <Typography sx={{ fontSize: '1.8rem' }} variant='h5'>Postback Urls</Typography>
+                <Typography sx={{ fontSize: '1.5rem' }} variant='h5'>Postback Urls</Typography>
             </Box>
             <Box component={'div'}
                 sx={{

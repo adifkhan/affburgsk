@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
-import styles from '@/styles/Dashboard/Offarwall.module.css';
-import { Box, InputAdornment, MenuItem, TextField, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { AiOutlineSearch } from 'react-icons/ai';
 import OfferwallTable from '@/components/dashComponents/tables/OfferwallTable';
 import FilterButton from '@/components/ui/FilterButton';
@@ -43,30 +42,29 @@ export default function Offerwall() {
                 <Typography variant='h5'
                     sx={{
                         color: '#ED7D31',
-                        fontSize: '1.8rem'
+                        fontSize: '1.5rem'
                     }}>Offerwall</Typography>
             </Box>
             <Box component={'div'}
                 sx={{
                     width: '100%',
                     display: 'flex',
-                    rowGap: '20px',
+                    gap: 1.5,
                     alignItems: 'flex-start',
                     flexDirection: 'column',
-                    marginTop: '30px',
+                    mt: 3,
                 }}>
                 <Typography variant='body2'
                     sx={{
                         color: '#ED7D31',
-                        fontSize: '1rem',
+                        fontSize: '.8rem',
                     }}>Filter your offer:</Typography>
                 <Box component={'div'}
                     sx={{
                         width: '100%',
                         display: 'flex',
                         alignItems: 'center',
-                        rowGap: '10px',
-                        columnGap: '10px',
+                        gap: 1,
                         flexDirection: { xs: 'column', sm: 'row' }
                     }}>
                     <FilledTextField fieldLabel={'Offer'} fieldID={'offer-field'} />
