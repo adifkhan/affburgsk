@@ -174,14 +174,12 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                 justifyContent: 'space-between',
                 pl: { xs: 2 },
                 pr: { xs: 1, sm: 1 },
-                minHeight: 48,
             }}
         >
             <Typography
                 sx={{ flex: '1 1 100%', fontSize: { xs: '.8rem' }, }}
                 variant="h1"
                 id="tableTitle"
-                component="div"
             >
                 Report for last {rowsPerPage} days
             </Typography>
@@ -228,7 +226,7 @@ export default function DepositTable() {
 
     return (
         <Box sx={{ width: '100%', }}>
-            <Paper sx={{ width: '100%', mb: 2, backgroundColor: '#383B8C', borderRadius: '8px 8px 9px 9px', color: 'lightgrey', fontFamily: 'Dosis' }}>
+            <Paper sx={{ width: '100%', mb: 2, backgroundColor: '#383B8C', borderRadius: 1, color: 'lightgrey', fontFamily: 'Dosis' }}>
                 <EnhancedTableToolbar rowsPerPage={rowsPerPage} />
                 <TableContainer>
                     <Table
@@ -297,7 +295,7 @@ export default function DepositTable() {
                     sx={{
                         color: 'lightGrey',
                         bgcolor: '#1c2437',
-                        borderRadius: '0 0 8px 8px',
+                        borderRadius: '0 0 4px 4px',
                         '.MuiSvgIcon-root': {
                             fill: 'lightGrey',
                         },
