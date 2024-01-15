@@ -3,10 +3,8 @@ import { styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { IoSearchOutline } from 'react-icons/io5';
 
-type ThemeProps = {
-    themeDark: string | null;
-}
-export default function Search({ themeDark }: ThemeProps) {
+
+export default function GlobalSearch() {
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -38,7 +36,6 @@ export default function Search({ themeDark }: ThemeProps) {
         color: 'inherit',
         '& .MuiInputBase-input': {
             padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
 
             paddingLeft: `calc(1em + ${theme.spacing(3)})`,
             transition: theme.transitions.create('width'),

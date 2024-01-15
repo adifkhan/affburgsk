@@ -150,7 +150,7 @@ export default function TransactionReport() {
         <Box component={'div'} onClick={() => setCalenderOpen(false)}>
             <Typography variant='h5'
                 sx={{
-                    fontSize: '1.8rem',
+                    fontSize: '1.5rem',
                     color: '#ED7D31',
                 }}>Transaction Report</Typography>
             <Box component={'div'}

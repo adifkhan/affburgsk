@@ -103,7 +103,7 @@ export default function PayoutHistory() {
             }}>
             <Typography sx={{
                 color: '#ED7D31',
-                fontSize: '1.8rem'
+                fontSize: '1.5rem'
             }} variant='h5'>Payout Histoty</Typography>
             <Box component={'div'}
                 sx={{
