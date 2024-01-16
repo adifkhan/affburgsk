@@ -169,3 +169,10 @@ export type DepositTableDataType = {
     status: string;
     invoice: string;
 }
+export type StatisticsTableDataType = {
+    id: string;
+    campaignTitle: string;
+    click: string;
+    cost: string;
+    avgCPC: string;
+}
