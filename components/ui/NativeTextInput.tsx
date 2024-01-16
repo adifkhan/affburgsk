@@ -1,4 +1,4 @@
-import { FormControl, OutlinedInput, Typography } from '@mui/material'
+import { FormControl, OutlinedInput, TextField, Typography } from '@mui/material'
 import React from 'react'
 
 type InputProps = {
@@ -10,22 +10,24 @@ type InputProps = {
 export default function NativeTextInput({ defaultValue, helperText, placeholder }: InputProps) {
     return (
         <>
-            <FormControl fullWidth sx={{ display: 'flex', flexDirection: 'column', gap: .5 }}>
-                <OutlinedInput
+            <FormControl fullWidth sx={{ display: 'flex', color: 'whitesmoke', flexDirection: 'column', gap: .5 }}>
+                <TextField
                     size='small'
                     defaultValue={defaultValue}
                     placeholder={placeholder}
                     sx={{
-                        color: 'whitesmoke',
-                        fontSize: 12,
-                        '& .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#ED7D31',
-                        },
-                        '&:hover .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#ED7D31',
-                        },
-                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            borderColor: '#ED7D31',
+                        '& .MuiOutlinedInput-root': {
+                            color: 'whitesmoke',
+                            fontSize: 12,
+                            '& fieldset': {
+                                borderColor: '#ED7D31',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: '#ED7D31',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: '#ED7D31',
+                            },
                         },
                     }}
                 />
