@@ -1,7 +1,8 @@
 'use client'
+
 import React, { useState } from 'react'
 import DateRangePickerComp from '@/components/dashComponents/DateRangePickerComp';
-import { Box, TextField, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import { format } from 'date-fns';
 import { PayoutHistoryData, dateType } from '@/types/models';
 import PayoutHistoryTable from '@/components/dashComponents/tables/PayoutHistoryTable';
@@ -56,8 +57,6 @@ const rowsData = [
     createData('12', '01-11-2023', 360, 19, 9, 37, 45, 987, 654, 22, 78.00, 98.10),
     createData('13', '01-11-2023', 437, 18, 63, 4, 45, 987, 654, 22, 78.00, 98.10),
 ];
-
-
 
 
 export default function PayoutHistory() {
@@ -137,7 +136,8 @@ export default function PayoutHistory() {
                             }}>
                             <DateRangePickerComp
                                 rangeDate={rangeDate}
-                                setRangeDate={setRangeDate} handleChange={handleChange}
+                                setRangeDate={setRangeDate}
+                                handleChange={handleChange}
                             />
                         </Box>}
                     <IconButton aria-label="delete">
