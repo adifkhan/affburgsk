@@ -2,7 +2,7 @@ import { CountryType } from '@/types/models';
 import { Autocomplete, TextField, Box } from '@mui/material'
 import styles from '@/styles/SignIn.module.css'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React from 'react'
 
 type CountrySelectProps = {
     register: any;

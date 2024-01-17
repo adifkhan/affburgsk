@@ -123,7 +123,7 @@ export default function MainReport() {
         setRangeDate(ranges.selection)
     }
     function handleOnChange() {
-        console.log('Check box value underdevelop !!!!!!!!!!!!!!!!!')
+        console.log('Check box value underdevelop !!')
     }
     return (
         <Box component={'div'} onClick={() => setCalenderOpen(false)} >

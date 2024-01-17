@@ -15,12 +15,17 @@ const VisuallyHiddenInput = styled('input')({
 });
 export default function ExportButton() {
     return (
-        <Button sx={{
-            bgcolor: '#383b8c', fontSize: { xs: '.5rem', md: '.6rem' }, px: { xs: '6px', md: '10px' }, py: { xs: '4px', md: '8px' }, letterSpacing: '.1ch', fontFamily: 'Dosis', '&:hover': {
-                bgcolor: '#36a689',
-
-            }
-        }} component="label" variant="contained" startIcon={<BiDownload size={'1rem'} />}>
+        <Button
+            sx={{
+                bgcolor: '#383b8c', fontSize: { xs: '.5rem', md: '.6rem' }, px: { xs: '6px', md: '10px' }, py: { xs: '4px', md: '8px' }, letterSpacing: '.1ch', fontFamily: 'Dosis',
+                '&:hover': {
+                    bgcolor: '#36a689',
+                }
+            }}
+            component="label"
+            variant="contained"
+            startIcon={<BiDownload size={'1rem'} />}
+        >
             Download Report
             <VisuallyHiddenInput type="file" />
         </Button>

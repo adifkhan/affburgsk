@@ -17,6 +17,7 @@ export default function CheckBoxFilter({ label, handleOnChange }: CheckboxProps)
                     }
                 }}
                 control={<Checkbox
+                    size='small'
                     sx={{
                         color: 'lightgrey',
                         '&.Mui-checked': {
