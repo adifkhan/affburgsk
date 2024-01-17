@@ -17,7 +17,8 @@ import ReportByDays from '@/components/dashComponents/tables/ReportByDays';
 import BarChart from '@/components/dashComponents/charts/BarChart';
 import ExportButton from '@/components/ui/ExportButton';
 import { BsCurrencyDollar } from 'react-icons/bs';
-import { CiCirclePlus, CiImageOn } from 'react-icons/ci';
+import { CiImageOn } from 'react-icons/ci';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -56,7 +57,6 @@ const topCardsData: TopCardData[] = [
         color: '#1c2437'
     }
 ]
-
 let allOffers: Offer[] = [
     {
         title: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, labore.',
@@ -169,6 +169,7 @@ let allTransactionReports: transactionData[] = [
 
 export default function DashboardHomePage() {
     const [data, setData] = useState(allOffers);
+    const router = useRouter();
 
 
     function handleCardPercentage(paiData: PieChartData[]) {
@@ -460,6 +461,7 @@ export default function DashboardHomePage() {
                         <Typography variant='body2' sx={{ fontSize: 14, color: '#ED7D31' }}>No Campaigns</Typography>
                         <Typography variant='body2' sx={{ fontSize: 12, color: 'lightgray' }}>You do not have any campaigns setup.</Typography>
                         <Button
+                            onClick={() => router.push('/createNewCampaign')}
                             size='small'
                             sx={{
                                 bgcolor: '#ED7D31', fontSize: '.7rem', px: '12px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', boxShadow: 'none', width: 'fit-content',
