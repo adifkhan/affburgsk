@@ -1,10 +1,13 @@
 import * as React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
-import { OutlinedInput, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 
-const options = ['Option 1', 'Option 2'];
-
-export default function NativeAutoComplete() {
+type SearchInputProps = {
+    placeholder: string;
+    options: string[];
+    defaultValue: string;
+}
+export default function NativeAutoComplete({ placeholder, options, defaultValue }: SearchInputProps) {
     return (
         <>
             <Autocomplete
@@ -12,8 +15,10 @@ export default function NativeAutoComplete() {
                 size='small'
                 id="free-solo-demo"
                 freeSolo
-                options={options.map((option) => option)}
+                defaultValue={defaultValue}
+                options={options}
                 renderInput={(params) => <TextField
+                    placeholder={placeholder}
                     {...params}
                     sx={{
                         '& .MuiOutlinedInput-root': {

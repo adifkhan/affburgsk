@@ -5,6 +5,9 @@ import { Box, Button, Card, CardContent, Typography } from '@mui/material';
 import NativeTextInput from '@/components/ui/NativeTextInput';
 import NativeAutoComplete from '@/components/ui/NativeAutoComplete';
 
+
+const options = ['Option 1', 'Option 2'];
+
 export default function Tracking() {
 
     return (
@@ -33,7 +36,6 @@ export default function Tracking() {
                     }}>CPC Option 1: Conversion Pixel</Typography>
                 <Typography variant='body2'
                     sx={{
-                        color: '',
                         fontSize: '.8rem',
                         mt: 2,
                     }}>{`Using a conversion pixel is OPTIONAL and only works if you have direct access to the HTML of your offer. The conversion pixel should be placed on the "Thank You" page of your offer so you know when the traffic source has successfully interacted with your offer. Conversions will be displayed under the Sources menu.`}</Typography>
@@ -52,7 +54,7 @@ export default function Tracking() {
                         }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                             <Typography variant='h5' sx={{ fontSize: 14 }}>Campaign</Typography>
-                            <NativeAutoComplete />
+                            <NativeAutoComplete placeholder={'search campaign...'} options={options} />
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                             <Typography variant='h5' sx={{ fontSize: 14 }}>Set conversion price</Typography>
