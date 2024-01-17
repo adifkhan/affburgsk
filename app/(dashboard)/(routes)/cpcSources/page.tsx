@@ -1,19 +1,21 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Box, Button, Card, CardContent, IconButton, Typography } from '@mui/material';
-import { useAppSelector } from '@/app/GlobalRedux/store';
-import { dateType } from '@/types/models';
-import { format } from 'date-fns';
-import DateRangeButton from '@/components/ui/DateRangeButton';
-import ReadOnlyDateShow from '@/components/ui/ReadOnlyDateShow';
 import DateRangePickerComp from '@/components/dashComponents/DateRangePickerComp';
-import { AiOutlineClear } from 'react-icons/ai';
-import StatisticsTable from '@/components/dashComponents/tables/StatisticsTable';
+import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
+import DateRangeButton from '@/components/ui/DateRangeButton';
+import NativeAutoComplete from '@/components/ui/NativeAutoComplete';
+import ReadOnlyDateShow from '@/components/ui/ReadOnlyDateShow';
+import { dateType } from '@/types/models';
+import { Box, Button, Card, CardContent, Typography } from '@mui/material';
+import { format } from 'date-fns';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react'
 
 
-export default function Statistics() {
-    const themeDark = useAppSelector((state) => state.themeReducer.theme);
+const options = ['Options 1', 'Options 2'];
+
+export default function CPCSources() {
+    const router = useRouter();
     const today: any = new Date();
     // const tenDaysAgo: Date | number = today - 1000 * 60 * 60 * 24 * 10;
     // let diffDaysRef = useRef(0);
@@ -39,8 +41,6 @@ export default function Statistics() {
     //     }
     // }, [diffDaysRef, filterClear, rangeDate.endDate, rangeDate.startDate, tenDaysAgo])
 
-
-
     function handleCalenderOpen(e: React.ChangeEvent<HTMLInputElement>) {
         e.stopPropagation();
         setCalenderOpen((prev) => !prev)
@@ -50,6 +50,11 @@ export default function Statistics() {
         setRangeDate(ranges.selection)
     }
 
+    function handleOnChange() {
+        console.log('Check box value underdevelop !!!!!!!!!!!!!!!!!')
+    }
+
+
     return (
         <Box
             component={'div'}
@@ -58,6 +63,7 @@ export default function Statistics() {
                 display: 'flex',
                 flexDirection: "column",
                 gap: 1.5,
+                color: 'whitesmoke',
                 position: 'relative',
                 height: '100%',
                 width: '100%',
@@ -67,22 +73,21 @@ export default function Statistics() {
                     sx={{
                         color: '#ED7D31',
                         fontSize: '1.5rem'
-                    }}>Statistics</Typography>
+                    }}>CPC Traffic Sources</Typography>
             </Box>
-            <Card sx={{ backgroundColor: '#1C2437', color: 'whitesmoke', }}>
-                <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 3, }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: .5 }}>
-                        <Typography variant='h5' sx={{ fontSize: 16 }}>Search Statistics</Typography>
+            <Card sx={{ backgroundColor: '#1C2437', color: 'whitesmoke', mt: 2 }}>
+                <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 2, }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                        <Typography variant='h5' sx={{ fontSize: 16 }}>Select Your Range</Typography>
                     </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, }}>
-                        <Typography variant='h5' sx={{ fontSize: 14 }}>Date range</Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', mt: 3 }}>
                         <Box component={'div'}
                             sx={{
                                 display: 'flex',
                                 flexDirection: { xs: 'column', sm: 'row' },
                                 alignItems: 'center',
                                 columnGap: '20px',
-                                rowGap: '10px',
+                                gap: 1,
                             }}>
                             <DateRangeButton handleCalenderOpen={handleCalenderOpen} />
                             <ReadOnlyDateShow label='Start date' value={startDate} />
@@ -92,7 +97,7 @@ export default function Statistics() {
                                     sx={{
                                         position: 'absolute',
                                         left: { xs: 15, lg: 18 },
-                                        top: { xs: '180px', lg: '180px' },
+                                        top: { xs: '210px', lg: '210px' },
                                         zIndex: 30,
                                     }}>
                                     <DateRangePickerComp
@@ -100,35 +105,35 @@ export default function Statistics() {
                                         setRangeDate={setRangeDate} handleChange={handleChange}
                                     />
                                 </Box>}
-                            <IconButton aria-label="delete">
-                                <AiOutlineClear size='1.4rem' color='#ED7D31' />
-                            </IconButton>
-                            <Button
-                                size='small'
-                                sx={{
-                                    bgcolor: '#ED7D31', fontSize: '.7rem', px: '12px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', boxShadow: 'none', width: 'fit-content',
-                                    '&:hover': {
-                                        bgcolor: '#ED7D31', boxShadow: 'none',
-                                    },
-                                }} component="label" variant="contained">
-                                Submit
-                            </Button>
-                            <Button
-                                size='small'
-                                sx={{
-                                    fontSize: '.7rem', px: '12px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', boxShadow: 'none', width: 'fit-content', border: '1px solid #ED7D31', color: 'whiteSmoke',
-                                    '&:hover': {
-                                        boxShadow: 'none',
-                                        border: '1px solid #ED7D31',
-                                    },
-                                }} variant="outlined">
-                                Cancel
-                            </Button>
                         </Box>
+                        <CheckBoxFilter
+                            label={'Only show sources that sent traffic during time period'}
+                            handleOnChange={handleOnChange} />
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
+                        <Typography variant='h5' sx={{ fontSize: 14 }}>CPC Campaign</Typography>
+                        <NativeAutoComplete placeholder={''} options={options} defaultValue={options[0]} />
                     </Box>
                 </CardContent>
             </Card>
-            <StatisticsTable />
-        </Box>
+            <Button
+                onClick={() => router.push('/createNewCampaign')}
+                size='small'
+                sx={{
+                    bgcolor: '#ED7D31', fontSize: '.8rem', px: '12px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', boxShadow: 'none', width: 'fit-content',
+                    '&:hover': {
+                        bgcolor: '#ED7D31', boxShadow: 'none',
+                    },
+                }} component="label" variant="contained">
+                Submit
+            </Button>
+            <Card sx={{
+                backgroundColor: '#1C2437', mt: 2, color: '#36A689'
+            }}>
+                <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, }}>
+                    <em style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>Choose CPC campaign and date range to view results.</em>
+                </CardContent>
+            </Card>
+        </Box >
     )
 }
