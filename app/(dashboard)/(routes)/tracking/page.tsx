@@ -54,7 +54,7 @@ export default function Tracking() {
                         }}>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                             <Typography variant='h5' sx={{ fontSize: 14 }}>Campaign</Typography>
-                            <NativeAutoComplete placeholder={'search campaign...'} options={options} />
+                            <NativeAutoComplete placeholder={'search campaign...'} options={options} defaultValue={''} />
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                             <Typography variant='h5' sx={{ fontSize: 14 }}>Set conversion price</Typography>
