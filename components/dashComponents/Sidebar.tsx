@@ -113,13 +113,13 @@ const campaignMenus: DashboardMenuType[] = [
 ]
 const sourcsMenus: DashboardMenuType[] = [
     {
-        title: 'CPC Sourcesn',
+        title: 'CPC Sources',
         path: '/cpcSources',
         icon: <HiOutlineDocumentReport />
     },
     {
         title: 'CPI/CPA Sources',
-        path: '/cpi/cpaSources',
+        path: '/cpiCpaSources',
         icon: <MdOutlinePayments />
     },
 ]
