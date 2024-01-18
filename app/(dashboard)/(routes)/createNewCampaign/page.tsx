@@ -1,14 +1,9 @@
 'use client'
 
 import React from 'react'
-import { Box, Button, Card, CardContent, Typography, styled } from '@mui/material';
-import NativeTextInput from '@/components/ui/NativeTextInput';
-import NativeSelect from '@/components/ui/NativeSelect';
-import { LuImagePlus } from 'react-icons/lu';
-import NativeAutoComplete from '@/components/ui/NativeAutoComplete';
-import CheckBoxFilter from '@/components/ui/CheckBoxFilter';
-import RadioBtn from '@/components/ui/RadioBtn';
-import TimePicker from '@/components/ui/TimePicker';
+import { Box, Button, Card, CardContent, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
+import CostPerClick from '@/components/dashComponents/CostPerClick';
+import MobileAppInstall from '@/components/dashComponents/MobileAppInstall';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -24,17 +19,61 @@ const VisuallyHiddenInput = styled('input')({
 
 const allCampaignStatus = ['Active'];
 const geoTypes = ['By country'];
-const campaignTypes = ['Mobile App Install (CPI or CPE)', 'Pay For Mobile App Review (CPR)', 'CPA (Cost Per Action)', 'CPC (Cost Per Click)', 'Pin Submit CPA (Cost Per Action)'];
-
+const campaignTypes = [
+    'Mobile App Install (CPI or CPE)',
+    'Pay For Mobile App Review (CPR)',
+    'CPA (Cost Per Action)',
+    'CPC (Cost Per Click)',
+    'Pin Submit CPA (Cost Per Action)'
+];
+const conversionGoals = [
+    'Install app',
+    'Sign up for account',
+    'Complete servey',
+    'Play game for 5 minutes',
+    'Custom'
+];
+const appTrackingMethods = [
+    {
+        label: 'CPAlead Tracking SDK',
+        value: 'CPAlead-tracking-SDK',
+        helperText: 'In order to use this method, you must install our Tracking SDK into your application, click here for more information'
+    },
+    {
+        label: 'Appstore Review Verify (Easy Setup)',
+        value: 'appstore-review-verify-EasySetup',
+        helperText: 'Appstore Review Verify selected, users will be required to review your application, you will be charged per successful review'
+    },
+    {
+        label: 'AppsFlyer',
+        value: 'appsFlyer',
+        helperText: 'If you have access to the source code of the iOS or Android app, AppsFlyer is the most popular SDK available and will allow you to report back to CPAlead when an install event takes place. AppsFlyer also provides very robust statistics for your App which is an added bonus. To get started, create an account on AppsFlyer then follow their instructions for installing their SDK. Once the AppsFlyer SDK is installed on your iOS or Android app, you will be able to select ‘CPAlead’ as a partner within the AppsFlyer platform. If you have any questions, you can always ask the AppsFlyer staff. For the tracking URL, you will want to provide the tracking URL you receive from AppsFlyer. It should look something like this: https://app.appsflyer.com/com.developername.gamename?pid=cpalead_int&af_click_lookback=5g&c=GameName_CpaLead_Promo_Camp2&clickid={CLICK_ID}&af_siteid={PUBLISHER_ID}&af_cost_value={CPI_COST}&af_cost_currency=USD&af_cost_model=CPI'
+    },
+    {
+        label: 'Other 3rd Party',
+        value: 'other-3rd-party',
+        helperText: 'You are responsible for copying and pasting the Postback URL above to your 3rd party tracking platform or the Affiliate Network that provided you this offer. If you need help setting up our postback, please contact the Affiliate Network that provided you with this offer or the provider of your tracking platform. Non-converting offers will be removed and you may lose your ability to list CPA or CPI offers. Please be extra sure your postback is setup correctly before you submit your campaign. Click here for a tutorial.'
+    },
+];
 export default function NewCampaign() {
     const [campaignType, setCampaignType] = React.useState('CPC (Cost Per Click)');
+    const [conversionGoal, setConversionGoal] = React.useState('');
     const [status, setStatus] = React.useState('Active');
     const [selectedRadioValue, setSelectedRadioValue] = React.useState<string>('24-hours');
     const [publisher, setPublisher] = React.useState<string>('allow-all');
+    const [appTrackingMethod, setAppTrackingMethod] = React.useState<string>('CPAlead-tracking-SDK');
 
+
+    const handleCampaignTypeChange = (event: SelectChangeEvent) => {
+        setCampaignType(event.target.value);
+    };
+
+    const handleConversionGoalChange = (event: SelectChangeEvent) => {
+        setCampaignType(event.target.value);
+    };
 
     function handleOnChange() {
-        console.log('Check box value underdevelop !!!!!!!!!!!!!!!!!')
+        console.log('Check box value underdevelop')
     }
     return (
         <Box component={'div'}
@@ -58,190 +97,66 @@ export default function NewCampaign() {
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                         <Typography variant='h5' sx={{ fontSize: 14 }}>Campaign Type</Typography>
-                        <NativeSelect options={campaignTypes} value={campaignType} setValue={setCampaignType} />
-                    </Box>
-                    <Box component={'div'}>
-                        <Typography variant='body2'
+                        <Select
+                            fullWidth
+                            size='small'
+                            value={campaignType}
+                            // displayEmpty
+                            onChange={handleCampaignTypeChange}
+                            inputProps={{ 'aria-label': 'Without label' }}
                             sx={{
-                                color: '#ED7D31',
-                                fontSize: '1rem',
-                            }}>Campaign Information</Typography>
-                    </Box>
-                    <Box component={'div'}
-                        sx={{
-                            display: 'flex',
-                            gap: 1,
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            alignItems: { xs: 'flex-start', sm: 'center' }
-                        }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Status</Typography>
-                            <NativeSelect options={allCampaignStatus} value={status} setValue={setStatus} />
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Name</Typography>
-                            <NativeTextInput defaultValue={''} helperText='' placeholder='campaign name for your reference purposes' />
-                        </Box>
-                    </Box>
-                    <Box component={'div'}>
-                        <Typography variant='body2'
-                            sx={{
-                                color: '#ED7D31',
-                                fontSize: '1rem',
-                            }}>Craeative Information</Typography>
-                    </Box>
-                    <Box component={'div'}
-                        sx={{
-                            display: 'flex',
-                            gap: 1,
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            alignItems: { xs: 'flex-start', sm: 'center' }
-                        }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Campaign URL</Typography>
-                            <NativeTextInput defaultValue={''} helperText='To track our traffic sources and the cost per click on 3rd party platforms, you may use the macroparameter {traffic_id} {publisher_id} and {cost} in your URL. Example: http://example.com/page.php?subid1={traffic_id}&subid2={publisher_id}&cost={cost}' placeholder='url' />
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Title</Typography>
-                            <NativeTextInput defaultValue={''} helperText='25 characters remaining.
-                            These Text Creatives are how your campaign is shown on our traffic channels. For example your campaign might be something like TItle: "FREE $100 Sample Box" Description: "Be this weeks winner, register now!"' placeholder='campaign title' />
-                        </Box>
-                    </Box>
-                    <Box component={'div'}
-                        sx={{
-                            display: 'flex',
-                            gap: 1,
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            alignItems: { xs: 'flex-start', sm: 'center' }
-                        }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Description Line 1</Typography>
-                            <NativeTextInput defaultValue={''} helperText='25 characters remaining' placeholder='campaign description' />
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Description Line 2</Typography>
-                            <NativeTextInput defaultValue={''} helperText='25 characters remaining' placeholder='campaign description' />
-                        </Box>
-                    </Box>
-                    <Button
-                        sx={{
-                            bgcolor: '#383b8c', fontSize: { xs: '.5rem', md: '.7rem' }, px: { xs: '6px', md: '10px' }, py: { xs: '4px', md: '8px' }, letterSpacing: '.1ch', fontFamily: 'Dosis', width: 'fit-content',
-                            '&:hover': {
-                                bgcolor: '#36a689',
+                                color: 'whitesmoke',
+                                fontSize: 12,
+                                '& .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: '#ED7D31',
+                                },
+                                '&:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: '#ED7D31',
+                                },
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: '#ED7D31',
+                                },
+                                '& .MuiSelect-icon': {
+                                    color: 'lightgray',
+                                },
+                                backgroundColor: '#YourBackgroundColor',
+                            }}
+                        >
+                            {
+                                campaignTypes.map((option, index) => <MenuItem sx={{ fontSize: 12 }} key={index} value={option}>{option}</MenuItem>)
                             }
-                        }}
-                        component="label" variant="contained" startIcon={<LuImagePlus />}>
-                        Upload image
-                        <VisuallyHiddenInput type="file" />
-                    </Button>
-                    <Box component={'div'}>
-                        <Typography variant='body2'
-                            sx={{
-                                color: '#ED7D31',
-                                fontSize: '1rem',
-                            }}>Targeting and Bidding</Typography>
+                        </Select>
                     </Box>
-                    <Box component={'div'}
-                        sx={{
-                            display: 'flex',
-                            gap: 1,
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            alignItems: { xs: 'flex-start', sm: 'center' }
-                        }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Geo Targeting Type</Typography>
-                            <NativeAutoComplete placeholder={''} options={geoTypes} defaultValue={geoTypes[0]} />
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Country Targeting</Typography>
-                            <NativeAutoComplete placeholder={''} options={countries} defaultValue={'United States'} />
-                        </Box>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                        <Typography variant='h5' sx={{ fontSize: 14 }}>Device Targeting</Typography>
-                        <Box component={'div'}
-                            sx={{
-                                display: 'flex',
-                                columnGap: '10px',
-                                color: 'lightgrey',
-                            }}>
-                            <CheckBoxFilter label={'Desktop'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'Android'} handleOnChange={handleOnChange} />
-                            <CheckBoxFilter label={'ios'} handleOnChange={handleOnChange} />
-                        </Box>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                        <Typography variant='h5' sx={{ fontSize: 14 }}>Run Campaign</Typography>
-                        <Box component={'div'}
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'flex-start'
-                            }}>
-                            <RadioBtn
-                                label='24 hours'
-                                value='24-hours'
-                                selectedRadioValue={selectedRadioValue}
-                                setSelectedRadioValue={setSelectedRadioValue}
-                            />
-                            <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column' }}>
-                                <RadioBtn
-                                    label='Time Range'
-                                    value='time-range'
-                                    selectedRadioValue={selectedRadioValue}
-                                    setSelectedRadioValue={setSelectedRadioValue}
-                                />
-                                {selectedRadioValue === 'time-range' &&
-                                    <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', rowGap: 1, mt: 1 }}>
-                                        <TimePicker />
-                                        <TimePicker />
-                                    </Box>
-                                }
-                            </Box>
-                        </Box>
-                    </Box>
-                    <Box component={'div'}
-                        sx={{
-                            display: 'flex',
-                            gap: 1,
-                            flexDirection: { xs: 'column', sm: 'row' },
-                            alignItems: { xs: 'flex-start', sm: 'center' }
-                        }}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Max Bid Price (CPC)</Typography>
-                            <NativeTextInput defaultValue={'0.00'} helperText='' placeholder='bid amount in $' />
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                            <Typography variant='h5' sx={{ fontSize: 14 }}>Daily Budget</Typography>
-                            <NativeTextInput defaultValue={'10'} helperText='' placeholder='budget amount in $' />
-                        </Box>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
-                        <Typography variant='h5' sx={{ fontSize: 14 }}>Publishers</Typography>
-                        <Box component={'div'}
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'flex-start'
-                            }}>
-                            <RadioBtn
-                                label='Allow all (Recommended)'
-                                value='allow-all'
-                                selectedRadioValue={publisher}
-                                setSelectedRadioValue={setPublisher}
-                            />
-                            <RadioBtn
-                                label='Allow only'
-                                value='allow-only'
-                                selectedRadioValue={publisher}
-                                setSelectedRadioValue={setPublisher}
-                            />
-                            <RadioBtn
-                                label='Exclude'
-                                value='exclude'
-                                selectedRadioValue={publisher}
-                                setSelectedRadioValue={setPublisher}
-                            />
-                        </Box>
-                    </Box>
+                    {/* <CostPerClick
+                        allCampaignStatus={allCampaignStatus}
+                        status={status}
+                        setStatus={setStatus}
+                        geoTypes={geoTypes}
+                        countries={countries}
+                        handleOnChange={handleOnChange}
+                        selectedRadioValue={selectedRadioValue}
+                        setSelectedRadioValue={setSelectedRadioValue}
+                        publisher={publisher}
+                        setPublisher={setPublisher} /> */}
+                    <MobileAppInstall
+                        allCampaignStatus={allCampaignStatus}
+                        status={status}
+                        setStatus={setStatus}
+                        geoTypes={geoTypes}
+                        countries={countries}
+                        conversionGoals={conversionGoals}
+                        handleOnChange={handleOnChange}
+                        selectedRadioValue={selectedRadioValue}
+                        setSelectedRadioValue={setSelectedRadioValue}
+                        appTrackingMethod={appTrackingMethod}
+                        setAppTrackingMethod={setAppTrackingMethod}
+                        handleConversionGoalChange={handleConversionGoalChange}
+                        conversionGoal={conversionGoal}
+                        setConversionGoal={setConversionGoal}
+                        appTrackingMethods={appTrackingMethods}
+                        publisher={publisher}
+                        setPublisher={setPublisher}
+                    />
                     <Box sx={{ display: 'flex', gap: 1, }}>
                         <Button
                             size='small'

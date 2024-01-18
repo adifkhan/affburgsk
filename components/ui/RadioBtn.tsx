@@ -20,7 +20,7 @@ export default function RadioBtn({ value, label, selectedRadioValue, setSelected
             <FormControlLabel
                 sx={{
                     '& .MuiFormControlLabel-label': {
-                        fontSize: '.8rem'
+                        fontSize: '.7rem'
                     }
                 }}
                 label={label}
