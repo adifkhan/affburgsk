@@ -1,12 +1,15 @@
+'use-client'
+
 import * as React from 'react';
 import { MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
 
 type SearchInputProps = {
     options: string[];
-    value: string;
-    setValue: React.Dispatch<React.SetStateAction<string>>
+    Placeholder: string;
 }
-export default function NativeSelect({ options, value, setValue }: SearchInputProps) {
+
+export default function NativeSelect({ options, Placeholder }: SearchInputProps) {
+    const [value, setValue] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
         setValue(event.target.value);
@@ -16,9 +19,16 @@ export default function NativeSelect({ options, value, setValue }: SearchInputPr
             <Select
                 fullWidth
                 size='small'
+                placeholder='pick an option'
                 value={value}
-                // displayEmpty
+                displayEmpty
                 onChange={handleChange}
+                // renderValue={(value) => {
+                //     if (value.length === 0) {
+                //         return <em>Placeholder</em>;
+                //     }
+                //     return value;
+                // }}
                 inputProps={{ 'aria-label': 'Without label' }}
                 sx={{
                     color: 'whitesmoke',
@@ -38,6 +48,11 @@ export default function NativeSelect({ options, value, setValue }: SearchInputPr
                     backgroundColor: '#YourBackgroundColor',
                 }}
             >
+                <MenuItem
+                    sx={{ fontSize: 12 }}
+                    value="">
+                    <em>{Placeholder}</em>
+                </MenuItem>
                 {
                     options.map((option, index) => <MenuItem sx={{ fontSize: 12 }} key={index} value={option}>{option}</MenuItem>)
                 }
