@@ -49,6 +49,8 @@ export default function CostPerClick({ allCampaignStatus, status, setStatus, geo
                         sx={{
                             color: '#ED7D31',
                             fontSize: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.05ch',
                         }}>Campaign Information</Typography>
                 </Box>
                 <Box component={'div'}
@@ -72,6 +74,8 @@ export default function CostPerClick({ allCampaignStatus, status, setStatus, geo
                         sx={{
                             color: '#ED7D31',
                             fontSize: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.05ch',
                         }}>Craeative Information</Typography>
                 </Box>
                 <Box component={'div'}
@@ -123,6 +127,8 @@ export default function CostPerClick({ allCampaignStatus, status, setStatus, geo
                         sx={{
                             color: '#ED7D31',
                             fontSize: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.05ch',
                         }}>Targeting and Bidding</Typography>
                 </Box>
                 <Box component={'div'}

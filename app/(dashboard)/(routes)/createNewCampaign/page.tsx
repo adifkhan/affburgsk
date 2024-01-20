@@ -4,6 +4,7 @@ import React from 'react'
 import { Box, Card, CardContent, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
 import CostPerClick from '@/components/dashComponents/CostPerClick';
 import MobileAppInstall from '@/components/dashComponents/MobileAppInstall';
+import MobileAppReview from '@/components/dashComponents/MobileAppReview';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -133,17 +134,6 @@ export default function NewCampaign() {
                             }
                         </Select>
                     </Box>
-                    {campaignType === 'CPC (Cost Per Click)' && <CostPerClick
-                        allCampaignStatus={allCampaignStatus}
-                        status={status}
-                        setStatus={setStatus}
-                        geoTypes={geoTypes}
-                        countries={countries}
-                        handleOnChange={handleOnChange}
-                        selectedRadioValue={selectedRadioValue}
-                        setSelectedRadioValue={setSelectedRadioValue}
-                        publisher={publisher}
-                        setPublisher={setPublisher} />}
                     {campaignType === 'Mobile App Install (CPI or CPE)' && <MobileAppInstall
                         geoTypes={geoTypes}
                         countries={countries}
@@ -164,6 +154,28 @@ export default function NewCampaign() {
                         boostCampaign={boostCampaign}
                         setBoostCampaign={setBoostCampaign}
                     />}
+                    {campaignType === 'Pay For Mobile App Review (CPR)' && <MobileAppReview
+                        allCampaignStatus={allCampaignStatus}
+                        status={status}
+                        setStatus={setStatus}
+                        geoTypes={geoTypes}
+                        countries={countries}
+                        handleOnChange={handleOnChange}
+                        selectedRadioValue={selectedRadioValue}
+                        setSelectedRadioValue={setSelectedRadioValue}
+                        publisher={publisher}
+                        setPublisher={setPublisher} />}
+                    {campaignType === 'CPC (Cost Per Click)' && <CostPerClick
+                        allCampaignStatus={allCampaignStatus}
+                        status={status}
+                        setStatus={setStatus}
+                        geoTypes={geoTypes}
+                        countries={countries}
+                        handleOnChange={handleOnChange}
+                        selectedRadioValue={selectedRadioValue}
+                        setSelectedRadioValue={setSelectedRadioValue}
+                        publisher={publisher}
+                        setPublisher={setPublisher} />}
                 </CardContent>
             </Card>
         </Box>

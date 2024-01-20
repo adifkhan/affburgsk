@@ -87,6 +87,8 @@ export default function MobileAppInstall({
                         sx={{
                             color: '#ED7D31',
                             fontSize: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.05ch',
                         }}>Campaign Information</Typography>
                 </Box>
                 <Box component={'div'}
@@ -106,6 +108,8 @@ export default function MobileAppInstall({
                         sx={{
                             color: '#ED7D31',
                             fontSize: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.05ch',
                         }}>Craeative Information</Typography>
                 </Box>
                 <Box component={'div'}
@@ -186,6 +190,8 @@ export default function MobileAppInstall({
                         sx={{
                             color: '#ED7D31',
                             fontSize: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.05ch',
                         }}>App Install Tracking & Attribution</Typography>
                 </Box>
                 <Card sx={{
@@ -367,6 +373,8 @@ export default function MobileAppInstall({
                         sx={{
                             color: '#ED7D31',
                             fontSize: '1rem',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.05ch',
                         }}>Targeting and Bidding</Typography>
                 </Box>
                 <Box component={'div'}
