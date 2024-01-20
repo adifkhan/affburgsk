@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Box, Button, Card, CardContent, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
+import { Box, Card, CardContent, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
 import CostPerClick from '@/components/dashComponents/CostPerClick';
 import MobileAppInstall from '@/components/dashComponents/MobileAppInstall';
 
@@ -75,10 +75,6 @@ export default function NewCampaign() {
 
 
     const handleCampaignTypeChange = (event: SelectChangeEvent) => {
-        setCampaignType(event.target.value);
-    };
-
-    const handleConversionGoalChange = (event: SelectChangeEvent) => {
         setCampaignType(event.target.value);
     };
 
@@ -157,7 +153,6 @@ export default function NewCampaign() {
                         setSelectedRadioValue={setSelectedRadioValue}
                         appTrackingMethod={appTrackingMethod}
                         setAppTrackingMethod={setAppTrackingMethod}
-                        handleConversionGoalChange={handleConversionGoalChange}
                         conversionGoal={conversionGoal}
                         setConversionGoal={setConversionGoal}
                         appTrackingMethods={appTrackingMethods}
