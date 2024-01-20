@@ -48,7 +48,7 @@ type CPCProps = {
     boostCampaign: string;
     setBoostCampaign: React.Dispatch<React.SetStateAction<string>>;
 }
-export default function CostPerAction({
+export default function PinSubmitCPA({
     geoTypes,
     countries,
     handleOnChange,
@@ -200,7 +200,7 @@ export default function CostPerAction({
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                     <Typography variant='h5' sx={{ fontSize: 14 }}>Tracking URL</Typography>
-                    <NativeTextInput defaultValue={''} helperText='' placeholder='past tracking link here' />
+                    <NativeTextInput placeholder='' defaultValue={''} helperText="IMPORTANT: Your tracking URL must include our Click Tracking macro as it is required to track conversions:Click Macro={CLICK_ID}. If you want the ability to disable/enable traffic sources, you will need to include the {PUBLISHER_ID} macro to track each publisher ID traffic source. Traffic sources can be managed under 'Sources' / 'CPI/CPA Sources' from the left menu.' placeholder='past tracking link here" />
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                     <Typography variant='h5' sx={{ fontSize: 14 }}>Add Macros</Typography>
@@ -219,8 +219,8 @@ export default function CostPerAction({
                             display: 'flex',
                             flexDirection: 'column',
                         }}>
-                        <CheckBoxFilter label={'Randomize {PUBLISHER_ID} sent to tracking link. (You will still see Sources in CPAlead statistics)'} handleOnChange={handleOnChange} />
                         <CheckBoxFilter label={'Use filler data if no GAID or IDFA was provided by the source.'} handleOnChange={handleOnChange} />
+                        <CheckBoxFilter label={'Randomize {PUBLISHER_ID} sent to tracking link. (You will still see Sources in CPAlead statistics)'} handleOnChange={handleOnChange} />
                     </Box>
                 </Box>
                 <Box component={'div'}
