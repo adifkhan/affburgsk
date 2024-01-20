@@ -55,11 +55,21 @@ const appTrackingMethods = [
         helperText: 'You are responsible for copying and pasting the Postback URL above to your 3rd party tracking platform or the Affiliate Network that provided you this offer. If you need help setting up our postback, please contact the Affiliate Network that provided you with this offer or the provider of your tracking platform. Non-converting offers will be removed and you may lose your ability to list CPA or CPI offers. Please be extra sure your postback is setup correctly before you submit your campaign. Click here for a tutorial.'
     },
 ];
+const capPeriods = [
+    'Every 24 hours',
+    'Every 12 hours',
+    'Every 8 hours',
+    'Every 6 hours',
+    'Every 4 hours',
+];
 export default function NewCampaign() {
     const [campaignType, setCampaignType] = React.useState('CPC (Cost Per Click)');
     const [conversionGoal, setConversionGoal] = React.useState('');
     const [status, setStatus] = React.useState('Active');
     const [selectedRadioValue, setSelectedRadioValue] = React.useState<string>('24-hours');
+    const [targetOfferWall, setTargetOfferWall] = React.useState<string>('no');
+    const [allowProxyTraffic, setAllowProxyTraffic] = React.useState<string>('no');
+    const [boostCampaign, setBoostCampaign] = React.useState<string>('yes');
     const [publisher, setPublisher] = React.useState<string>('allow-all');
     const [appTrackingMethod, setAppTrackingMethod] = React.useState<string>('CPAlead-tracking-SDK');
 
@@ -127,7 +137,7 @@ export default function NewCampaign() {
                             }
                         </Select>
                     </Box>
-                    {/* <CostPerClick
+                    <CostPerClick
                         allCampaignStatus={allCampaignStatus}
                         status={status}
                         setStatus={setStatus}
@@ -137,11 +147,8 @@ export default function NewCampaign() {
                         selectedRadioValue={selectedRadioValue}
                         setSelectedRadioValue={setSelectedRadioValue}
                         publisher={publisher}
-                        setPublisher={setPublisher} /> */}
-                    <MobileAppInstall
-                        allCampaignStatus={allCampaignStatus}
-                        status={status}
-                        setStatus={setStatus}
+                        setPublisher={setPublisher} />
+                    {/* <MobileAppInstall
                         geoTypes={geoTypes}
                         countries={countries}
                         conversionGoals={conversionGoals}
@@ -154,32 +161,14 @@ export default function NewCampaign() {
                         conversionGoal={conversionGoal}
                         setConversionGoal={setConversionGoal}
                         appTrackingMethods={appTrackingMethods}
-                        publisher={publisher}
-                        setPublisher={setPublisher}
-                    />
-                    <Box sx={{ display: 'flex', gap: 1, }}>
-                        <Button
-                            size='small'
-                            sx={{
-                                bgcolor: '#ED7D31', fontSize: '.7rem', px: '12px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', boxShadow: 'none', width: 'fit-content',
-                                '&:hover': {
-                                    bgcolor: '#ED7D31', boxShadow: 'none',
-                                },
-                            }} component="label" variant="contained">
-                            Submit
-                        </Button>
-                        <Button
-                            size='small'
-                            sx={{
-                                fontSize: '.7rem', px: '12px', py: '6px', letterSpacing: '.1ch', fontFamily: 'Dosis', boxShadow: 'none', width: 'fit-content', border: '1px solid #ED7D31', color: 'whiteSmoke',
-                                '&:hover': {
-                                    boxShadow: 'none',
-                                    border: '1px solid #ED7D31',
-                                },
-                            }} variant="outlined">
-                            Cancel
-                        </Button>
-                    </Box>
+                        targetOfferWall={targetOfferWall}
+                        setTargetOfferWall={setTargetOfferWall}
+                        capPeriods={capPeriods}
+                        allowProxyTraffic={allowProxyTraffic}
+                        setAllowProxyTraffic={setAllowProxyTraffic}
+                        boostCampaign={boostCampaign}
+                        setBoostCampaign={setBoostCampaign}
+                    /> */}
                 </CardContent>
             </Card>
         </Box>
