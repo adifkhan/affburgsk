@@ -5,6 +5,7 @@ import { Box, Card, CardContent, MenuItem, Select, SelectChangeEvent, Typography
 import CostPerClick from '@/components/dashComponents/CostPerClick';
 import MobileAppInstall from '@/components/dashComponents/MobileAppInstall';
 import MobileAppReview from '@/components/dashComponents/MobileAppReview';
+import CostPerAction from '@/components/dashComponents/CostPerAction';
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -32,6 +33,14 @@ const conversionGoals = [
     'Sign up for account',
     'Complete servey',
     'Play game for 5 minutes',
+    'Custom'
+];
+const conversionGoalsCPA = [
+    'Complete survey',
+    'Sign up for account',
+    'PIN submit',
+    'Purchase',
+    'Install app',
     'Custom'
 ];
 const appTrackingMethods = [
@@ -165,6 +174,26 @@ export default function NewCampaign() {
                         setSelectedRadioValue={setSelectedRadioValue}
                         publisher={publisher}
                         setPublisher={setPublisher} />}
+                    {campaignType === 'CPA (Cost Per Action)' && <CostPerAction
+                        geoTypes={geoTypes}
+                        countries={countries}
+                        conversionGoals={conversionGoalsCPA}
+                        handleOnChange={handleOnChange}
+                        selectedRadioValue={selectedRadioValue}
+                        setSelectedRadioValue={setSelectedRadioValue}
+                        appTrackingMethod={appTrackingMethod}
+                        setAppTrackingMethod={setAppTrackingMethod}
+                        conversionGoal={conversionGoal}
+                        setConversionGoal={setConversionGoal}
+                        appTrackingMethods={appTrackingMethods}
+                        targetOfferWall={targetOfferWall}
+                        setTargetOfferWall={setTargetOfferWall}
+                        capPeriods={capPeriods}
+                        allowProxyTraffic={allowProxyTraffic}
+                        setAllowProxyTraffic={setAllowProxyTraffic}
+                        boostCampaign={boostCampaign}
+                        setBoostCampaign={setBoostCampaign}
+                    />}
                     {campaignType === 'CPC (Cost Per Click)' && <CostPerClick
                         allCampaignStatus={allCampaignStatus}
                         status={status}
