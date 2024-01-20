@@ -36,7 +36,6 @@ type CPCProps = {
     appTrackingMethod: string;
     setAppTrackingMethod: React.Dispatch<React.SetStateAction<string>>;
     conversionGoals: string[];
-    handleConversionGoalChange: (event: SelectChangeEvent) => void;
     conversionGoal: string;
     setConversionGoal: React.Dispatch<React.SetStateAction<string>>;
     appTrackingMethods: AppTrackingMethod[];
@@ -458,7 +457,7 @@ export default function MobileAppInstall({
                                     setSelectedRadioValue={setSelectedRadioValue}
                                 />
                                 {selectedRadioValue === 'time-range' &&
-                                    <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', rowGap: 1, mt: 1 }}>
+                                    <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', rowGap: 1, my: 1 }}>
                                         <TimePicker />
                                         <TimePicker />
                                     </Box>

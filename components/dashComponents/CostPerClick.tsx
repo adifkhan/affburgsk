@@ -148,6 +148,10 @@ export default function CostPerClick({ allCampaignStatus, status, setStatus, geo
                             display: 'flex',
                             columnGap: '10px',
                             color: 'lightgrey',
+                            backgroundColor: '#121622',
+                            borderRadius: 1,
+                            px: 1,
+                            width: 'fit-content',
                         }}>
                         <CheckBoxFilter label={'Desktop'} handleOnChange={handleOnChange} />
                         <CheckBoxFilter label={'Android'} handleOnChange={handleOnChange} />
@@ -159,7 +163,11 @@ export default function CostPerClick({ allCampaignStatus, status, setStatus, geo
                     <Box component={'div'}
                         sx={{
                             display: 'flex',
-                            alignItems: 'flex-start'
+                            alignItems: 'flex-start',
+                            backgroundColor: '#121622',
+                            borderRadius: 1,
+                            px: 1,
+                            width: 'fit-content',
                         }}>
                         <RadioBtn
                             label='24 hours'
@@ -175,7 +183,7 @@ export default function CostPerClick({ allCampaignStatus, status, setStatus, geo
                                 setSelectedRadioValue={setSelectedRadioValue}
                             />
                             {selectedRadioValue === 'time-range' &&
-                                <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', rowGap: 1, mt: 1 }}>
+                                <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', rowGap: 1, my: 1 }}>
                                     <TimePicker />
                                     <TimePicker />
                                 </Box>
@@ -204,7 +212,11 @@ export default function CostPerClick({ allCampaignStatus, status, setStatus, geo
                     <Box component={'div'}
                         sx={{
                             display: 'flex',
-                            alignItems: 'flex-start'
+                            alignItems: 'flex-start',
+                            backgroundColor: '#121622',
+                            borderRadius: 1,
+                            px: 1,
+                            width: 'fit-content',
                         }}>
                         <RadioBtn
                             label='Allow all (Recommended)'
