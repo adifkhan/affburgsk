@@ -220,16 +220,16 @@ export default function MobileAppInstall({
                             />)
                         }
                     </Box>
-                    {appTrackingMethod === 'other-3rd-party' && <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, width: '100%', my: 1 }}>
-                        <Typography variant='h5' sx={{ fontSize: 14 }}>Tracking Method</Typography>
+                    {appTrackingMethod === 'other-3rd-party' && <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, width: '100%', mt: 1 }}>
+                        <Typography variant='h5' sx={{ fontSize: 14 }}>Global Postback URL</Typography>
                         <Typography
                             variant='body2'
-                            sx={{ fontSize: 14, color: '#36A689', px: 1, py: 2, border: '1px solid #ED7D31', borderRadius: 1, backgroundColor: '#121622' }}>
+                            sx={{ fontSize: 14, color: '#36A689', px: 1, py: 2, borderRadius: 1, backgroundColor: '#121622' }}>
                             https://net.go2trck.org/aff_lsr?id=e1e0dd84466d3d5e5877be1b23aa2cdb&click_id
                         </Typography>
                     </Box>}
                     {
-                        appTrackingMethods.map((method: AppTrackingMethod, index: number) => <Typography key={index} variant='h5' sx={{ fontSize: 12, color: 'lightgray' }}>
+                        appTrackingMethods.map((method: AppTrackingMethod, index: number) => <Typography key={index} variant='h5' sx={{ fontSize: 12, color: 'lightgray', mt: .5 }}>
                             {appTrackingMethod === method.value && method.helperText}
                         </Typography>)
                     }
@@ -254,18 +254,25 @@ export default function MobileAppInstall({
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                     <Typography variant='h5' sx={{ fontSize: 14, mb: 1 }}>Link examples</Typography>
-                    <Box component={'div'} sx={{ borderBottom: '1px solid #36A689', display: 'flex' }}>
+                    <Box component={'div'}
+                        sx={{
+                            borderBottom: '1px solid #36A689',
+                            display: 'flex',
+                            overflowX: 'scroll',
+                            '&::-webkit-scrollbar': { display: 'none' },
+                        }}>
                         <Box
                             component={'div'}
                             onClick={() => setLinkExa('mobile-app-tracking')}
                             sx={{
                                 backgroundColor: `${linkExa === 'mobile-app-tracking' ? '#36A689' : ''}`,
-                                fontSize: 14,
+                                fontSize: { xs: 12, sm: 14 },
                                 px: 1,
                                 py: .5,
                                 borderRadius: '4px 4px 0 0',
                                 width: 'fit-content',
                                 cursor: 'pointer',
+                                whiteSpace: 'nowrap',
                                 transition: '.2s',
                                 '&:hover': {
                                     backgroundColor: `${linkExa === 'mobile-app-tracking' ? '#36A689' : '#121622'}`,
@@ -278,12 +285,13 @@ export default function MobileAppInstall({
                             onClick={() => setLinkExa('kochava')}
                             sx={{
                                 backgroundColor: `${linkExa === 'kochava' ? '#36A689' : ''}`,
-                                fontSize: 14,
+                                fontSize: { xs: 12, sm: 14 },
                                 px: 1,
                                 py: .5,
                                 borderRadius: '4px 4px 0 0',
                                 width: 'fit-content',
                                 cursor: 'pointer',
+                                whiteSpace: 'nowrap',
                                 '&:hover': {
                                     backgroundColor: `${linkExa === 'kochava' ? '#36A689' : '#121622'}`,
                                 }
@@ -295,12 +303,13 @@ export default function MobileAppInstall({
                             onClick={() => setLinkExa('apsalar')}
                             sx={{
                                 backgroundColor: `${linkExa === 'apsalar' ? '#36A689' : ''}`,
-                                fontSize: 14,
+                                fontSize: { xs: 12, sm: 14 },
                                 px: 1,
                                 py: .5,
                                 borderRadius: '4px 4px 0 0',
                                 width: 'fit-content',
                                 cursor: 'pointer',
+                                whiteSpace: 'nowrap',
                                 '&:hover': {
                                     backgroundColor: `${linkExa === 'apsalar' ? '#36A689' : '#121622'}`,
                                 }
@@ -312,12 +321,13 @@ export default function MobileAppInstall({
                             onClick={() => setLinkExa('voluum')}
                             sx={{
                                 backgroundColor: `${linkExa === 'voluum' ? '#36A689' : ''}`,
-                                fontSize: 14,
+                                fontSize: { xs: 12, sm: 14 },
                                 px: 1,
                                 py: .5,
                                 borderRadius: '4px 4px 0 0',
                                 width: 'fit-content',
                                 cursor: 'pointer',
+                                whiteSpace: 'nowrap',
                                 '&:hover': {
                                     backgroundColor: `${linkExa === 'voluum' ? '#36A689' : '#121622'}`,
                                 }
@@ -329,12 +339,13 @@ export default function MobileAppInstall({
                             onClick={() => setLinkExa('hasOffers')}
                             sx={{
                                 backgroundColor: `${linkExa === 'hasOffers' ? '#36A689' : ''}`,
-                                fontSize: 14,
+                                fontSize: { xs: 12, sm: 14 },
                                 px: 1,
                                 py: .5,
                                 borderRadius: '4px 4px 0 0',
                                 width: 'fit-content',
                                 cursor: 'pointer',
+                                whiteSpace: 'nowrap',
                                 '&:hover': {
                                     backgroundColor: `${linkExa === 'hasOffers' ? '#36A689' : '#121622'}`,
                                 }
@@ -344,7 +355,7 @@ export default function MobileAppInstall({
                     </Box>
                     <Typography
                         variant='body2'
-                        sx={{ fontSize: 13, color: '#36A689', px: 1, py: 2, backgroundColor: '#121622' }}>
+                        sx={{ fontSize: { xs: 12, sm: 13 }, color: '#36A689', px: 1, py: 2, backgroundColor: '#121622' }}>
                         {linkExa === 'mobile-app-tracking' && `https://MAT_URL/serve?action=click&publisher_id=&site_id=&offer_id=&ref_id={CLICK_ID}&sub_site={PUBLISHER_ID}`}
                         {linkExa === 'kochava' && `https://control.kochava.com/v1/cpi/click?campaign_id=&network_id=XXX&click_id={CLICK_ID}&site_id={PUBLISHER_ID}`}
                         {linkExa === 'apsalar' && `http://ad.apsalar.com/api/v1/ad?a=&i=&p=&ca&pl=&cl={CLICK_ID}&s={PUBLISHER_ID}&h=`}
@@ -379,6 +390,7 @@ export default function MobileAppInstall({
                     sx={{
                         display: 'flex',
                         flexDirection: { xs: 'column', sm: 'row' },
+                        gap: 3,
                     }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                         <Typography variant='h5' sx={{ fontSize: 14 }}>Device Targeting</Typography>
@@ -490,6 +502,7 @@ export default function MobileAppInstall({
                     sx={{
                         display: 'flex',
                         flexDirection: { xs: 'column', sm: 'row' },
+                        gap: 3,
                     }}>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, width: '100%' }}>
                         <Typography variant='h5' sx={{ fontSize: 14 }}>Allow Proxy Traffic</Typography>

@@ -137,7 +137,7 @@ export default function NewCampaign() {
                             }
                         </Select>
                     </Box>
-                    <CostPerClick
+                    {campaignType === 'CPC (Cost Per Click)' && <CostPerClick
                         allCampaignStatus={allCampaignStatus}
                         status={status}
                         setStatus={setStatus}
@@ -147,8 +147,8 @@ export default function NewCampaign() {
                         selectedRadioValue={selectedRadioValue}
                         setSelectedRadioValue={setSelectedRadioValue}
                         publisher={publisher}
-                        setPublisher={setPublisher} />
-                    {/* <MobileAppInstall
+                        setPublisher={setPublisher} />}
+                    {campaignType === 'Mobile App Install (CPI or CPE)' && <MobileAppInstall
                         geoTypes={geoTypes}
                         countries={countries}
                         conversionGoals={conversionGoals}
@@ -168,7 +168,7 @@ export default function NewCampaign() {
                         setAllowProxyTraffic={setAllowProxyTraffic}
                         boostCampaign={boostCampaign}
                         setBoostCampaign={setBoostCampaign}
-                    /> */}
+                    />}
                 </CardContent>
             </Card>
         </Box>
