@@ -13,7 +13,7 @@ export default function CheckBoxFilter({ label, handleOnChange }: CheckboxProps)
                 onChange={handleOnChange}
                 sx={{
                     '& .MuiFormControlLabel-label': {
-                        fontSize: '.8rem'
+                        fontSize: { xs: '.7rem', sm: '.8rem' },
                     }
                 }}
                 control={<Checkbox
