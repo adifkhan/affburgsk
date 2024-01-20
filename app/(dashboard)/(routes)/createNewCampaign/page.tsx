@@ -6,18 +6,7 @@ import CostPerClick from '@/components/dashComponents/CostPerClick';
 import MobileAppInstall from '@/components/dashComponents/MobileAppInstall';
 import MobileAppReview from '@/components/dashComponents/MobileAppReview';
 import CostPerAction from '@/components/dashComponents/CostPerAction';
-
-const VisuallyHiddenInput = styled('input')({
-    clip: 'rect(0 0 0 0)',
-    clipPath: 'inset(50%)',
-    height: 1,
-    overflow: 'hidden',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    whiteSpace: 'nowrap',
-    width: 1,
-});
+import PinSubmitCPA from '@/components/dashComponents/PinSubmitCPA';
 
 const allCampaignStatus = ['Active'];
 const geoTypes = ['By country'];
@@ -143,6 +132,9 @@ export default function NewCampaign() {
                             }
                         </Select>
                     </Box>
+                    {campaignType === 'Pin Submit CPA (Cost Per Action)' &&
+                        <Typography variant='body2' sx={{ backgroundColor: '#121622', px: 1, py: 2, borderRadius: 1, color: '#36A689', fontSize: 13 }}><em style={{ fontWeight: 600, fontSize: 14 }}>Note:</em> Only create PIN-Submit campaigns to this category or campaign will be denied.</Typography>
+                    }
                     {campaignType === 'Mobile App Install (CPI or CPE)' && <MobileAppInstall
                         geoTypes={geoTypes}
                         countries={countries}
@@ -205,6 +197,26 @@ export default function NewCampaign() {
                         setSelectedRadioValue={setSelectedRadioValue}
                         publisher={publisher}
                         setPublisher={setPublisher} />}
+                    {campaignType === 'Pin Submit CPA (Cost Per Action)' && <PinSubmitCPA
+                        geoTypes={geoTypes}
+                        countries={countries}
+                        conversionGoals={conversionGoalsCPA}
+                        handleOnChange={handleOnChange}
+                        selectedRadioValue={selectedRadioValue}
+                        setSelectedRadioValue={setSelectedRadioValue}
+                        appTrackingMethod={appTrackingMethod}
+                        setAppTrackingMethod={setAppTrackingMethod}
+                        conversionGoal={conversionGoal}
+                        setConversionGoal={setConversionGoal}
+                        appTrackingMethods={appTrackingMethods}
+                        targetOfferWall={targetOfferWall}
+                        setTargetOfferWall={setTargetOfferWall}
+                        capPeriods={capPeriods}
+                        allowProxyTraffic={allowProxyTraffic}
+                        setAllowProxyTraffic={setAllowProxyTraffic}
+                        boostCampaign={boostCampaign}
+                        setBoostCampaign={setBoostCampaign}
+                    />}
                 </CardContent>
             </Card>
         </Box>
